@@ -1,11 +1,10 @@
-package com.example.booksapp
+package com.example.booksapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityMainBinding
-import com.example.booksapp.view.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val layoutId: Int
