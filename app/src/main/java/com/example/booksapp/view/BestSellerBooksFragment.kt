@@ -11,6 +11,6 @@ import com.example.booksapp.databinding.FragmentBestSellerBooksBinding
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_best_seller_books
-    
+
 
 }
