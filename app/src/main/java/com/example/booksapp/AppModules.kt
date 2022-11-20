@@ -2,14 +2,33 @@ package com.example.booksapp
 
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.NullOnEmptyConverterFactory
+import com.example.booksapp.repository.BookRepository
+import com.example.booksapp.viewmodel.BooksViewModel
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.internal.platform.android.BouncyCastleSocketAdapter.Companion.factory
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object AppModules {
+    private val viewModels = module {
+        viewModel {
+            BooksViewModel(
+                bookRepository = get()
+            )
+        }
+    }
+
+    private val repositories = module {
+        factory {
+            BookRepository(
+                service = get()
+            )
+        }
+    }
     private val etc = module {
         single {
             Retrofit.Builder()
@@ -33,5 +52,5 @@ object AppModules {
         }
     }
 
-    val modules = listOf(etc)
+    val modules = listOf(viewModels, repositories, etc)
 }
