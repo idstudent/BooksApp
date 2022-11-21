@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="com.example.booksapp.api.model.BooksTitle" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -11,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="제목"
-            style="@style/Black.Text.Title"
+            android:text="@{item.bookMainTitle}"
+            style="@style/Black.Text.Sub.Title"
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"

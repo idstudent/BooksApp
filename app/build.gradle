@@ -62,4 +62,6 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:2.2.2"
     implementation "org.koin:koin-androidx-fragment:2.2.0"
 
+    implementation 'com.rubensousa:decorator:2.0.0'
+
 }

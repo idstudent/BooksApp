@@ -84,6 +84,10 @@ class NewBooks {
 
 }
 
+class Header : Books
+data class BooksCount(
+    val maxCount : List<Int>
+) : Books
 
 data class BooksTitle(
     val bookMainTitle: String
