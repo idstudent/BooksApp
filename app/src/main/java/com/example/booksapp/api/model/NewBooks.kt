@@ -1,6 +1,7 @@
 package com.example.booksapp.api.model
 
 interface Books
+
 class NewBooks {
     data class Response(
         val title: String?,
@@ -43,13 +44,14 @@ class NewBooks {
             val mobileLink: String?,
             val additionalLink: String?,
             val reviewCount: Int?
-        )
+        ) : Books
 
         override fun mapper(): List<Books> {
             val result = mutableListOf<Books>()
+
             item?.let { books ->
-                books.map {
-                    result.add(
+                result.add(BookList(
+                    books.map {
                         Book(
                             id = it.itemId ?: 0,
                             title = it.title ?: "",
@@ -73,39 +75,44 @@ class NewBooks {
                             mobileLink = it.mobileLink ?: "",
                             reviewCount = it.reviewCount ?: 0
                         )
-                    )
-                }
+                    }
+                ))
             }
-
             return result
         }
     }
+
 }
+
 
 data class BooksTitle(
     val bookMainTitle: String
 ) : Books
 
+data class BookList(
+    val books: List<Book>
+) : Books
+
 data class Book(
     val id: Int,
-    val title : String,
-    val description : String,
-    val date : String,
-    val priceStandard : Int,
-    val priceSales : Int,
-    val discountRate : String,
-    val saleStatus : String,
-    val mileage : String,
-    val mileageRate : String,
-    val coverSmallUrl : String,
-    val coverLargeUrl : String,
-    val categoryId : String,
-    val categoryName : String,
-    val publisher : String,
-    val customerReviewRank : Int,
-    val author : String,
-    val translator : String,
-    val link : String,
-    val mobileLink : String,
-    val reviewCount : Int
+    val title: String,
+    val description: String,
+    val date: String,
+    val priceStandard: Int,
+    val priceSales: Int,
+    val discountRate: String,
+    val saleStatus: String,
+    val mileage: String,
+    val mileageRate: String,
+    val coverSmallUrl: String,
+    val coverLargeUrl: String,
+    val categoryId: String,
+    val categoryName: String,
+    val publisher: String,
+    val customerReviewRank: Int,
+    val author: String,
+    val translator: String,
+    val link: String,
+    val mobileLink: String,
+    val reviewCount: Int
 ) : Books

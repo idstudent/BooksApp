@@ -1,16 +1,15 @@
 package com.example.booksapp.view.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.api.model.Book
-import com.example.booksapp.api.model.Books
-import com.example.booksapp.api.model.BooksTitle
-import com.example.booksapp.databinding.ItemBookBinding
+import com.example.booksapp.api.model.*
 import com.example.booksapp.databinding.ItemBookTitleBinding
+import com.example.booksapp.databinding.ItemBooksBinding
 import com.example.booksapp.databinding.ItemNothingBinding
 
 class BooksListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
@@ -34,7 +33,7 @@ class BooksListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
         if(position == RecyclerView.NO_POSITION) return super.getItemViewType(position)
         return when(getItem(position)) {
             is BooksTitle -> VIEW_TYPE_BOOK_TITLE
-            is Book -> VIEW_TYPE_BOOKS
+            is BookList -> VIEW_TYPE_BOOKS
             else -> super.getItemViewType(position)
         }
     }
@@ -45,8 +44,8 @@ class BooksListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
                 ItemBookTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
 
-            VIEW_TYPE_BOOKS -> BookViewHolder(
-                ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            VIEW_TYPE_BOOKS -> BookListViewHolder(
+                ItemBooksBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
             else -> NothingViewHolder(
                 ItemNothingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -55,5 +54,17 @@ class BooksListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        val item = getItem(position)
+
+        when(holder) {
+            is BookTitleViewHolder -> {
+                holder.onBind(item as BooksTitle)
+            }
+            is BookListViewHolder -> {
+
+                holder.onBind(item as BookList)
+            }
+        }
     }
 }
