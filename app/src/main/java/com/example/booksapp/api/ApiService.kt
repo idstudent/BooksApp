@@ -22,4 +22,11 @@ interface ApiService {
         @Query("categoryId") categoryId : Int,
         @Query("output") output : String = "json"
     ): BooksModel.Response
+
+    @GET("api/bestSeller.api")
+    suspend fun getBestSellerBooks(
+        @Query("key") key : String,
+        @Query("categoryId") categoryId : Int,
+        @Query("output") output : String = "json"
+    ): BooksModel.Response
 }

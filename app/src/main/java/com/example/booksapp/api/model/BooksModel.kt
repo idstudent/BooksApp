@@ -18,7 +18,7 @@ class BooksModel {
         val searchCategoryName: String?,
         val returnCode: String?,
         val returnMessage: String?,
-        val item: List<BooksItem>?,
+        val item: List<BooksItem?>,
     ) : BaseResponse<List<Books>>() {
         data class BooksItem(
             val itemId: Int?,
@@ -49,31 +49,31 @@ class BooksModel {
         override fun mapper(): List<Books> {
             val result = mutableListOf<Books>()
 
-            item?.let { books ->
+            item.let { books ->
                 result.add(BookList(
                     books.map {
                         Book(
-                            id = it.itemId ?: 0,
-                            title = it.title ?: "",
-                            description = it.description ?: "",
-                            date = it.pubDate ?: "",
-                            priceStandard = it.priceStandard ?: 0,
-                            priceSales = it.priceSales ?: 0,
-                            discountRate = it.discountRate ?: "",
-                            saleStatus = it.saleStatus ?: "",
-                            mileage = it.mileage ?: "",
-                            mileageRate = it.mileageRate ?: "",
-                            coverSmallUrl = it.coverSmallUrl ?: "",
-                            coverLargeUrl = it.coverLargeUrl ?: "",
-                            categoryId = it.categoryId ?: "",
-                            categoryName = it.categoryName ?: "",
-                            publisher = it.publisher ?: "",
-                            customerReviewRank = it.customerReviewRank ?: 0.0,
-                            author = it.author ?: "",
-                            translator = it.translator ?: "",
-                            link = it.link ?: "",
-                            mobileLink = it.mobileLink ?: "",
-                            reviewCount = it.reviewCount ?: 0
+                            id = it?.itemId ?: 0,
+                            title = it?.title ?: "",
+                            description = it?.description ?: "",
+                            date = it?.pubDate ?: "",
+                            priceStandard = it?.priceStandard ?: 0,
+                            priceSales = it?.priceSales ?: 0,
+                            discountRate = it?.discountRate ?: "",
+                            saleStatus = it?.saleStatus ?: "",
+                            mileage = it?.mileage ?: "",
+                            mileageRate = it?.mileageRate ?: "",
+                            coverSmallUrl = it?.coverSmallUrl ?: "",
+                            coverLargeUrl = it?.coverLargeUrl ?: "",
+                            categoryId = it?.categoryId ?: "",
+                            categoryName = it?.categoryName ?: "",
+                            publisher = it?.publisher ?: "",
+                            customerReviewRank = it?.customerReviewRank ?: 0.0,
+                            author = it?.author ?: "",
+                            translator = it?.translator ?: "",
+                            link = it?.link ?: "",
+                            mobileLink = it?.mobileLink ?: "",
+                            reviewCount = it?.reviewCount ?: 0
                         )
                     }
                 ))

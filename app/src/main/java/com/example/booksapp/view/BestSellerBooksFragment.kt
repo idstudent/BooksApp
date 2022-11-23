@@ -1,16 +1,87 @@
 package com.example.booksapp.view
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.example.booksapp.R
+import com.example.booksapp.api.model.BooksModel
 import com.example.booksapp.databinding.FragmentBestSellerBooksBinding
+import com.example.booksapp.view.adapter.BooksCarouselAdapter
+import com.example.booksapp.view.util.HorizontalMarginItemDecoration
+import com.example.booksapp.view.util.dp
+import com.example.booksapp.viewmodel.BooksViewModel
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import java.lang.Math.abs
 
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
+    private val booksViewModel: BooksViewModel by inject()
+
     override val layoutId: Int
         get() = R.layout.fragment_best_seller_books
 
+    override fun initView() {
+        super.initView()
 
+        val adapter = BooksCarouselAdapter()
+        val localBooks = ArrayList<BooksModel.Response.BooksItem?>()
+        val globalBooks = ArrayList<BooksModel.Response.BooksItem?>()
+
+        var isStatusLocal = true
+        var globalCall = false
+
+        lifecycleScope.launch {
+            booksViewModel.getBestSellerBookLIst(100).collect {
+                localBooks.addAll(it)
+
+                adapter.submitList(it)
+            }
+        }
+
+        binding.run {
+            vpBooks.adapter = adapter
+            vpBooks.offscreenPageLimit = 1
+
+            val pageTranslationX = 26.dp + 42.dp
+            val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+                page.translationX = -pageTranslationX * position
+                page.scaleY = 1 - (0.25f * abs(position))
+            }
+            vpBooks.setPageTransformer(pageTransformer)
+
+            val itemDecoration = HorizontalMarginItemDecoration(42.dp)
+            vpBooks.addItemDecoration(itemDecoration)
+
+
+
+            tvChange.setOnClickListener {
+                isStatusLocal = !isStatusLocal
+
+                if (isStatusLocal){
+                    tvTitle.text = "국내 베스트셀러"
+                    tvChange.text = "외국도서 베스트셀러 보기"
+                } else {
+                    tvTitle.text = "외국 베스트셀러"
+                    tvChange.text = "국내도서 베스트셀러 보기"
+                }
+
+                if (isStatusLocal) {
+                    adapter.submitList(localBooks)
+                } else {
+                    if (globalCall) {
+                        adapter.submitList(globalBooks)
+                    } else {
+                        lifecycleScope.launch {
+                            booksViewModel.getBestSellerBookLIst(200).collect {
+                                globalBooks.addAll(it)
+                                globalCall = true
+
+                                adapter.submitList(it)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,11 +1,7 @@
 package com.example.booksapp.repository
 
-import android.util.Log
 import com.example.booksapp.api.ApiService
-import com.example.booksapp.api.model.Book
-import com.example.booksapp.api.model.Books
-import com.example.booksapp.api.model.BooksTitle
-import com.example.booksapp.api.model.Header
+import com.example.booksapp.api.model.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -43,6 +39,15 @@ class BookRepository(
             bookList.addAll(response)
 
             emit(bookList)
+        }
+    }
+
+    fun getBestSellerList(id : Int): Flow<List<BooksModel.Response.BooksItem?>> {
+
+        return flow {
+            val response = service.getBestSellerBooks(apiKey, id)
+
+            emit(response.item)
         }
     }
 }
