@@ -13,6 +13,7 @@ import org.koin.android.ext.android.inject
 
 class BooksFragment : BaseFragment<FragmentBooksBinding>() {
     private val booksViewModel: BooksViewModel by inject()
+    private val bookListAdapter = BooksListAdapter()
 
     override val layoutId: Int
         get() = R.layout.fragment_books
@@ -20,7 +21,15 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>() {
     override fun initView() {
         super.initView()
 
-        val adapter = BooksListAdapter()
+        binding.run {
+            rvBooks.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            rvBooks.adapter = bookListAdapter
+        }
+    }
+
+    override fun initViewModel() {
+        super.initViewModel()
+
 
         val books = mutableListOf<Books>()
 
@@ -37,16 +46,8 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>() {
                 books.addAll(it)
             }
 
-            adapter.submitList(books)
+            bookListAdapter.submitList(books)
         }
-
-
-
-        binding.run {
-            rvBooks.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-            rvBooks.adapter = adapter
-        }
-
 
     }
 }

@@ -9,6 +9,7 @@ import com.example.booksapp.databinding.FragmentBestSellerBooksBinding
 import com.example.booksapp.view.adapter.BooksCarouselAdapter
 import com.example.booksapp.view.util.HorizontalMarginItemDecoration
 import com.example.booksapp.view.util.dp
+import com.example.booksapp.view.util.setOnSingleClickListener
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -17,26 +18,16 @@ import java.lang.Math.abs
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
     private val booksViewModel: BooksViewModel by inject()
 
+
+    private val adapter = BooksCarouselAdapter()
+    private val localBooks = ArrayList<BooksModel.Response.BooksItem?>()
+    private val globalBooks = ArrayList<BooksModel.Response.BooksItem?>()
+
     override val layoutId: Int
         get() = R.layout.fragment_best_seller_books
 
     override fun initView() {
         super.initView()
-
-        val adapter = BooksCarouselAdapter()
-        val localBooks = ArrayList<BooksModel.Response.BooksItem?>()
-        val globalBooks = ArrayList<BooksModel.Response.BooksItem?>()
-
-        var isStatusLocal = true
-        var globalCall = false
-
-        lifecycleScope.launch {
-            booksViewModel.getBestSellerBookLIst(100).collect {
-                localBooks.addAll(it)
-
-                adapter.submitList(it)
-            }
-        }
 
         binding.run {
             vpBooks.adapter = adapter
@@ -52,12 +43,32 @@ class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
             val itemDecoration = HorizontalMarginItemDecoration(42.dp)
             vpBooks.addItemDecoration(itemDecoration)
 
+        }
+    }
 
+    override fun initViewModel() {
+        super.initViewModel()
 
-            tvChange.setOnClickListener {
+        lifecycleScope.launch {
+            booksViewModel.getBestSellerBookLIst(100).collect {
+                localBooks.addAll(it)
+
+                adapter.submitList(it)
+            }
+        }
+    }
+
+    override fun initListener() {
+        super.initListener()
+
+        var isStatusLocal = true
+        var globalCall = false
+
+        binding.run {
+            tvChange.setOnSingleClickListener {
                 isStatusLocal = !isStatusLocal
 
-                if (isStatusLocal){
+                if (isStatusLocal) {
                     tvTitle.text = "국내 베스트셀러"
                     tvChange.text = "외국도서 베스트셀러 보기"
                 } else {
