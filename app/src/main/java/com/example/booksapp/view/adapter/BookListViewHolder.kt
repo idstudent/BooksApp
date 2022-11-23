@@ -14,12 +14,6 @@ class BookListViewHolder(
     init {
         binding.run {
             rvBooks.layoutManager = LinearLayoutManager(this.root.context, RecyclerView.HORIZONTAL, false)
-//            rvBooks.addItemDecoration(
-//                LinearMarginDecoration.createHorizontal(
-//                    horizontalMargin = 16,
-//                    addBeforeFirstPosition = false
-//                )
-//            )
             rvBooks.adapter = horizontalBookListAdapter
         }
     }

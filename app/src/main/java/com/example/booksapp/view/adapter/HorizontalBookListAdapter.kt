@@ -18,6 +18,10 @@ class HorizontalBookListAdapter : ListAdapter<Book, BookViewHolder>(
         }
     }
 ) {
+    override fun getItemCount(): Int {
+        return if(super.getItemCount() > 6) 6
+        else super.getItemCount()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         return BookViewHolder(
             ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)

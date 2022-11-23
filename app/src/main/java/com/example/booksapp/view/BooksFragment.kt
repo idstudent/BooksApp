@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class BooksFragment : BaseFragment<FragmentBooksBinding>() {
-    private val booksViewModel : BooksViewModel by inject()
+    private val booksViewModel: BooksViewModel by inject()
 
     override val layoutId: Int
         get() = R.layout.fragment_books
@@ -22,18 +22,22 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>() {
 
         val adapter = BooksListAdapter()
 
-        val test = mutableListOf<Books>()
+        val books = mutableListOf<Books>()
 
         lifecycleScope.launch {
-                booksViewModel.getNewBookList(100).collect{
-                    test.addAll(it)
-                }
+            booksViewModel.getNewBookList(100).collect {
+                books.addAll(it)
+            }
 
-                booksViewModel.getNewBookList(200).collect {
-                    test.addAll(it)
-                }
+            booksViewModel.getNewBookList(200).collect {
+                books.addAll(it)
+            }
 
-            adapter.submitList(test)
+            booksViewModel.getRecommendBookList().collect {
+                books.addAll(it)
+            }
+
+            adapter.submitList(books)
         }
 
 

@@ -1,6 +1,6 @@
 package com.example.booksapp.api
 
-import com.example.booksapp.api.model.NewBooks
+import com.example.booksapp.api.model.BooksModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,11 +14,12 @@ interface ApiService {
         @Query("key") key : String,
         @Query("categoryId") categoryId : Int,
         @Query("output") output : String = "json"
-    ) : NewBooks.Response
+    ) : BooksModel.Response
 
     @GET("api/recommend.api")
     suspend fun getRecommendBooks(
         @Query("key") key : String,
-        @Query("categoryId") categoryId : Int
-    )
+        @Query("categoryId") categoryId : Int,
+        @Query("output") output : String = "json"
+    ): BooksModel.Response
 }

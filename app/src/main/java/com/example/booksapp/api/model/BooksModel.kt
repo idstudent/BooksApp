@@ -2,7 +2,7 @@ package com.example.booksapp.api.model
 
 interface Books
 
-class NewBooks {
+class BooksModel {
     data class Response(
         val title: String?,
         val link: String?,
@@ -18,9 +18,9 @@ class NewBooks {
         val searchCategoryName: String?,
         val returnCode: String?,
         val returnMessage: String?,
-        val item: List<NewBooksItem>?,
+        val item: List<BooksItem>?,
     ) : BaseResponse<List<Books>>() {
-        data class NewBooksItem(
+        data class BooksItem(
             val itemId: Int?,
             val title: String?,
             val description: String?,
@@ -36,7 +36,7 @@ class NewBooks {
             val categoryId: String?,
             val categoryName: String?,
             val publisher: String?,
-            val customerReviewRank: Int?,
+            val customerReviewRank: Double?,
             val author: String?,
             val translator: String?,
             val isbn: String?,
@@ -68,7 +68,7 @@ class NewBooks {
                             categoryId = it.categoryId ?: "",
                             categoryName = it.categoryName ?: "",
                             publisher = it.publisher ?: "",
-                            customerReviewRank = it.customerReviewRank ?: 0,
+                            customerReviewRank = it.customerReviewRank ?: 0.0,
                             author = it.author ?: "",
                             translator = it.translator ?: "",
                             link = it.link ?: "",
@@ -113,7 +113,7 @@ data class Book(
     val categoryId: String,
     val categoryName: String,
     val publisher: String,
-    val customerReviewRank: Int,
+    val customerReviewRank: Double,
     val author: String,
     val translator: String,
     val link: String,

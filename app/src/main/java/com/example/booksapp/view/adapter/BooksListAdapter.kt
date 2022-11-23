@@ -25,7 +25,6 @@ class BooksListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
         const val VIEW_TYPE_HEADER = 1
         const val VIEW_TYPE_BOOK_TITLE = 2
         const val VIEW_TYPE_BOOKS = 3
-
     }
     override fun getItemViewType(position: Int): Int {
         if(position == RecyclerView.NO_POSITION) return super.getItemViewType(position)
