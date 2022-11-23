@@ -41,6 +41,11 @@ class BooksCarouselAdapter :
         holder.onBind(getItem(position))
     }
 
+    override fun getItemCount(): Int {
+        return if(super.getItemCount() > 6) 6
+        else super.getItemCount()
+    }
+
     class BookViewHolder(
         private val binding: ItemViewpagerBookBinding
     ) : RecyclerView.ViewHolder(binding.root) {
