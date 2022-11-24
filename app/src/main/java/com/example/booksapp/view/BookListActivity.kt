@@ -1,10 +1,12 @@
 package com.example.booksapp.view
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
+import com.example.booksapp.constants.BookFilterType
 import com.example.booksapp.databinding.ActivityBookListBinding
 import com.example.booksapp.view.adapter.BookDetailAdapter
 import com.example.booksapp.view.util.setOnSingleClickListener
@@ -15,6 +17,7 @@ import org.koin.android.ext.android.inject
 class BookListActivity : BaseActivity<ActivityBookListBinding>() {
     private val booksViewModel: BooksViewModel by inject()
     private val bookDetailAdapter = BookDetailAdapter()
+
     override val layoutId: Int
         get() = R.layout.activity_book_list
 
@@ -31,7 +34,9 @@ class BookListActivity : BaseActivity<ActivityBookListBinding>() {
         super.initViewModel()
 
         val intent = intent
+        val type = intent.getStringExtra("type") ?: throw RuntimeException()
         val categoryId = intent.getStringExtra("categoryId") ?: throw RuntimeException()
+
 
         if(categoryId == "100") {
             binding.tvTitle.text = "국내도서 리스트"
@@ -41,9 +46,18 @@ class BookListActivity : BaseActivity<ActivityBookListBinding>() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-
-                booksViewModel.getNewBookDetailList(categoryId.toInt()).collect {
-                    bookDetailAdapter.submitList(it)
+                if(type == BookFilterType.NEW.name) {
+                    booksViewModel.getNewBookDetailList(categoryId.toInt()).collect {
+                        bookDetailAdapter.submitList(it)
+                    }
+                }else if(type == BookFilterType.RECOMMEND.name) {
+                    booksViewModel.getRecommendBookDetailList().collect {
+                        bookDetailAdapter.submitList(it)
+                    }
+                } else{
+                    booksViewModel.getBestSellerBookLIst(categoryId.toInt()).collect {
+                        bookDetailAdapter.submitList(it)
+                    }
                 }
             }
         }

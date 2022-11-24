@@ -23,4 +23,7 @@ class BooksViewModel(
         bookRepository.getNewBookDetailList(categoryId)
             .catch { it.printStackTrace() }
 
+    fun getRecommendBookDetailList() =
+        bookRepository.getRecommendBookDetailList()
+            .catch { it.printStackTrace() }
 }

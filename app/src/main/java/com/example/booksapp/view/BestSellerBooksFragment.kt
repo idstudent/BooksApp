@@ -1,5 +1,6 @@
 package com.example.booksapp.view
 
+import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -7,6 +8,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.booksapp.R
 import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.constants.BookFilterType
 import com.example.booksapp.databinding.FragmentBestSellerBooksBinding
 import com.example.booksapp.view.adapter.BooksCarouselAdapter
 import com.example.booksapp.view.util.HorizontalMarginItemDecoration
@@ -97,6 +99,21 @@ class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
                     }
                 }
             }
+
+            tvMoreView.setOnSingleClickListener {
+                if(isStatusLocal) {
+                    moveDetailActivity("100")
+                }else {
+                    moveDetailActivity("200")
+                }
+            }
         }
+    }
+
+    private fun moveDetailActivity(categoryId: String) {
+        val intent = Intent(activity, BookListActivity::class.java)
+        intent.putExtra("type",  BookFilterType.BEST.name)
+        intent.putExtra("categoryId", categoryId)
+        startActivity(intent)
     }
 }

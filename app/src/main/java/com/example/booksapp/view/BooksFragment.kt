@@ -35,8 +35,11 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>() {
 
         val books = mutableListOf<Books>()
 
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                books.clear()
+
                 booksViewModel.getNewBookList(100).collect {
                     books.addAll(it)
                 }

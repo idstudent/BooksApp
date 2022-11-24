@@ -87,6 +87,7 @@ class BooksModel {
 class Header : Books
 
 data class BooksTitle(
+    val filterType : String,
     val categoryId : String,
     val bookMainTitle: String
 ) : Books
