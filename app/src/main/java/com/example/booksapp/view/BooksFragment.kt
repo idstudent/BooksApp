@@ -1,19 +1,21 @@
 package com.example.booksapp.view
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.R
 import com.example.booksapp.api.model.Books
 import com.example.booksapp.databinding.FragmentBooksBinding
-import com.example.booksapp.view.adapter.BooksListAdapter
+import com.example.booksapp.view.adapter.BookListAdapter
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class BooksFragment : BaseFragment<FragmentBooksBinding>() {
     private val booksViewModel: BooksViewModel by inject()
-    private val bookListAdapter = BooksListAdapter()
+    private val bookListAdapter = BookListAdapter()
 
     override val layoutId: Int
         get() = R.layout.fragment_books
@@ -33,21 +35,22 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>() {
 
         val books = mutableListOf<Books>()
 
-        lifecycleScope.launch {
-            booksViewModel.getNewBookList(100).collect {
-                books.addAll(it)
-            }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                booksViewModel.getNewBookList(100).collect {
+                    books.addAll(it)
+                }
 
-            booksViewModel.getNewBookList(200).collect {
-                books.addAll(it)
-            }
+                booksViewModel.getNewBookList(200).collect {
+                    books.addAll(it)
+                }
 
-            booksViewModel.getRecommendBookList().collect {
-                books.addAll(it)
-            }
+                booksViewModel.getRecommendBookList().collect {
+                    books.addAll(it)
+                }
 
-            bookListAdapter.submitList(books)
+                bookListAdapter.submitList(books)
+            }
         }
-
     }
 }

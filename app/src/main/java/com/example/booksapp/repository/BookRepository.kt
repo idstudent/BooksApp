@@ -17,11 +17,10 @@ class BookRepository(
 
             if (categoryId == 100) {
                 booksList.add(Header())
-                booksList.add(BooksTitle("국내 도서"))
+                booksList.add(BooksTitle("100","국내 도서"))
             } else {
-                booksList.add(BooksTitle("외국 도서"))
+                booksList.add(BooksTitle("200","외국 도서"))
             }
-
             booksList.addAll(response)
 
             emit(booksList)
@@ -33,7 +32,7 @@ class BookRepository(
 
         return flow {
 
-            bookList.add((BooksTitle("국내 도서 추천")))
+            bookList.add((BooksTitle("100","국내 도서 추천")))
             val response = service.getRecommendBooks(apiKey, 100).mapper()
 
             bookList.addAll(response)
@@ -46,6 +45,14 @@ class BookRepository(
 
         return flow {
             val response = service.getBestSellerBooks(apiKey, id)
+
+            emit(response.item)
+        }
+    }
+
+    fun getNewBookDetailList(categoryId: Int): Flow<List<BooksModel.Response.BooksItem?>> {
+        return flow {
+            val response = service.getNewBooks(apiKey, categoryId)
 
             emit(response.item)
         }

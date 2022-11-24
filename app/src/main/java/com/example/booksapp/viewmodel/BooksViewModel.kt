@@ -15,7 +15,12 @@ class BooksViewModel(
         bookRepository.getRecommendList()
             .catch { it.printStackTrace() }
 
-    fun getBestSellerBookLIst(id : Int) =
-        bookRepository.getBestSellerList(id)
+    fun getBestSellerBookLIst(categoryId : Int) =
+        bookRepository.getBestSellerList(categoryId)
             .catch { it.printStackTrace() }
+
+    fun getNewBookDetailList(categoryId : Int) =
+        bookRepository.getNewBookDetailList(categoryId)
+            .catch { it.printStackTrace() }
+
 }

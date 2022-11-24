@@ -1,7 +1,9 @@
 package com.example.booksapp.view
 
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.booksapp.R
 import com.example.booksapp.api.model.BooksModel
@@ -49,11 +51,13 @@ class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
     override fun initViewModel() {
         super.initViewModel()
 
-        lifecycleScope.launch {
-            booksViewModel.getBestSellerBookLIst(100).collect {
-                localBooks.addAll(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                booksViewModel.getBestSellerBookLIst(100).collect {
+                    localBooks.addAll(it)
 
-                adapter.submitList(it)
+                    adapter.submitList(it)
+                }
             }
         }
     }

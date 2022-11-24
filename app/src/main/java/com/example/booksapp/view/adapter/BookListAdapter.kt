@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.api.model.*
 import com.example.booksapp.databinding.*
 
-class BooksListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
+class BookListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
     object: DiffUtil.ItemCallback<Books>() {
         override fun areItemsTheSame(oldItem: Books, newItem: Books): Boolean {
             return oldItem == newItem
