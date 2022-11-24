@@ -1,6 +1,5 @@
 package com.example.booksapp.view
 
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityBookDetailBinding
@@ -14,11 +13,6 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_book_detail
 
-    override fun initView() {
-        super.initView()
-
-    }
-
     override fun initViewModel() {
         super.initViewModel()
 
@@ -28,7 +22,9 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
 
         lifecycleScope.launch {
             booksViewModel.getBookDetailInfo(isbn, searchType).collect {
-                binding.item = it[0]
+                if(it.isNotEmpty()) {
+                    binding.item = it[0]
+                }
             }
         }
     }

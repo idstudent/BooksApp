@@ -15,7 +15,6 @@ class BookViewHolder(
         binding.run {
             root.setOnSingleClickListener {
                 item?.let {
-                    Log.e("isbnljy","${it.isbn}")
                     val intent = Intent(binding.root.context, BookDetailActivity::class.java)
                     intent.putExtra("isbn", it.isbn)
                     if(it.categoryId == "200") {
