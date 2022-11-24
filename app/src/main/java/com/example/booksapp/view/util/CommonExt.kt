@@ -10,7 +10,13 @@ inline val Int.dp: Int
         TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics
     ).toInt()
 
+val DECIMAL_FORMAT = java.text.DecimalFormat("###,###")
 
+inline val Int.numberFormat: String
+    get() = DECIMAL_FORMAT.format(this)
+
+inline val String.won: String
+    get() = "${this}원"
 
 fun View.setOnSingleClickListener(onSafeClick: (View) -> Unit) {
     val safeClickListener = SingleClickListener {

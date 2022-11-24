@@ -32,13 +32,9 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>() {
     override fun initViewModel() {
         super.initViewModel()
 
-
-        val books = mutableListOf<Books>()
-
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                books.clear()
+                val books = mutableListOf<Books>()
 
                 booksViewModel.getNewBookList(100).collect {
                     books.addAll(it)

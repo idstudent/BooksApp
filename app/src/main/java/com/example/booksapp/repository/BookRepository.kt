@@ -10,11 +10,12 @@ class BookRepository(
     private val service: ApiService
 ) {
     private val apiKey = "api_key"
-    fun getNewBooksList(categoryId: Int): Flow<List<Books>> {
-        return flow {
-            val booksList = mutableListOf<Books>()
-            booksList.clear()
 
+
+    fun getNewBooksList(categoryId: Int): Flow<List<Books>> {
+        val booksList = mutableListOf<Books>()
+
+        return flow {
             val response = service.getNewBooks(apiKey, categoryId).mapper()
 
             if (categoryId == 100) {
@@ -31,10 +32,8 @@ class BookRepository(
 
     fun getRecommendList(): Flow<List<Books>> {
         val bookList = mutableListOf<Books>()
-        bookList.clear()
 
         return flow {
-
             bookList.add((BooksTitle(BookFilterType.RECOMMEND.name,"100", "국내 도서 추천")))
             val response = service.getRecommendBooks(apiKey, 100).mapper()
 
@@ -59,9 +58,18 @@ class BookRepository(
             emit(response.item)
         }
     }
+
     fun getRecommendBookDetailList(): Flow<List<BooksModel.Response.BooksItem?>> {
         return flow {
             val response = service.getRecommendBooks(apiKey, 100)
+
+            emit(response.item)
+        }
+    }
+
+    fun getBookDetailInfo(isbn: String, searchType : String): Flow<List<BooksModel.Response.BooksItem?>> {
+        return flow {
+            val response = service.getSearchBook(apiKey, isbn, "isbn", searchType)
 
             emit(response.item)
         }

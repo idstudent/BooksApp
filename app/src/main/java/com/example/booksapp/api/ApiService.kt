@@ -29,4 +29,15 @@ interface ApiService {
         @Query("categoryId") categoryId : Int,
         @Query("output") output : String = "json"
     ): BooksModel.Response
+
+    @GET("api/search.api")
+    suspend fun getSearchBook(
+        @Query("key") key : String,
+        @Query("query") title : String,
+        @Query("queryType") queryType : String,
+        @Query("searchTarget") searchType : String,
+        @Query("sort") sort : String = "accuracy",
+        @Query("soldOut") soldOutType : String = "y",
+        @Query("output") output : String = "json"
+    ): BooksModel.Response
 }

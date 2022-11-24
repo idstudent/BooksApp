@@ -30,9 +30,30 @@
         <item name="android:layout_marginStart">12dp</item>
     </style>
 
+    <style name="Black.Text.20dp" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
     <style name="Black.Text.14dp" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">14dp</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="GRAY.Text.14dp" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/color_565656</item>
+    </style>
+
+    <style name="RED.Text.14dp" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_f44336</item>
+    </style>
+
+    <style name="RED.Text.16dp" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_f44336</item>
     </style>
 </resources>

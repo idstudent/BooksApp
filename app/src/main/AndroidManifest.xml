@@ -19,6 +19,8 @@
         <activity
             android:name=".view.BookListActivity"
             android:exported="false" />
+        <activity android:name=".view.BookDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
