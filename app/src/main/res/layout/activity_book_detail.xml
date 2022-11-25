@@ -37,6 +37,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_book_mark_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_bookmark_24"
+                android:backgroundTint="@color/color_4caf50"
+                android:visibility="invisible"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/iv_book"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_book_mark_off"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_bookmark_border_24"
+                android:backgroundTint="@color/color_4caf50"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/iv_book"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_title"
                 android:layout_width="0dp"
@@ -49,7 +72,7 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_book"/>
+                app:layout_constraintTop_toBottomOf="@id/iv_book_mark_off"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_sale_price"

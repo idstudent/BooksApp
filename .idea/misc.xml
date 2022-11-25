@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/drawable/bg_bottom_round.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/bg_button_round_stroke.xml" value="0.245" />
         <entry key="app/src/main/res/drawable/bg_not_image.xml" value="0.185" />
+        <entry key="app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/ic_btn_title_back.xml" value="0.245" />
         <entry key="app/src/main/res/drawable/menu_selector.xml" value="0.185" />
         <entry key="app/src/main/res/layout/activity_book_detail.xml" value="0.29356079101562504" />

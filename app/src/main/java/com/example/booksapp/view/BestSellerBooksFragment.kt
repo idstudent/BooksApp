@@ -22,10 +22,9 @@ import java.lang.Math.abs
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
     private val booksViewModel: BooksViewModel by inject()
 
-
     private val adapter = BooksCarouselAdapter()
-    private val localBooks = ArrayList<BooksModel.Response.BooksItem?>()
-    private val globalBooks = ArrayList<BooksModel.Response.BooksItem?>()
+    private val localBooks = ArrayList<BooksModel.Response.BooksItem>()
+    private val globalBooks = ArrayList<BooksModel.Response.BooksItem>()
 
     override val layoutId: Int
         get() = R.layout.fragment_best_seller_books

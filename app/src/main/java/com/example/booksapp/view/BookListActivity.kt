@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
 import com.example.booksapp.constants.BookFilterType
 import com.example.booksapp.databinding.ActivityBookListBinding
-import com.example.booksapp.view.adapter.BookDetailAdapter
+import com.example.booksapp.view.adapter.BookListAdapter
 import com.example.booksapp.view.util.setOnSingleClickListener
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import org.koin.android.ext.android.inject
 
 class BookListActivity : BaseActivity<ActivityBookListBinding>() {
     private val booksViewModel: BooksViewModel by inject()
-    private val bookDetailAdapter = BookDetailAdapter()
+    private val bookDetailAdapter = BookListAdapter()
 
     override val layoutId: Int
         get() = R.layout.activity_book_list

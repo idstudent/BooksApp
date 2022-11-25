@@ -2,12 +2,14 @@ package com.example.booksapp
 
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.NullOnEmptyConverterFactory
+import com.example.booksapp.db.BookMarkDatabase
 import com.example.booksapp.repository.BookRepository
 import com.example.booksapp.viewmodel.BooksViewModel
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.android.BouncyCastleSocketAdapter.Companion.factory
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -25,7 +27,8 @@ object AppModules {
     private val repositories = module {
         factory {
             BookRepository(
-                service = get()
+                service = get(),
+                bookMarkDatabase = get()
             )
         }
     }
@@ -50,6 +53,8 @@ object AppModules {
                 .build()
                 .create(ApiService::class.java)
         }
+
+        single { BookMarkDatabase.newInstance(androidContext()) }
     }
 
     val modules = listOf(viewModels, repositories, etc)

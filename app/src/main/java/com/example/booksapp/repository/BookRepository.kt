@@ -1,20 +1,21 @@
 package com.example.booksapp.repository
 
-import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.model.*
 import com.example.booksapp.constants.BookFilterType
+import com.example.booksapp.db.BookMarkDatabase
 import com.example.booksapp.repository.datasource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class BookRepository(
-    private val service: ApiService
+    private val service: ApiService,
+    private val bookMarkDatabase: BookMarkDatabase
 ) {
-    private val apiKey = "apiKey"
+    private val apiKey = "apikey"
 
 
     fun getNewBooksList(categoryId: Int): Flow<List<Books>> {
@@ -48,7 +49,7 @@ class BookRepository(
         }
     }
 
-    fun getBestSellerList(categoryId : Int): Flow<List<BooksModel.Response.BooksItem?>> {
+    fun getBestSellerList(categoryId : Int): Flow<List<BooksModel.Response.BooksItem>> {
         return flow {
             val response = service.getBestSellerBooks(apiKey, categoryId)
 
@@ -56,7 +57,7 @@ class BookRepository(
         }
     }
 
-    fun getNewBookDetailList(categoryId: Int): Flow<List<BooksModel.Response.BooksItem?>> {
+    fun getNewBookDetailList(categoryId: Int): Flow<List<BooksModel.Response.BooksItem>> {
         return flow {
             val response = service.getNewBooks(apiKey, categoryId)
 
@@ -64,7 +65,7 @@ class BookRepository(
         }
     }
 
-    fun getRecommendBookDetailList(): Flow<List<BooksModel.Response.BooksItem?>> {
+    fun getRecommendBookDetailList(): Flow<List<BooksModel.Response.BooksItem>> {
         return flow {
             val response = service.getRecommendBooks(apiKey, 100)
 
@@ -72,7 +73,7 @@ class BookRepository(
         }
     }
 
-    fun getBookDetailInfo(isbn: String, queryType : String, searchType : String): Flow<List<BooksModel.Response.BooksItem?>> {
+    fun getBookDetailInfo(isbn: String, queryType : String, searchType : String): Flow<List<BooksModel.Response.BooksItem>> {
         return flow {
             val response = service.getSearchBook(apiKey, isbn, queryType, searchType)
 
@@ -88,5 +89,17 @@ class BookRepository(
             ),
             pagingSourceFactory = { SearchBooksDataPagingSource(service, apiKey, query, queryType, searchType) }
         ).flow
+    }
+
+    suspend fun selectBook() : List<BooksModel.Response.BooksItem>{
+        return bookMarkDatabase.bookDao().selectBooks()
+    }
+
+    suspend fun insertBook(book : BooksModel.Response.BooksItem)  {
+        bookMarkDatabase.bookDao().insertBook(book)
+    }
+
+    suspend fun deleteBook(book : BooksModel.Response.BooksItem)  {
+        bookMarkDatabase.bookDao().deleteBook(book)
     }
 }

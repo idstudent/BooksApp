@@ -1,16 +1,12 @@
 package com.example.booksapp.view
 
-import android.util.Log
 import android.view.inputmethod.EditorInfo
-import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
-import com.example.booksapp.constants.BookFilterType
 import com.example.booksapp.databinding.ActivitySearchBinding
-import com.example.booksapp.view.adapter.BookDetailAdapter
 import com.example.booksapp.view.adapter.BookSearchPagingAdapter
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
