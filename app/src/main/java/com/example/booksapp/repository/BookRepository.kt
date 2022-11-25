@@ -1,15 +1,20 @@
 package com.example.booksapp.repository
 
+import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.model.*
 import com.example.booksapp.constants.BookFilterType
+import com.example.booksapp.repository.datasource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class BookRepository(
     private val service: ApiService
 ) {
-    private val apiKey = "api_key"
+    private val apiKey = "apiKey"
 
 
     fun getNewBooksList(categoryId: Int): Flow<List<Books>> {
@@ -67,11 +72,21 @@ class BookRepository(
         }
     }
 
-    fun getBookDetailInfo(isbn: String, searchType : String): Flow<List<BooksModel.Response.BooksItem?>> {
+    fun getBookDetailInfo(isbn: String, queryType : String, searchType : String): Flow<List<BooksModel.Response.BooksItem?>> {
         return flow {
-            val response = service.getSearchBook(apiKey, isbn, "isbn", searchType)
+            val response = service.getSearchBook(apiKey, isbn, queryType, searchType)
 
             emit(response.item)
         }
+    }
+
+    fun getSearchBooks(query : String, queryType : String, searchType : String) : Flow<PagingData<BooksModel.Response.BooksItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { SearchBooksDataPagingSource(service, apiKey, query, queryType, searchType) }
+        ).flow
     }
 }

@@ -18,7 +18,7 @@ class BooksModel {
         val searchCategoryName: String?,
         val returnCode: String?,
         val returnMessage: String?,
-        val item: List<BooksItem?>,
+        val item: List<BooksItem>,
     ) : BaseResponse<List<Books>>() {
         data class BooksItem(
             val itemId: Int?,

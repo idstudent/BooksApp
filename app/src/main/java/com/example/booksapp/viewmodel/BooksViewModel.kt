@@ -27,7 +27,11 @@ class BooksViewModel(
         bookRepository.getRecommendBookDetailList()
             .catch { it.printStackTrace() }
 
-    fun getBookDetailInfo(isbn : String, searchType : String) =
-        bookRepository.getBookDetailInfo(isbn, searchType)
+    fun getBookDetailInfo(isbn : String, queryType : String, searchType : String) =
+        bookRepository.getBookDetailInfo(isbn, queryType, searchType)
             .catch { it.printStackTrace() }
+
+    fun getSearchBooks(query : String, queryType : String, searchType : String) =
+        bookRepository.getSearchBooks(query, queryType, searchType)
+
 }

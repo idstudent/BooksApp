@@ -1,6 +1,8 @@
 package com.example.booksapp.view
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityBookDetailBinding
 import com.example.booksapp.viewmodel.BooksViewModel
@@ -21,9 +23,11 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
         val searchType = intent.getStringExtra("searchType") ?: "book"
 
         lifecycleScope.launch {
-            booksViewModel.getBookDetailInfo(isbn, searchType).collect {
-                if(it.isNotEmpty()) {
-                    binding.item = it[0]
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                booksViewModel.getBookDetailInfo(isbn, "isbn", searchType).collect {
+                    if (it.isNotEmpty()) {
+                        binding.item = it[0]
+                    }
                 }
             }
         }
