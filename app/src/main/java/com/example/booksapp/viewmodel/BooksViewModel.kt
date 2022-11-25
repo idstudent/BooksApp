@@ -58,4 +58,16 @@ class BooksViewModel(
             bookRepository.deleteBook(book)
         }
     }
+    fun selectReport() : Flow<List<BooksModel.Response.BooksItem>> {
+        return flow {
+            emit(bookRepository.selectReport())
+        }
+    }
+    fun insertReport(book : BooksModel.Response.BooksItem) {
+        viewModelScope.launch {
+            bookRepository.insertReport(book)
+        }
+    }
+
+
 }

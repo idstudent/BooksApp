@@ -7,13 +7,15 @@ import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.model.*
 import com.example.booksapp.constants.BookFilterType
 import com.example.booksapp.db.BookMarkDatabase
+import com.example.booksapp.db.BookReportDatabase
 import com.example.booksapp.repository.datasource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class BookRepository(
     private val service: ApiService,
-    private val bookMarkDatabase: BookMarkDatabase
+    private val bookMarkDatabase: BookMarkDatabase,
+    private val reportDatabase: BookReportDatabase
 ) {
     private val apiKey = "apikey"
 
@@ -101,5 +103,14 @@ class BookRepository(
 
     suspend fun deleteBook(book : BooksModel.Response.BooksItem)  {
         bookMarkDatabase.bookDao().deleteBook(book)
+    }
+
+
+    suspend fun selectReport() : List<BooksModel.Response.BooksItem>{
+        return reportDatabase.bookDao().selectBooks()
+    }
+
+    suspend fun insertReport(book : BooksModel.Response.BooksItem)  {
+        reportDatabase.bookDao().insertBook(book)
     }
 }

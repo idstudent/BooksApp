@@ -1,9 +1,7 @@
 package com.example.booksapp.view
 
-import android.util.Log
+import android.content.Intent
 import android.view.View
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -62,6 +60,7 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
                     }
                 }
             }
+
             ivBookMarkOn.setOnSingleClickListener {
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -71,6 +70,12 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
                         }
                     }
                 }
+            }
+
+            tvWriteReview.setOnSingleClickListener {
+                val intent = Intent(this@BookDetailActivity, WriteReportActivity::class.java)
+                intent.putExtra("book",binding.item)
+                startActivity(intent)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.booksapp
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.NullOnEmptyConverterFactory
 import com.example.booksapp.db.BookMarkDatabase
+import com.example.booksapp.db.BookReportDatabase
 import com.example.booksapp.repository.BookRepository
 import com.example.booksapp.viewmodel.BooksViewModel
 import com.google.gson.GsonBuilder
@@ -28,7 +29,8 @@ object AppModules {
         factory {
             BookRepository(
                 service = get(),
-                bookMarkDatabase = get()
+                bookMarkDatabase = get(),
+                reportDatabase = get()
             )
         }
     }
@@ -55,6 +57,7 @@ object AppModules {
         }
 
         single { BookMarkDatabase.newInstance(androidContext()) }
+        single { BookReportDatabase.newInstance(androidContext()) }
     }
 
     val modules = listOf(viewModels, repositories, etc)

@@ -3,6 +3,7 @@ package com.example.booksapp.api.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 interface Books
 
@@ -73,8 +74,8 @@ class BooksModel {
             @ColumnInfo(name = "reviewCount")
             val reviewCount: Int?,
             @ColumnInfo(name = "review")
-            val review: String?
-        ) : Books
+            var review: String?
+        ) : Books, Serializable
 
         override fun mapper(): List<Books> {
             val result = mutableListOf<Books>()
