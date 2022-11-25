@@ -17,9 +17,13 @@
         android:theme="@style/Theme.BooksApp"
         tools:targetApi="31">
         <activity
+            android:name=".view.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.BookListActivity"
             android:exported="false" />
-        <activity android:name=".view.BookDetailActivity"
+        <activity
+            android:name=".view.BookDetailActivity"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
