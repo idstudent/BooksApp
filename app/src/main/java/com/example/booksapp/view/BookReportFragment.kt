@@ -1,16 +1,43 @@
 package com.example.booksapp.view
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentBookReportBinding
+import com.example.booksapp.view.adapter.BookReportListAdapter
+import com.example.booksapp.viewmodel.BooksViewModel
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class BookReportFragment : BaseFragment<FragmentBookReportBinding>() {
+    private val booksViewModel: BooksViewModel by inject()
+    private val bookReportListAdapter = BookReportListAdapter()
+
     override val layoutId: Int
         get() = R.layout.fragment_book_report
 
+    override fun initView() {
+        super.initView()
 
+        binding.run {
+            rvBooks.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            rvBooks.adapter = bookReportListAdapter
+        }
+    }
+
+    override fun initViewModel() {
+        super.initViewModel()
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                booksViewModel.selectReport().collect {
+                    bookReportListAdapter.submitList(it)
+                }
+            }
+        }
+    }
 }
