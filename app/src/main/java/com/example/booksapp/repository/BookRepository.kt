@@ -17,7 +17,7 @@ class BookRepository(
     private val bookMarkDatabase: BookMarkDatabase,
     private val reportDatabase: BookReportDatabase
 ) {
-    private val apiKey = "apikey"
+    private val apiKey = "api_key"
 
 
     fun getNewBooksList(categoryId: Int): Flow<List<Books>> {

@@ -6,6 +6,7 @@ import com.example.booksapp.api.model.BooksModel
 import com.example.booksapp.databinding.ItemBookDetailBinding
 import com.example.booksapp.databinding.ItemBookReportBinding
 import com.example.booksapp.view.BookDetailActivity
+import com.example.booksapp.view.MyReportActivity
 import com.example.booksapp.view.util.setOnSingleClickListener
 
 class BookReportViewHolder(
@@ -16,11 +17,8 @@ class BookReportViewHolder(
         binding.run {
             root.setOnSingleClickListener {
                 item?.let {
-                    val intent = Intent(binding.root.context, BookDetailActivity::class.java)
-                    intent.putExtra("isbn", it.isbn)
-                    if(it.categoryId == "200") {
-                        intent.putExtra("searchType", "foreign")
-                    }
+                    val intent = Intent(binding.root.context, MyReportActivity::class.java)
+                    intent.putExtra("bookItem", it)
                     this.root.context.startActivity(intent)
                 }
             }
