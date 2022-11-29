@@ -1,6 +1,7 @@
 package com.example.booksapp.view
 
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -43,20 +44,33 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
     override fun initListener() {
         super.initListener()
 
+        var foreignCheck = false
         binding.run {
+            cbShowForeignBook.setOnCheckedChangeListener { _, isChecked ->
+                foreignCheck = isChecked
+            }
+
             etSearch.setOnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    lifecycleScope.launch {
-                        repeatOnLifecycle(Lifecycle.State.STARTED) {
-                            val inputText = v.text.toString()
-
-                            booksViewModel.getSearchBooks(inputText, "title", "book").collect {
-                                bookSearchPagingAdapter.submitData(it)
-                            }
-                        }
+                    if(foreignCheck) {
+                        searchBook(v, "foreign")
+                    }else {
+                        searchBook(v, "book")
                     }
                 }
                 false
+            }
+        }
+    }
+
+    private fun searchBook(v : TextView, type : String) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                val inputText = v.text.toString()
+
+                booksViewModel.getSearchBooks(inputText, "title", type).collect {
+                    bookSearchPagingAdapter.submitData(it)
+                }
             }
         }
     }

@@ -35,13 +35,26 @@
             app:layout_constraintBottom_toBottomOf="@+id/iv_back"
             app:layout_constraintTop_toTopOf="@id/iv_back" />
 
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_show_foreign_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="외국도서 보기"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_books"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_search"
+            app:layout_constraintTop_toBottomOf="@id/cb_show_foreign_book"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
