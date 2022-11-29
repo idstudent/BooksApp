@@ -7,7 +7,7 @@
 ## 기술스택 
 이후에도 계속 추가될 예정이나, 현재 기술스택입니다.
 
-언어 : kotlin, 아키텍처 : MVVM, di : koin
+언어 : kotlin, 아키텍처 : MVVM, DI : koin
 
 Coroutine, flow, paging3, room, navigation(바텀 네비게이션으로 사용), retrofit2, glide
 
