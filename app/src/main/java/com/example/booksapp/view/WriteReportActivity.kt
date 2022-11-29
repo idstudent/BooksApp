@@ -11,10 +11,10 @@ import com.example.booksapp.databinding.ActivityWriteReviewBinding
 import com.example.booksapp.view.util.setOnSingleClickListener
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WriteReportActivity : BaseActivity<ActivityWriteReviewBinding>() {
-    private val booksViewModel: BooksViewModel by inject()
+    private val booksViewModel: BooksViewModel by viewModel()
     private var bookItem : BooksModel.Response.BooksItem ?= null
 
     override val layoutId: Int

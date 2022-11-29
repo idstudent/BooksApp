@@ -11,9 +11,10 @@ import com.example.booksapp.view.util.setOnSingleClickListener
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
-    private val booksViewModel: BooksViewModel by inject()
+    private val booksViewModel: BooksViewModel by viewModel()
 
     override val layoutId: Int
         get() = R.layout.activity_book_detail

@@ -17,10 +17,11 @@ import com.example.booksapp.view.util.setOnSingleClickListener
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Math.abs
 
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
-    private val booksViewModel: BooksViewModel by inject()
+    private val booksViewModel: BooksViewModel by viewModel()
 
     private val adapter = BooksCarouselAdapter()
     private val localBooks = ArrayList<BooksModel.Response.BooksItem>()

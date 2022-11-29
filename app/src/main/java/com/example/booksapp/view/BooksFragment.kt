@@ -12,9 +12,10 @@ import com.example.booksapp.view.adapter.MainBookListAdapter
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BooksFragment : BaseFragment<FragmentBooksBinding>() {
-    private val booksViewModel: BooksViewModel by inject()
+    private val booksViewModel: BooksViewModel by viewModel()
     private val mainBookListAdapter = MainBookListAdapter()
 
     override val layoutId: Int

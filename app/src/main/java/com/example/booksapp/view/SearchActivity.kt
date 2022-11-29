@@ -14,9 +14,10 @@ import com.example.booksapp.view.adapter.BookSearchPagingAdapter
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
-    private val booksViewModel: BooksViewModel by inject()
+    private val booksViewModel: BooksViewModel by viewModel()
     private val bookSearchPagingAdapter = BookSearchPagingAdapter()
 
     override val layoutId: Int
