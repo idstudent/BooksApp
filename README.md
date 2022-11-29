@@ -27,3 +27,12 @@ UI가 단순하다보니, 기능 추가가 좀 힘들 것같다고 판단하여 
 ## 오픈 API 출처
 http://book.interpark.com/bookPark/html/bookpinion/api_main.html
 
+## 메인
+국내도서, 외국도서, 국내 도서 추천 리스트를 보여줍니다.
+리스트는 6개로 제한, 더보기를 통해 전부를 보이도록 구성했습니다.
+영상에서 회색이미지는 책의 이미지가 없는경우 error image로 처리했습니다.
+
+외국도서 추천리스트가 데이터가 너무 없다보니, 국내추천도서 리스트만 추가해줬습니다.
+
+
+https://user-images.githubusercontent.com/36175704/204427938-c75ee5d2-8969-491b-94f2-706129fd032b.mp4
