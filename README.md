@@ -37,5 +37,32 @@ http://book.interpark.com/bookPark/html/bookpinion/api_main.html
 
 외국도서 추천리스트가 데이터가 너무 없다보니, 국내추천도서 리스트만 추가해줬습니다.
 
-
 https://user-images.githubusercontent.com/36175704/204427938-c75ee5d2-8969-491b-94f2-706129fd032b.mp4
+
+## 검색
+검색한 제목을 토대로 리스트를 보여줍니다.
+기본은 국내 도서이며, 외국도서 검색을 하려는 경우 외국도서보기를 체크하여, 검색을 합니다.
+
+https://user-images.githubusercontent.com/36175704/204428899-9efabc17-2469-4189-98fe-2ff7907f9a42.mp4
+
+## 베스트셀러
+국내도서, 외국도서 베스트 샐러 리스틀 보여주며,
+리스트 클릭시 상세, 더보기 클릭시 국내 또는 외국 베스트 셀러의 전체 리스트를 보여줍니다.
+
+ui는 뷰페이저를 이용해 캐러셀을 구현했습니다.
+
+https://user-images.githubusercontent.com/36175704/204429263-8f5ad515-a551-4090-ad4f-72bc94f781eb.mp4
+
+## 나의 책장
+room을 이용하여 북마크한 책을 보여줍니다. 
+북마크 해제시, 리스트에 반영합니다.
+
+https://user-images.githubusercontent.com/36175704/204429586-3d2a1360-cb4e-41fd-8267-6efa9be1edf8.mp4
+
+
+## 독후감
+room을 이용하여 독후감을 쓸 수 있습니다.
+상세페이지에서 리뷰쓰기버튼을 통해 리뷰쓰는 페이지로 이동
+쓰기, 수정이 가능합니다.
+
+https://user-images.githubusercontent.com/36175704/204429935-2838919a-8a03-40ec-a102-42a7aed63e58.mp4
