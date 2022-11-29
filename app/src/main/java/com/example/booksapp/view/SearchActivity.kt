@@ -1,9 +1,11 @@
 package com.example.booksapp.view
 
 import android.view.inputmethod.EditorInfo
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivitySearchBinding
@@ -25,12 +27,17 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
         binding.run {
             rvSearchBooks.layoutManager = GridLayoutManager(this@SearchActivity, 2)
             rvSearchBooks.adapter = bookSearchPagingAdapter
+
+            bookSearchPagingAdapter.addLoadStateListener { loadState ->
+                if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && bookSearchPagingAdapter.itemCount < 1) {
+                    rvSearchBooks.isVisible = false
+                    tvEmpty.isVisible = true
+                } else {
+                    rvSearchBooks.isVisible = true
+                    tvEmpty.isVisible = false
+                }
+            }
         }
-    }
-
-    override fun initViewModel() {
-        super.initViewModel()
-
     }
 
     override fun initListener() {
