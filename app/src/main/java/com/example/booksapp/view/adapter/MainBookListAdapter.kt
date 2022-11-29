@@ -12,12 +12,34 @@ import com.example.booksapp.databinding.*
 class MainBookListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
     object: DiffUtil.ItemCallback<Books>() {
         override fun areItemsTheSame(oldItem: Books, newItem: Books): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            return when {
+                oldItem is Header && newItem is Header -> {
+                    oldItem != newItem
+                }
+                oldItem is BooksTitle && newItem is BooksTitle -> {
+                    oldItem.categoryId == newItem.categoryId
+                }
+                oldItem is BookList && newItem is BookList -> {
+                    oldItem.books == newItem.books
+                }
+                else -> false
+            }
         }
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: Books, newItem: Books): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            return when {
+                oldItem is Header && newItem is Header -> {
+                    oldItem != newItem
+                }
+                oldItem is BooksTitle && newItem is BooksTitle -> {
+                    oldItem.categoryId == newItem.categoryId
+                }
+                oldItem is BookList && newItem is BookList -> {
+                    oldItem.books == newItem.books
+                }
+                else -> false
+            }
         }
     }
 ) {
