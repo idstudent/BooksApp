@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/booksFragment"
-        android:name="com.example.booksapp.view.BooksFragment"
+        android:name="com.example.booksapp.presentation.view.BooksFragment"
         android:label="BooksFragment" />
     <fragment
         android:id="@+id/bestSellerBooksFragment"
-        android:name="com.example.booksapp.view.BestSellerBooksFragment"
+        android:name="com.example.booksapp.presentation.view.BestSellerBooksFragment"
         android:label="BestSellerBooksFragment" />
     <fragment
         android:id="@+id/myBooksFragment"
-        android:name="com.example.booksapp.view.MyBooksFragment"
+        android:name="com.example.booksapp.presentation.view.MyBooksFragment"
         android:label="MyBooksFragment" />
     <fragment
         android:id="@+id/bookReportFragment"
-        android:name="com.example.booksapp.view.BookReportFragment"
+        android:name="com.example.booksapp.presentation.view.BookReportFragment"
         android:label="BookReportFragment" />
 </navigation>

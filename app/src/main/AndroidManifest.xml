@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name=".presentation.di.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,24 +17,24 @@
         android:theme="@style/Theme.BooksApp"
         tools:targetApi="31">
         <activity
-            android:name=".view.WriteReportActivity"
+            android:name="com.example.booksapp.presentation.view.WriteReportActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SearchActivity"
+            android:name="com.example.booksapp.presentation.view.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.BookListActivity"
+            android:name="com.example.booksapp.presentation.view.BookListActivity"
             android:exported="false" />
         <activity
-            android:name=".view.BookDetailActivity"
+            android:name="com.example.booksapp.presentation.view.BookDetailActivity"
             android:exported="false" />
 
         <activity
-            android:name=".view.MyReportActivity"
+            android:name="com.example.booksapp.presentation.view.MyReportActivity"
             android:exported="false"/>
 
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.example.booksapp.presentation.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
