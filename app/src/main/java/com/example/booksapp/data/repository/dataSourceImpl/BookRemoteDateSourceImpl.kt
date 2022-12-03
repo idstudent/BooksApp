@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.flow
 class BookRemoteDateSourceImpl(
     private val apiService: ApiService
 ) : BookRemoteDataSource{
-    private val apiKey = "6D541D537528F0195E926F03541817D36E41219FD869A31FA9EAD136220ABE49"
+    private val apiKey = "api_key"
 
-    override suspend fun getNewBookList(categoryId: Int): Flow<List<Books>> {
+    override fun getNewBookList(categoryId: Int): Flow<List<Books>> {
         val booksList = mutableListOf<Books>()
 
         return flow {
@@ -30,6 +30,19 @@ class BookRemoteDateSourceImpl(
             booksList.addAll(response)
 
             emit(booksList)
+        }
+    }
+
+    override fun getRecommendBookList(): Flow<List<Books>> {
+        val bookList = mutableListOf<Books>()
+
+        return flow {
+            bookList.add((BooksTitle(BookFilterType.RECOMMEND.name,"100", "국내 도서 추천")))
+            val response = apiService.getRecommendBooks(apiKey, 100).mapper()
+
+            bookList.addAll(response)
+
+            emit(bookList)
         }
     }
 }

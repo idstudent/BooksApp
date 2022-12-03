@@ -8,7 +8,8 @@ val viewModelModule = module {
     viewModel {
         BooksViewModel(
             bookRepository = get(),
-            getNewBookListUseCase = get()
+            getNewBookListUseCase = get(),
+            getRecommendBookListUseCase = get()
         )
     }
 }

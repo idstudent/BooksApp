@@ -4,10 +4,10 @@ import com.example.booksapp.api.model.Books
 import com.example.booksapp.domain.repository.BookRepositoryT
 import kotlinx.coroutines.flow.Flow
 
-class GetNewBookListUseCase (
+class GetRecommendBookListUseCase(
     private val bookRepository: BookRepositoryT
 ) {
-    fun execute(categoryId : Int) : Flow<List<Books>> {
-        return bookRepository.getNewBookList(categoryId)
+    fun execute() : Flow<List<Books>> {
+        return bookRepository.getRecommendBookList()
     }
 }

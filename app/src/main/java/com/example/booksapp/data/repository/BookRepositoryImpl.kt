@@ -8,7 +8,11 @@ import kotlinx.coroutines.flow.Flow
 class BookRepositoryImpl(
     private val bookRemoteDataSource: BookRemoteDataSource
 ) : BookRepositoryT {
-    override suspend fun getNewBookList(categoryId: Int) : Flow<List<Books>> {
+    override fun getNewBookList(categoryId: Int) : Flow<List<Books>> {
         return bookRemoteDataSource.getNewBookList(categoryId)
+    }
+
+    override fun getRecommendBookList(): Flow<List<Books>> {
+        return bookRemoteDataSource.getRecommendBookList()
     }
 }

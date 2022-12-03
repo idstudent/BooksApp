@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.booksapp.api.model.BooksModel
 import com.example.booksapp.domain.usecase.GetNewBookListUseCase
+import com.example.booksapp.domain.usecase.GetRecommendBookListUseCase
 import com.example.booksapp.repository.BookRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -12,14 +13,15 @@ import kotlinx.coroutines.launch
 
 class BooksViewModel(
     private val bookRepository: BookRepository,
-    private val getNewBookListUseCase: GetNewBookListUseCase
+    private val getNewBookListUseCase: GetNewBookListUseCase,
+    private val getRecommendBookListUseCase: GetRecommendBookListUseCase
 ) : ViewModel(){
     suspend fun getNewBookList(categoryId : Int) =
         getNewBookListUseCase.execute(categoryId)
             .catch { it.printStackTrace() }
 
     fun getRecommendBookList() =
-        bookRepository.getRecommendList()
+        getRecommendBookListUseCase.execute()
             .catch { it.printStackTrace() }
 
     fun getBestSellerBookLIst(categoryId : Int) =
