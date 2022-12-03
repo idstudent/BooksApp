@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivitySearchBinding
 import com.example.booksapp.presentation.view.adapter.BookSearchPagingAdapter
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

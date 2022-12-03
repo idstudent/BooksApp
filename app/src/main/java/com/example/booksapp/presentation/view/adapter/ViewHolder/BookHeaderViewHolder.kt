@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view.adapter
+package com.example.booksapp.presentation.view.adapter.ViewHolder
 
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView

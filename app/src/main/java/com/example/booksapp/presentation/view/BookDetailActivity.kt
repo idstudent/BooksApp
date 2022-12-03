@@ -9,7 +9,6 @@ import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityBookDetailBinding
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

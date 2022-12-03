@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.domain.usecase.GetAllNewBookListUseCase
 import com.example.booksapp.domain.usecase.GetAllRecommendBookListUseCase
-import com.example.booksapp.domain.usecase.GetRecommendBookListUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 

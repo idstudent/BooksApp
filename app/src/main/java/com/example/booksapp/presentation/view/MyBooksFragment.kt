@@ -8,7 +8,6 @@ import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentMyBooksBinding
 import com.example.booksapp.presentation.view.adapter.BookListAdapter
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

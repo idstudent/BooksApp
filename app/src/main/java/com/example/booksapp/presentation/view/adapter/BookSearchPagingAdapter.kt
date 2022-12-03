@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.databinding.ItemBookDetailBinding
+import com.example.booksapp.presentation.view.adapter.ViewHolder.BookDetailViewHolder
 
 class BookSearchPagingAdapter : PagingDataAdapter<BooksModel.Response.BooksItem, BookDetailViewHolder>(
     object : DiffUtil.ItemCallback<BooksModel.Response.BooksItem>() {

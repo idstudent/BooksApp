@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.booksapp.data.api.model.*
 import com.example.booksapp.databinding.*
+import com.example.booksapp.presentation.view.adapter.ViewHolder.BookReportViewHolder
 
 class BookReportListAdapter : ListAdapter<BooksModel.Response.BooksItem, BookReportViewHolder>(
     object: DiffUtil.ItemCallback<BooksModel.Response.BooksItem>() {
@@ -21,7 +22,7 @@ class BookReportListAdapter : ListAdapter<BooksModel.Response.BooksItem, BookRep
     }
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookReportViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookReportViewHolder {
         return BookReportViewHolder(
             ItemBookReportBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )

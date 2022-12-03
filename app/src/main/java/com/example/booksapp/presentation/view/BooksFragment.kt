@@ -1,6 +1,5 @@
 package com.example.booksapp.presentation.view
 
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle

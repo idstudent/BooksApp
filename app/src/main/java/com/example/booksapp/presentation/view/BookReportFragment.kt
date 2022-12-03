@@ -9,7 +9,6 @@ import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentBookReportBinding
 import com.example.booksapp.presentation.view.adapter.BookReportListAdapter
 import com.example.booksapp.presentation.viewmodel.BookReportViewModel
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,15 +1,15 @@
-package com.example.booksapp.presentation.view.adapter
+package com.example.booksapp.presentation.view.adapter.ViewHolder
 
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.data.api.model.Book
-import com.example.booksapp.databinding.ItemBookBinding
+import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.databinding.ItemViewpagerBookBinding
 import com.example.booksapp.presentation.view.BookDetailActivity
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 
-class BookViewHolder(
-    private val binding : ItemBookBinding
-) : RecyclerView.ViewHolder(binding.root){
+class CarouselBookViewHolder(
+    private val binding: ItemViewpagerBookBinding
+) : RecyclerView.ViewHolder(binding.root) {
     init {
         binding.run {
             root.setOnSingleClickListener {
@@ -24,7 +24,8 @@ class BookViewHolder(
             }
         }
     }
-    fun onBind(item : Book) {
+
+    fun onBind(item: BooksModel.Response.BooksItem) {
         binding.item = item
     }
 }

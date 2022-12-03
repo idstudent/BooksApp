@@ -2,7 +2,6 @@ package com.example.booksapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.booksapp.data.api.model.Books
-import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.domain.usecase.GetNewBookListUseCase
 import com.example.booksapp.domain.usecase.GetRecommendBookListUseCase
 import kotlinx.coroutines.flow.Flow

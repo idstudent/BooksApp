@@ -11,7 +11,6 @@ import com.example.booksapp.presentation.view.adapter.BookListAdapter
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.AllBookListViewModel
 import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view.adapter
+package com.example.booksapp.presentation.view.adapter.ViewHolder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.databinding.ItemNothingBinding

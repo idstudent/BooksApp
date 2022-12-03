@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.data.api.model.*
 import com.example.booksapp.databinding.*
+import com.example.booksapp.presentation.view.adapter.ViewHolder.BookHeaderViewHolder
+import com.example.booksapp.presentation.view.adapter.ViewHolder.BookListViewHolder
+import com.example.booksapp.presentation.view.adapter.ViewHolder.BookTitleViewHolder
+import com.example.booksapp.presentation.view.adapter.ViewHolder.NothingViewHolder
 
 class MainBookListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(
     object: DiffUtil.ItemCallback<Books>() {
