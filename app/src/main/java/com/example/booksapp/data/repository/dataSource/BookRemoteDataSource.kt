@@ -1,5 +1,6 @@
 package com.example.booksapp.data.repository.dataSource
 
+import androidx.paging.PagingData
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksModel
 import kotlinx.coroutines.flow.Flow
@@ -11,4 +12,5 @@ interface BookRemoteDataSource {
     fun getAllNewBookList(categoryId: Int) : Flow<List<BooksModel.Response.BooksItem>>
     fun getAllRecommendBookList() : Flow<List<BooksModel.Response.BooksItem>>
     fun getBookDetailInfo(isbn : String, queryType : String, searchType : String) : Flow<List<BooksModel.Response.BooksItem>>
+    fun getSearchBooks(query : String, queryType : String, searchType : String) : Flow<PagingData<BooksModel.Response.BooksItem>>
 }

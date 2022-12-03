@@ -53,7 +53,7 @@ class BookListActivity : BaseActivity<ActivityBookListBinding>() {
                         bookDetailAdapter.submitList(it)
                     }
                 }else if(type == BookFilterType.RECOMMEND.name) {
-                    allBookListViewModel.getRecommendBookDetailList().collect {
+                    allBookListViewModel.getAllRecommendBookList().collect {
                         bookDetailAdapter.submitList(it)
                     }
                 } else{

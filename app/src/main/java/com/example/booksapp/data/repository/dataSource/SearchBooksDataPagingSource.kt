@@ -1,4 +1,4 @@
-package com.example.booksapp.repository.datasource
+package com.example.booksapp.data.repository.dataSource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

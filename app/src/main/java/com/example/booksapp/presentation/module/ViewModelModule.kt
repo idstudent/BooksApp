@@ -7,7 +7,6 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel {
         BooksViewModel(
-            bookRepository = get(),
             getNewBookListUseCase = get(),
             getRecommendBookListUseCase = get()
         )
@@ -34,7 +33,13 @@ val viewModelModule = module {
     viewModel {
         AllBookListViewModel(
             getAllNewBookListUseCase = get(),
-            getRecommendBookListUseCase = get()
+            getAllRecommendBookListUseCase = get()
+        )
+    }
+
+    viewModel {
+        SearchBookViewModel(
+            getSearchBookListUseCase = get()
         )
     }
 }

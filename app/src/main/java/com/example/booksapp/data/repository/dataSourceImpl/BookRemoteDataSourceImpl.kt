@@ -1,5 +1,8 @@
 package com.example.booksapp.data.repository.dataSourceImpl
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.booksapp.data.api.ApiService
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksModel
@@ -7,13 +10,14 @@ import com.example.booksapp.data.api.model.BooksTitle
 import com.example.booksapp.data.api.model.Header
 import com.example.booksapp.data.constants.BookFilterType
 import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
+import com.example.booksapp.data.repository.dataSource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class BookRemoteDataSourceImpl(
     private val apiService: ApiService
 ) : BookRemoteDataSource {
-    private val apiKey = "api_key"
+    private val apiKey = "ABE29F010BE85A911E51179B8768B517136430738AC2CB0734A98DC5557826F2"
 
     override fun getNewBookList(categoryId: Int): Flow<List<Books>> {
         val booksList = mutableListOf<Books>()
@@ -61,6 +65,20 @@ class BookRemoteDataSourceImpl(
 
             emit(response.item)
         }
+    }
+
+    override fun getSearchBooks(
+        query: String,
+        queryType: String,
+        searchType: String
+    ): Flow<PagingData<BooksModel.Response.BooksItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { SearchBooksDataPagingSource(apiService, apiKey, query, queryType, searchType) }
+        ).flow
     }
 
     override fun getAllNewBookList(categoryId: Int): Flow<List<BooksModel.Response.BooksItem>> {

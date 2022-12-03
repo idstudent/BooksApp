@@ -1,16 +1,17 @@
 package com.example.booksapp.data.repository
 
+import androidx.paging.PagingData
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.data.repository.dataSource.BookLocalDataSource
 import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
-import com.example.booksapp.domain.repository.BookRepositoryT
+import com.example.booksapp.domain.repository.BookRepository
 import kotlinx.coroutines.flow.Flow
 
 class BookRepositoryImpl(
     private val bookRemoteDataSource: BookRemoteDataSource,
     private val bookLocalDataSource: BookLocalDataSource
-) : BookRepositoryT {
+) : BookRepository {
     override fun getNewBookList(categoryId: Int) : Flow<List<Books>> {
         return bookRemoteDataSource.getNewBookList(categoryId)
     }
@@ -35,6 +36,9 @@ class BookRepositoryImpl(
         return bookRemoteDataSource.getAllRecommendBookList()
     }
 
+    override fun getSearchBooks(query : String, queryType : String, searchType : String) : Flow<PagingData<BooksModel.Response.BooksItem>> {
+        return bookRemoteDataSource.getSearchBooks(query, queryType, searchType)
+    }
 
     override fun selectBook(): Flow<List<BooksModel.Response.BooksItem>> {
         return bookLocalDataSource.selectBook()

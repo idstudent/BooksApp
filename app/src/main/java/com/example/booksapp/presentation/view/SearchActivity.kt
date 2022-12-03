@@ -12,11 +12,12 @@ import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivitySearchBinding
 import com.example.booksapp.presentation.view.adapter.BookSearchPagingAdapter
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
+import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val searchBookViewModel: SearchBookViewModel by viewModel()
     private val bookSearchPagingAdapter = BookSearchPagingAdapter()
 
     override val layoutId: Int
@@ -68,7 +69,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val inputText = v.text.toString()
 
-                booksViewModel.getSearchBooks(inputText, "title", type).collect {
+                searchBookViewModel.getSearchBooks(inputText, "title", type).collect {
                     bookSearchPagingAdapter.submitData(it)
                 }
             }
