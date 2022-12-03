@@ -2,6 +2,7 @@ package com.example.booksapp.data.repository.dataSourceImpl
 
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.model.Books
+import com.example.booksapp.api.model.BooksModel
 import com.example.booksapp.api.model.BooksTitle
 import com.example.booksapp.api.model.Header
 import com.example.booksapp.constants.BookFilterType
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 class BookRemoteDateSourceImpl(
     private val apiService: ApiService
 ) : BookRemoteDataSource{
-    private val apiKey = "api_key"
+    private val apiKey = "6D541D537528F0195E926F03541817D36E41219FD869A31FA9EAD136220ABE49"
 
     override fun getNewBookList(categoryId: Int): Flow<List<Books>> {
         val booksList = mutableListOf<Books>()
@@ -43,6 +44,13 @@ class BookRemoteDateSourceImpl(
             bookList.addAll(response)
 
             emit(bookList)
+        }
+    }
+    override fun getBestSellerList(categoryId : Int): Flow<List<BooksModel.Response.BooksItem>> {
+        return flow {
+            val response = apiService.getBestSellerBooks(apiKey, categoryId)
+
+            emit(response.item)
         }
     }
 }

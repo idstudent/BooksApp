@@ -9,12 +9,14 @@ import com.example.booksapp.constants.BookFilterType
 import com.example.booksapp.databinding.ActivityBookListBinding
 import com.example.booksapp.presentation.view.adapter.BookListAdapter
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
+import com.example.booksapp.presentation.viewmodel.BestSellerBooksViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookListActivity : BaseActivity<ActivityBookListBinding>() {
     private val booksViewModel: BooksViewModel by viewModel()
+    private val bestSellerBooksViewModel: BestSellerBooksViewModel by viewModel()
     private val bookDetailAdapter = BookListAdapter()
 
     override val layoutId: Int
@@ -54,7 +56,7 @@ class BookListActivity : BaseActivity<ActivityBookListBinding>() {
                         bookDetailAdapter.submitList(it)
                     }
                 } else{
-                    booksViewModel.getBestSellerBookLIst(categoryId.toInt()).collect {
+                    bestSellerBooksViewModel.getBestSellerBookLIst(categoryId.toInt()).collect {
                         bookDetailAdapter.submitList(it)
                     }
                 }

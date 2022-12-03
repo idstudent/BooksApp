@@ -1,5 +1,6 @@
 package com.example.booksapp.presentation.module
 
+import com.example.booksapp.presentation.viewmodel.BestSellerBooksViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -10,6 +11,11 @@ val viewModelModule = module {
             bookRepository = get(),
             getNewBookListUseCase = get(),
             getRecommendBookListUseCase = get()
+        )
+    }
+    viewModel {
+        BestSellerBooksViewModel(
+            getBestSellerBookListUseCase = get()
         )
     }
 }

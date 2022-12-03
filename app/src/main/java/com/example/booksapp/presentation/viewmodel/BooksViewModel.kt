@@ -16,7 +16,7 @@ class BooksViewModel(
     private val getNewBookListUseCase: GetNewBookListUseCase,
     private val getRecommendBookListUseCase: GetRecommendBookListUseCase
 ) : ViewModel(){
-    suspend fun getNewBookList(categoryId : Int) =
+    fun getNewBookList(categoryId : Int) =
         getNewBookListUseCase.execute(categoryId)
             .catch { it.printStackTrace() }
 
@@ -24,9 +24,7 @@ class BooksViewModel(
         getRecommendBookListUseCase.execute()
             .catch { it.printStackTrace() }
 
-    fun getBestSellerBookLIst(categoryId : Int) =
-        bookRepository.getBestSellerList(categoryId)
-            .catch { it.printStackTrace() }
+
 
     fun getNewBookDetailList(categoryId : Int) =
         bookRepository.getNewBookDetailList(categoryId)

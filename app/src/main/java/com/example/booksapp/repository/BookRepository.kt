@@ -17,7 +17,7 @@ class BookRepository(
     private val bookMarkDatabase: BookMarkDatabase,
     private val reportDatabase: BookReportDatabase
 ) {
-    private val apiKey = "6D541D537528F0195E926F03541817D36E41219FD869A31FA9EAD136220ABE49"
+    private val apiKey = "api_key"
 
 
     fun getNewBooksList(categoryId: Int): Flow<List<Books>> {
@@ -51,13 +51,7 @@ class BookRepository(
         }
     }
 
-    fun getBestSellerList(categoryId : Int): Flow<List<BooksModel.Response.BooksItem>> {
-        return flow {
-            val response = service.getBestSellerBooks(apiKey, categoryId)
 
-            emit(response.item)
-        }
-    }
 
     fun getNewBookDetailList(categoryId: Int): Flow<List<BooksModel.Response.BooksItem>> {
         return flow {
