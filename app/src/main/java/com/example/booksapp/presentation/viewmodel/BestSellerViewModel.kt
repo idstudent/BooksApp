@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.booksapp.domain.usecase.GetBestSellerBookListUseCase
 import kotlinx.coroutines.flow.catch
 
-class BestSellerBooksViewModel(
+class BestSellerViewModel(
     private val getBestSellerBookListUseCase: GetBestSellerBookListUseCase
 ) : ViewModel() {
     fun getBestSellerBookLIst(categoryId: Int) =

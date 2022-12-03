@@ -1,7 +1,6 @@
-package com.example.booksapp.db
+package com.example.booksapp.data.db
 
 import androidx.room.*
-import com.example.booksapp.api.model.Books
 import com.example.booksapp.api.model.BooksModel
 import kotlinx.coroutines.flow.Flow
 
@@ -14,5 +13,5 @@ interface BookDao {
     suspend fun deleteBook(book : BooksModel.Response.BooksItem)
 
     @Query("SELECT * FROM book")
-    suspend fun selectBooks() : List<BooksModel.Response.BooksItem>
+    fun selectBooks() : Flow<List<BooksModel.Response.BooksItem>>
 }

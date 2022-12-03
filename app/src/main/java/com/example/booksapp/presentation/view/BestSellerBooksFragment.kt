@@ -14,14 +14,13 @@ import com.example.booksapp.presentation.view.adapter.BooksCarouselAdapter
 import com.example.booksapp.presentation.view.util.HorizontalMarginItemDecoration
 import com.example.booksapp.presentation.view.util.dp
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
-import com.example.booksapp.presentation.viewmodel.BestSellerBooksViewModel
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
+import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Math.abs
 
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
-    private val bestSellerBooksViewModel: BestSellerBooksViewModel by viewModel()
+    private val bestSellerBooksViewModel: BestSellerViewModel by viewModel()
 
     private val adapter = BooksCarouselAdapter()
     private val localBooks = ArrayList<BooksModel.Response.BooksItem>()

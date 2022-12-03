@@ -6,8 +6,8 @@ import androidx.paging.PagingData
 import com.example.booksapp.api.ApiService
 import com.example.booksapp.api.model.*
 import com.example.booksapp.constants.BookFilterType
-import com.example.booksapp.db.BookMarkDatabase
-import com.example.booksapp.db.BookReportDatabase
+import com.example.booksapp.data.db.BookMarkDatabase
+import com.example.booksapp.data.db.BookReportDatabase
 import com.example.booksapp.repository.datasource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,7 +17,7 @@ class BookRepository(
     private val bookMarkDatabase: BookMarkDatabase,
     private val reportDatabase: BookReportDatabase
 ) {
-    private val apiKey = "api_key"
+    private val apiKey = "ABE29F010BE85A911E51179B8768B517136430738AC2CB0734A98DC5557826F2"
 
 
     fun getNewBooksList(categoryId: Int): Flow<List<Books>> {
@@ -87,9 +87,9 @@ class BookRepository(
         ).flow
     }
 
-    suspend fun selectBook() : List<BooksModel.Response.BooksItem>{
-        return bookMarkDatabase.bookDao().selectBooks()
-    }
+//    suspend fun selectBook() : List<BooksModel.Response.BooksItem>{
+//        return bookMarkDatabase.bookDao().selectBooks()
+//    }
 
     suspend fun insertBook(book : BooksModel.Response.BooksItem)  {
         bookMarkDatabase.bookDao().insertBook(book)
@@ -100,9 +100,9 @@ class BookRepository(
     }
 
 
-    suspend fun selectReport() : List<BooksModel.Response.BooksItem>{
-        return reportDatabase.bookDao().selectBooks()
-    }
+//    suspend fun selectReport() : List<BooksModel.Response.BooksItem>{
+//        return reportDatabase.bookDao().selectBooks()
+//    }
 
     suspend fun insertReport(book : BooksModel.Response.BooksItem)  {
         reportDatabase.bookDao().insertBook(book)

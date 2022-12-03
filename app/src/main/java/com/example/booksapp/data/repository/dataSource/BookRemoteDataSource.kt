@@ -8,4 +8,5 @@ interface BookRemoteDataSource {
     fun getNewBookList(categoryId : Int) : Flow<List<Books>>
     fun getRecommendBookList() : Flow<List<Books>>
     fun getBestSellerList(categoryId: Int) : Flow<List<BooksModel.Response.BooksItem>>
+    fun getBookDetailInfo(isbn : String, queryType : String, searchType : String) : Flow<List<BooksModel.Response.BooksItem>>
 }

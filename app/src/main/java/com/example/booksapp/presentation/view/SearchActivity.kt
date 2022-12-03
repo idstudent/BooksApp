@@ -50,7 +50,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                 foreignCheck = isChecked
             }
 
-            etSearch.setOnEditorActionListener { v, actionId, event ->
+            etSearch.setOnEditorActionListener { v, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     if(foreignCheck) {
                         searchBook(v, "foreign")

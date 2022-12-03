@@ -8,12 +8,13 @@ import com.example.booksapp.R
 import com.example.booksapp.api.model.BooksModel
 import com.example.booksapp.databinding.ActivityWriteReviewBinding
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
+import com.example.booksapp.presentation.viewmodel.BookReportViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WriteReportActivity : BaseActivity<ActivityWriteReviewBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val bookReportViewModel: BookReportViewModel by viewModel()
     private var bookItem : BooksModel.Response.BooksItem ?= null
 
     override val layoutId: Int
@@ -40,7 +41,7 @@ class WriteReportActivity : BaseActivity<ActivityWriteReviewBinding>() {
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         bookItem?.let {
-                            booksViewModel.insertReport(it)
+                            bookReportViewModel.insertReport(it)
                             Toast.makeText(this@WriteReportActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
                             finish()
                         }

@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentMyBooksBinding
 import com.example.booksapp.presentation.view.adapter.BookListAdapter
+import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyBooksFragment : BaseFragment<FragmentMyBooksBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val bookDetailViewModel: BookDetailViewModel by viewModel()
     private val bookListAdapter = BookListAdapter()
 
     override val layoutId: Int
@@ -32,7 +33,7 @@ class MyBooksFragment : BaseFragment<FragmentMyBooksBinding>() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                booksViewModel.selectBook().collect {
+                bookDetailViewModel.selectBook().collect {
                     bookListAdapter.submitList(it)
                 }
             }

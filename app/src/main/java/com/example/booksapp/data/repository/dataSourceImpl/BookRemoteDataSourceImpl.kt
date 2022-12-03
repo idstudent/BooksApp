@@ -10,10 +10,10 @@ import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class BookRemoteDateSourceImpl(
+class BookRemoteDataSourceImpl(
     private val apiService: ApiService
 ) : BookRemoteDataSource{
-    private val apiKey = "6D541D537528F0195E926F03541817D36E41219FD869A31FA9EAD136220ABE49"
+    private val apiKey = "api_key"
 
     override fun getNewBookList(categoryId: Int): Flow<List<Books>> {
         val booksList = mutableListOf<Books>()
@@ -49,6 +49,14 @@ class BookRemoteDateSourceImpl(
     override fun getBestSellerList(categoryId : Int): Flow<List<BooksModel.Response.BooksItem>> {
         return flow {
             val response = apiService.getBestSellerBooks(apiKey, categoryId)
+
+            emit(response.item)
+        }
+    }
+
+    override fun getBookDetailInfo(isbn: String, queryType: String, searchType: String): Flow<List<BooksModel.Response.BooksItem>> {
+        return flow {
+            val response = apiService.getSearchBook(apiKey, isbn, queryType, searchType)
 
             emit(response.item)
         }
