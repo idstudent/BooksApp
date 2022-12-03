@@ -14,14 +14,13 @@ import com.example.booksapp.view.adapter.BooksCarouselAdapter
 import com.example.booksapp.view.util.HorizontalMarginItemDecoration
 import com.example.booksapp.view.util.dp
 import com.example.booksapp.view.util.setOnSingleClickListener
-import com.example.booksapp.viewmodel.BooksViewModel
+import com.example.booksapp.viewmodel.BestSellerViewModel
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Math.abs
 
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val bestSellerViewModel: BestSellerViewModel by viewModel()
 
     private val adapter = BooksCarouselAdapter()
     private val localBooks = ArrayList<BooksModel.Response.BooksItem>()
@@ -55,7 +54,7 @@ class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                booksViewModel.getBestSellerBookLIst(100).collect {
+                bestSellerViewModel.getBestSellerBookLIst(100).collect {
                     localBooks.addAll(it)
 
                     adapter.submitList(it)
@@ -89,7 +88,7 @@ class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
                         adapter.submitList(globalBooks)
                     } else {
                         lifecycleScope.launch {
-                            booksViewModel.getBestSellerBookLIst(200).collect {
+                            bestSellerViewModel.getBestSellerBookLIst(200).collect {
                                 globalBooks.addAll(it)
                                 globalCall = true
 

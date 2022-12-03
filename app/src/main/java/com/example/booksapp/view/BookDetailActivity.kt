@@ -8,13 +8,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityBookDetailBinding
 import com.example.booksapp.view.util.setOnSingleClickListener
+import com.example.booksapp.viewmodel.BookDetailViewModel
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val bookDetailViewModel: BookDetailViewModel by viewModel()
 
     override val layoutId: Int
         get() = R.layout.activity_book_detail
@@ -28,12 +29,12 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                booksViewModel.getBookDetailInfo(isbn, "isbn", searchType).collect {
+                bookDetailViewModel.getBookDetailInfo(isbn, "isbn", searchType).collect {
                     if (it.isNotEmpty()) {
                         binding.item = it[0]
                     }
                 }
-                booksViewModel.selectBook().collect {
+                bookDetailViewModel.selectBook().collect {
                     run loop@{
                         it.mapIndexed { index, booksItem ->
                             if (booksItem.itemId == binding.item?.itemId) {
@@ -54,7 +55,7 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         item?.let {
-                            booksViewModel.insertBook(it)
+                            bookDetailViewModel.insertBook(it)
                             setStatusBtn(true)
                         }
 
@@ -66,7 +67,7 @@ class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         item?.let {
-                            booksViewModel.deleteBook(it)
+                            bookDetailViewModel.deleteBook(it)
                             setStatusBtn(false)
                         }
                     }

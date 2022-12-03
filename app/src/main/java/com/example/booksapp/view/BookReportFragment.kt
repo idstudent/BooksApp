@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentBookReportBinding
 import com.example.booksapp.view.adapter.BookReportListAdapter
+import com.example.booksapp.viewmodel.BookDetailViewModel
 import com.example.booksapp.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookReportFragment : BaseFragment<FragmentBookReportBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val bookDetailViewModel: BookDetailViewModel by viewModel()
     private val bookReportListAdapter = BookReportListAdapter()
 
     override val layoutId: Int
@@ -35,7 +36,7 @@ class BookReportFragment : BaseFragment<FragmentBookReportBinding>() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                booksViewModel.selectReport().collect {
+                bookDetailViewModel.selectReport().collect {
                     bookReportListAdapter.submitList(it)
                 }
             }

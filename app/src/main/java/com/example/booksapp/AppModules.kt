@@ -5,10 +5,9 @@ import com.example.booksapp.api.NullOnEmptyConverterFactory
 import com.example.booksapp.db.BookMarkDatabase
 import com.example.booksapp.db.BookReportDatabase
 import com.example.booksapp.repository.BookRepository
-import com.example.booksapp.viewmodel.BooksViewModel
+import com.example.booksapp.viewmodel.*
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
-import okhttp3.internal.platform.android.BouncyCastleSocketAdapter.Companion.factory
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -20,6 +19,26 @@ object AppModules {
     private val viewModels = module {
         viewModel {
             BooksViewModel(
+                bookRepository = get()
+            )
+        }
+        viewModel {
+            BestSellerViewModel(
+                bookRepository = get()
+            )
+        }
+        viewModel {
+            AllBookListViewModel(
+                bookRepository = get()
+            )
+        }
+        viewModel {
+            BookDetailViewModel(
+                bookRepository = get()
+            )
+        }
+        viewModel {
+            BookSearchViewModel(
                 bookRepository = get()
             )
         }
