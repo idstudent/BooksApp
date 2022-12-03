@@ -1,7 +1,7 @@
 package com.example.booksapp.domain.repository
 
-import com.example.booksapp.api.model.Books
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.Books
+import com.example.booksapp.data.api.model.BooksModel
 import kotlinx.coroutines.flow.Flow
 
 interface BookRepositoryT {
@@ -9,6 +9,8 @@ interface BookRepositoryT {
     fun getRecommendBookList() : Flow<List<Books>>
     fun getBestSellerList(categoryId : Int) : Flow<List<BooksModel.Response.BooksItem>>
     fun getBookDetailInfo(isbn : String, queryType : String, searchType : String) : Flow<List<BooksModel.Response.BooksItem>>
+    fun getAllNewBookList(categoryId: Int) : Flow<List<BooksModel.Response.BooksItem>>
+    fun getAllRecommendBookList() : Flow<List<BooksModel.Response.BooksItem>>
     fun selectBook() : Flow<List<BooksModel.Response.BooksItem>>
     suspend fun insertBook(book : BooksModel.Response.BooksItem)
     suspend fun deleteBook(book : BooksModel.Response.BooksItem)

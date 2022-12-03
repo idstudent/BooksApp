@@ -1,10 +1,9 @@
 package com.example.booksapp.repository.datasource
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.booksapp.api.ApiService
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.data.api.model.BooksModel
 import java.lang.Exception
 
 class SearchBooksDataPagingSource(

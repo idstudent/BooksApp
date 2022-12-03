@@ -1,6 +1,6 @@
-package com.example.booksapp.api
+package com.example.booksapp.data.api
 
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.BooksModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

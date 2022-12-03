@@ -1,6 +1,6 @@
-package com.example.booksapp.api
+package com.example.booksapp.data.api
 
-import com.example.booksapp.api.model.NothingResponse
+import com.example.booksapp.data.api.model.NothingResponse
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit

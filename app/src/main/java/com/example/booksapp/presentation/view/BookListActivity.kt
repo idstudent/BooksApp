@@ -5,17 +5,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
-import com.example.booksapp.constants.BookFilterType
+import com.example.booksapp.data.constants.BookFilterType
 import com.example.booksapp.databinding.ActivityBookListBinding
 import com.example.booksapp.presentation.view.adapter.BookListAdapter
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
+import com.example.booksapp.presentation.viewmodel.AllBookListViewModel
 import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookListActivity : BaseActivity<ActivityBookListBinding>() {
-    private val booksViewModel: BooksViewModel by viewModel()
+    private val allBookListViewModel: AllBookListViewModel by viewModel()
     private val bestSellerBooksViewModel: BestSellerViewModel by viewModel()
     private val bookDetailAdapter = BookListAdapter()
 
@@ -48,11 +49,11 @@ class BookListActivity : BaseActivity<ActivityBookListBinding>() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 if(type == BookFilterType.NEW.name) {
-                    booksViewModel.getNewBookDetailList(categoryId.toInt()).collect {
+                    allBookListViewModel.getAllNewBookList(categoryId.toInt()).collect {
                         bookDetailAdapter.submitList(it)
                     }
                 }else if(type == BookFilterType.RECOMMEND.name) {
-                    booksViewModel.getRecommendBookDetailList().collect {
+                    allBookListViewModel.getRecommendBookDetailList().collect {
                         bookDetailAdapter.submitList(it)
                     }
                 } else{

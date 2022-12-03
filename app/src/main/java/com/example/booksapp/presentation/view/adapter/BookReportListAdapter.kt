@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.booksapp.api.model.*
+import com.example.booksapp.data.api.model.*
 import com.example.booksapp.databinding.*
 
 class BookReportListAdapter : ListAdapter<BooksModel.Response.BooksItem, BookReportViewHolder>(

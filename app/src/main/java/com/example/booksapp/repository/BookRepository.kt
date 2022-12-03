@@ -3,9 +3,9 @@ package com.example.booksapp.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.booksapp.api.ApiService
-import com.example.booksapp.api.model.*
-import com.example.booksapp.constants.BookFilterType
+import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.data.api.model.*
+import com.example.booksapp.data.constants.BookFilterType
 import com.example.booksapp.data.db.BookMarkDatabase
 import com.example.booksapp.data.db.BookReportDatabase
 import com.example.booksapp.repository.datasource.SearchBooksDataPagingSource

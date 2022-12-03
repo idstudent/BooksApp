@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.api.model.*
+import com.example.booksapp.data.api.model.*
 import com.example.booksapp.databinding.*
 
 class MainBookListAdapter : ListAdapter<Books, RecyclerView.ViewHolder>(

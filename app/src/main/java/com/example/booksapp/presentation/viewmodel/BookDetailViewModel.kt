@@ -2,12 +2,11 @@ package com.example.booksapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.domain.usecase.GetBookDetailInfoUseCase
 import com.example.booksapp.domain.usecase.LocalBookMarkUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class BookDetailViewModel(

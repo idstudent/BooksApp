@@ -5,11 +5,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.booksapp.R
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.databinding.ActivityWriteReviewBinding
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.BookReportViewModel
-import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

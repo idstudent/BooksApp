@@ -1,7 +1,7 @@
 package com.example.booksapp.presentation.module
 
-import com.example.booksapp.api.ApiService
-import com.example.booksapp.api.NullOnEmptyConverterFactory
+import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.data.api.NullOnEmptyConverterFactory
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,6 +1,6 @@
 package com.example.booksapp.data.repository.dataSource
 
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.BooksModel
 import kotlinx.coroutines.flow.Flow
 
 interface BookLocalDataSource {

@@ -8,6 +8,8 @@ val useCaseModule = module {
     single { GetRecommendBookListUseCase(bookRepository = get()) }
     single { GetBestSellerBookListUseCase(bookRepository = get()) }
     single { GetBookDetailInfoUseCase(bookRepository = get()) }
+    single { GetAllNewBookListUseCase(bookRepository = get()) }
+    single { GetAllRecommendBookListUseCase(bookRepository = get()) }
     single { LocalBookMarkUseCase(bookRepository = get()) }
     single { LocalBookReportUseCase(bookRepository = get()) }
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.booksapp.api.model.BooksModel.Response.BooksItem" />
+            type="com.example.booksapp.data.api.model.BooksModel.Response.BooksItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.databinding.ItemBookDetailBinding
 
 class BookSearchPagingAdapter : PagingDataAdapter<BooksModel.Response.BooksItem, BookDetailViewHolder>(

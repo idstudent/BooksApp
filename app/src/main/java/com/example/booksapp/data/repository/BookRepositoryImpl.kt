@@ -1,12 +1,11 @@
 package com.example.booksapp.data.repository
 
-import com.example.booksapp.api.model.Books
-import com.example.booksapp.api.model.BooksModel
+import com.example.booksapp.data.api.model.Books
+import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.data.repository.dataSource.BookLocalDataSource
 import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
 import com.example.booksapp.domain.repository.BookRepositoryT
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
 class BookRepositoryImpl(
     private val bookRemoteDataSource: BookRemoteDataSource,
@@ -27,6 +26,15 @@ class BookRepositoryImpl(
     override fun getBookDetailInfo(isbn: String, queryType: String, searchType: String): Flow<List<BooksModel.Response.BooksItem>> {
         return bookRemoteDataSource.getBookDetailInfo(isbn, queryType, searchType)
     }
+
+    override fun getAllNewBookList(categoryId: Int): Flow<List<BooksModel.Response.BooksItem>> {
+        return bookRemoteDataSource.getAllNewBookList(categoryId)
+    }
+
+    override fun getAllRecommendBookList(): Flow<List<BooksModel.Response.BooksItem>> {
+        return bookRemoteDataSource.getAllRecommendBookList()
+    }
+
 
     override fun selectBook(): Flow<List<BooksModel.Response.BooksItem>> {
         return bookLocalDataSource.selectBook()

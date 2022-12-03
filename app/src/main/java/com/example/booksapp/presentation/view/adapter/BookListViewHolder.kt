@@ -2,7 +2,7 @@ package com.example.booksapp.presentation.view.adapter
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.api.model.BookList
+import com.example.booksapp.data.api.model.BookList
 import com.example.booksapp.databinding.ItemBooksBinding
 
 
