@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.flow
 class BookRemoteDataSourceImpl(
     private val apiService: ApiService
 ) : BookRemoteDataSource {
-    private val apiKey = "ABE29F010BE85A911E51179B8768B517136430738AC2CB0734A98DC5557826F2"
+    private val apiKey = "api_key"
 
     override fun getNewBookList(categoryId: Int): Flow<List<Books>> {
         val booksList = mutableListOf<Books>()
