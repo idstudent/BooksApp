@@ -19,7 +19,7 @@
           book-mvvm 브랜치 - MVVM
           
 
-Coroutine, flow, paging3, room, navigation(바텀 네비게이션으로 사용), retrofit2, glide
+Coroutine, flow, paging3, room, navigation(바텀 네비게이션으로 사용), data binding, retrofit2, glide
 
 
 ## 내용
