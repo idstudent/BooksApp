@@ -101,10 +101,7 @@ class BooksModel {
                             publisher = it.publisher ?: "",
                             customerReviewRank = it.customerReviewRank ?: 0.0,
                             author = it.author ?: "",
-                            translator = it.translator ?: "",
                             isbn = it.isbn ?: "",
-                            link = it.link ?: "",
-                            mobileLink = it.mobileLink ?: "",
                             reviewCount = it.reviewCount ?: 0
                         )
                     }
@@ -146,9 +143,6 @@ data class Book(
     val publisher: String,
     val customerReviewRank: Double,
     val author: String,
-    val translator: String,
     val isbn: String,
-    val link: String,
-    val mobileLink: String,
     val reviewCount: Int
 ) : Books
