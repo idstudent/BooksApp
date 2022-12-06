@@ -19,7 +19,7 @@
           book-mvvm 브랜치 - MVVM
           
 
-Coroutine, flow, paging3, room, navigation(바텀 네비게이션으로 사용), data binding, retrofit2, glide
+Coroutine, flow, LiveData, paging3, room, navigation(바텀 네비게이션으로 사용), data binding, retrofit2, glide
 
 
 ## 내용
@@ -53,7 +53,7 @@ https://user-images.githubusercontent.com/36175704/204427938-c75ee5d2-8969-491b-
 검색한 제목을 토대로 리스트를 보여줍니다.
 기본은 국내 도서이며, 외국도서 검색을 하려는 경우 외국도서보기를 체크하여, 검색을 합니다.
 
-https://user-images.githubusercontent.com/36175704/204428899-9efabc17-2469-4189-98fe-2ff7907f9a42.mp4
+https://user-images.githubusercontent.com/36175704/205825732-ee2340f2-89fb-4751-8812-9f228c826309.mp4
 
 ## 베스트셀러
 국내도서, 외국도서 베스트 샐러 리스틀 보여주며,
