@@ -42,6 +42,10 @@ class SearchFilterBottomFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.run {
+            ivClose.setOnSingleClickListener {
+                dismiss()
+            }
+
             tvSearchTitle.setOnSingleClickListener {
                 setClickFilterType("title")
             }
