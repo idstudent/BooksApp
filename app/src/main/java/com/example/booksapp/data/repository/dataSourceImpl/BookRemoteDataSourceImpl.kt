@@ -74,7 +74,7 @@ class BookRemoteDataSourceImpl(
     ): Flow<PagingData<BooksModel.Response.BooksItem>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
+                pageSize = 10,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { SearchBooksDataPagingSource(apiService, apiKey, query, queryType, searchType) }

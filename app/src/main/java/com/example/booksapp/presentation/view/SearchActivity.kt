@@ -1,7 +1,6 @@
 package com.example.booksapp.presentation.view
 
-import android.view.inputmethod.EditorInfo
-import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivitySearchBinding
 import com.example.booksapp.presentation.view.adapter.BookSearchPagingAdapter
+import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
     private val searchBookViewModel: SearchBookViewModel by viewModel()
     private val bookSearchPagingAdapter = BookSearchPagingAdapter()
+    private var searchFilter = "title"
 
     override val layoutId: Int
         get() = R.layout.activity_search
@@ -41,6 +42,23 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
         }
     }
 
+    override fun initViewModel() {
+        super.initViewModel()
+
+        searchBookViewModel.searchFilter.observe(this) {
+            searchFilter = it
+
+            binding.run {
+                when (it) {
+                    "title" -> tvFilter.text = "제목"
+                    "author" -> tvFilter.text = "저자"
+                    "publisher" -> tvFilter.text = "출판사"
+                }
+            }
+
+        }
+    }
+
     override fun initListener() {
         super.initListener()
 
@@ -50,25 +68,35 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                 foreignCheck = isChecked
             }
 
-            etSearch.setOnEditorActionListener { v, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if(foreignCheck) {
-                        searchBook(v, "foreign")
-                    }else {
-                        searchBook(v, "book")
+            btnSearch.setOnSingleClickListener {
+                if (etSearch.text.toString().isEmpty()) {
+                    Toast.makeText(this@SearchActivity, "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    val inputText = etSearch.text.toString()
+
+                    if (foreignCheck) {
+                        searchBook(inputText, searchFilter, "foreign")
+                    } else {
+                        searchBook(inputText, searchFilter, "book")
                     }
                 }
-                false
+            }
+
+            tvFilter.setOnSingleClickListener {
+                if (!isFinishing) {
+                    SearchFilterBottomFragment().show(
+                        supportFragmentManager,
+                        SearchFilterBottomFragment::class.java.name
+                    )
+                }
             }
         }
     }
 
-    private fun searchBook(v : TextView, type : String) {
+    private fun searchBook(inputText: String, queryType: String, type: String) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                val inputText = v.text.toString()
-
-                searchBookViewModel.getSearchBooks(inputText, "title", type).collect {
+                searchBookViewModel.getSearchBooks(inputText, queryType, type).collect {
                     bookSearchPagingAdapter.submitData(it)
                 }
             }

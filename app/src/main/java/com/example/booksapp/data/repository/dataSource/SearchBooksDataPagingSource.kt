@@ -22,13 +22,13 @@ class SearchBooksDataPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BooksModel.Response.BooksItem> {
         return try {
-            val page = params.key ?: 0
+            val page = params.key ?: 1
             val response = service.getSearchBook(apiKey, query, queryType, searchType, page = page).item
 
             LoadResult.Page(
                 data = response,
-                prevKey = if (page == 0) null else page - 1,
-                nextKey = page + 1
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if(response.isNotEmpty()) null else page + 1
             )
         }catch (e : Exception) {
             LoadResult.Error(e)
