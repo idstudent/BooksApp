@@ -17,6 +17,7 @@ class SearchBooksDataPagingSource(
     override fun getRefreshKey(state: PagingState<Int, BooksModel.Response.BooksItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
+            Log.e("pageljy","$anchorPage")
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
@@ -29,7 +30,7 @@ class SearchBooksDataPagingSource(
             LoadResult.Page(
                 data = response,
                 prevKey = if (page == 0) null else page - 1,
-                nextKey = page + 1
+                nextKey = if(response.isEmpty()) null else page + 1
             )
         }catch (e : Exception) {
             LoadResult.Error(e)
