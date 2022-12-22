@@ -28,7 +28,7 @@ class SearchBooksDataPagingSource(
             LoadResult.Page(
                 data = response,
                 prevKey = if (page == 1) null else page - 1,
-                nextKey = if(response.isNotEmpty()) null else page + 1
+                nextKey = if(response.isEmpty()) null else page + 1
             )
         }catch (e : Exception) {
             LoadResult.Error(e)
