@@ -4,7 +4,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_main

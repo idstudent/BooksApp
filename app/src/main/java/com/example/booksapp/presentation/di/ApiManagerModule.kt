@@ -1,17 +1,25 @@
-package com.example.booksapp.presentation.module
+package com.example.booksapp.presentation.di
 
 import com.example.booksapp.data.api.ApiService
 import com.example.booksapp.data.api.NullOnEmptyConverterFactory
 import com.google.gson.GsonBuilder
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
-val apiManagerModule = module {
-    single {
-        Retrofit.Builder()
+@Module
+@InstallIn(SingletonComponent::class)
+class ApiManagerModule {
+    @Singleton
+    @Provides
+    fun provideApiManager() : Retrofit {
+        return Retrofit.Builder()
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(HttpLoggingInterceptor().apply {
@@ -28,6 +36,12 @@ val apiManagerModule = module {
             )
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiService::class.java)
+
+    }
+
+    @Singleton
+    @Provides
+    fun provideMovieApiService(retrofit: Retrofit) : ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 }

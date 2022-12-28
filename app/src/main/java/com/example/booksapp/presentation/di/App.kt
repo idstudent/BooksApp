@@ -1,23 +1,7 @@
 package com.example.booksapp.presentation.di
 
 import android.app.Application
-import com.example.booksapp.presentation.module.*
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import dagger.hilt.android.HiltAndroidApp
 
-class App : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        startKoin {
-            androidContext(this@App)
-            modules(
-                viewModelModule,
-                repositoryModule,
-                useCaseModule,
-                apiManagerModule,
-                remoteDataModule,
-                localDataModule)
-        }
-    }
-}
+@HiltAndroidApp
+class App : Application()

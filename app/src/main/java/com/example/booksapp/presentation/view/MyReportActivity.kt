@@ -1,6 +1,7 @@
 package com.example.booksapp.presentation.view
 
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -9,11 +10,12 @@ import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.databinding.ActivityWriteReviewBinding
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.BookReportViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class MyReportActivity : BaseActivity<ActivityWriteReviewBinding>() {
-    private val bookReportViewModel: BookReportViewModel by viewModel()
+    private val bookReportViewModel: BookReportViewModel by viewModels()
     private var bookItem: BooksModel.Response.BooksItem? = null
 
     override val layoutId: Int

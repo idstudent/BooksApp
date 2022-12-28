@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -56,15 +57,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
 
     implementation "androidx.paging:paging-runtime-ktx:3.1.1"
-
-    implementation "org.koin:koin-core:2.2.2"
-    implementation "org.koin:koin-androidx-scope:2.2.2"
-    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
-    implementation "org.koin:koin-androidx-fragment:2.2.0"
-
+    
     implementation 'com.rubensousa:decorator:2.0.0'
 
     implementation "androidx.room:room-runtime:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
+
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+    implementation "androidx.activity:activity-ktx:1.5.0"
 }

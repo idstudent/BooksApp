@@ -2,6 +2,7 @@ package com.example.booksapp.presentation.view
 
 import android.content.Intent
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -9,11 +10,12 @@ import com.example.booksapp.R
 import com.example.booksapp.databinding.ActivityBookDetailBinding
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class BookDetailActivity : BaseActivity<ActivityBookDetailBinding>() {
-    private val bookDetailViewModel: BookDetailViewModel by viewModel()
+    private val bookDetailViewModel: BookDetailViewModel by viewModels()
 
     override val layoutId: Int
         get() = R.layout.activity_book_detail

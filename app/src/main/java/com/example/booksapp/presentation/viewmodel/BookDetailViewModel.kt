@@ -5,11 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.domain.usecase.GetBookDetailInfoUseCase
 import com.example.booksapp.domain.usecase.LocalBookMarkUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class BookDetailViewModel(
+@HiltViewModel
+class BookDetailViewModel @Inject constructor(
     private val getBookDetailInfoUseCase: GetBookDetailInfoUseCase,
     private val localBookMarkUseCase: LocalBookMarkUseCase
 ) : ViewModel() {

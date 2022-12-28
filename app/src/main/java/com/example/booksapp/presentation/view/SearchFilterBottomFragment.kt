@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.example.booksapp.R
 import com.example.booksapp.databinding.BottomFragmentSearchFilterBinding
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SearchFilterBottomFragment : BottomSheetDialogFragment() {
     private lateinit var binding: BottomFragmentSearchFilterBinding
-    private val searchBookViewModel : SearchBookViewModel by lazy { requireActivity().getViewModel() }
+    private val searchBookViewModel : SearchBookViewModel by activityViewModels()
+
 
     override fun getTheme(): Int {
         return R.style.AppBottomSheetDialogTheme

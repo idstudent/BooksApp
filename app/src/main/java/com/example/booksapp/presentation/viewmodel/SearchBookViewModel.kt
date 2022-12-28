@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.domain.usecase.GetSearchBookListUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class SearchBookViewModel(
+@HiltViewModel
+class SearchBookViewModel @Inject constructor(
     private val getSearchBookListUseCase: GetSearchBookListUseCase
 ) : ViewModel() {
 

@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.domain.usecase.GetNewBookListUseCase
 import com.example.booksapp.domain.usecase.GetRecommendBookListUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import javax.inject.Inject
 
-class BooksViewModel(
+@HiltViewModel
+class BooksViewModel @Inject constructor(
     private val getNewBookListUseCase: GetNewBookListUseCase,
     private val getRecommendBookListUseCase: GetRecommendBookListUseCase
 ) : ViewModel(){

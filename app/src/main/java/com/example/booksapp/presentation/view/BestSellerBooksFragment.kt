@@ -2,6 +2,7 @@ package com.example.booksapp.presentation.view
 
 import android.content.Intent
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,12 +16,13 @@ import com.example.booksapp.presentation.view.util.HorizontalMarginItemDecoratio
 import com.example.booksapp.presentation.view.util.dp
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Math.abs
 
+@AndroidEntryPoint
 class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
-    private val bestSellerBooksViewModel: BestSellerViewModel by viewModel()
+    private val bestSellerBooksViewModel: BestSellerViewModel by viewModels()
 
     private val adapter = BooksCarouselAdapter()
     private val localBooks = ArrayList<BooksModel.Response.BooksItem>()

@@ -1,6 +1,7 @@
 package com.example.booksapp.presentation.view
 
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,11 +13,12 @@ import com.example.booksapp.databinding.ActivitySearchBinding
 import com.example.booksapp.presentation.view.adapter.BookSearchPagingAdapter
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
-    private val searchBookViewModel: SearchBookViewModel by viewModel()
+    private val searchBookViewModel: SearchBookViewModel by viewModels()
     private val bookSearchPagingAdapter = BookSearchPagingAdapter()
     private var searchFilter = "title"
 

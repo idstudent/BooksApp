@@ -1,5 +1,6 @@
 package com.example.booksapp.presentation.view
 
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -8,11 +9,12 @@ import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentMyBooksBinding
 import com.example.booksapp.presentation.view.adapter.BookListAdapter
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class MyBooksFragment : BaseFragment<FragmentMyBooksBinding>() {
-    private val bookDetailViewModel: BookDetailViewModel by viewModel()
+    private val bookDetailViewModel: BookDetailViewModel by viewModels()
     private val bookListAdapter = BookListAdapter()
 
     override val layoutId: Int
