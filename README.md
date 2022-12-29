@@ -16,7 +16,7 @@
 
           book-mvvm-cleanArch-koin 브랜치 - MVVM, Clean Architecture, DI - koin 
           
-          book-mvvm 브랜치 - MVVM
+          book-mvvm 브랜치 - MVVM, DI - koin
           
 
 Coroutine, flow, LiveData, paging3, room, navigation(바텀 네비게이션으로 사용), data binding, retrofit2, glide
