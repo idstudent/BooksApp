@@ -7,14 +7,14 @@
 ## 기술스택 
 이후에도 계속 추가될 예정이나, 현재 기술스택입니다.
 
-언어 : kotlin, DI : koin
+언어 : kotlin, DI : koin, Hilt
 
 
 아키텍처 :
 
-          master 브랜치 - MVVM, Clean Architecture
+          master 브랜치 - MVVM, Clean Architecture, DI - koin -> Hilt로 
 
-          book-mvvm-clean-architecture 브랜치 - MVVM, Clean Architecture 
+          book-mvvm-cleanArch-koin 브랜치 - MVVM, Clean Architecture, DI - koin 
           
           book-mvvm 브랜치 - MVVM
           
