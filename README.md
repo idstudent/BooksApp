@@ -12,7 +12,7 @@
 
 아키텍처 :
 
-          master 브랜치 - MVVM, Clean Architecture, DI - koin -> Hilt로 
+          master 브랜치 - MVVM, Clean Architecture, DI - koin -> Hilt 
 
           book-mvvm-cleanArch-koin 브랜치 - MVVM, Clean Architecture, DI - koin 
           
