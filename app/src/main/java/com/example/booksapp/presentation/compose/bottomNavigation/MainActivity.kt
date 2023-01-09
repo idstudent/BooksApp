@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view
+package com.example.booksapp.presentation.compose.bottomNavigation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
