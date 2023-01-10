@@ -3,6 +3,7 @@ package com.example.booksapp.presentation.compose.bottomNavigation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
@@ -14,6 +15,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -21,25 +23,28 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.booksapp.*
+import com.example.booksapp.presentation.viewmodel.BooksViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val booksViewModel: BooksViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreenView()
+            MainScreenView(booksViewModel)
         }
     }
 }
 
 @Composable
-fun MainScreenView(){
+fun MainScreenView(booksViewModel: BooksViewModel){
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigation(navController = navController) },
     ) {
-
-        NavigationGraph(navController = navController)
+        NavigationGraph(navController = navController, booksViewModel)
     }
 }
 
@@ -88,10 +93,10 @@ fun BottomNavigation(navController: NavController) {
 }
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, booksViewModel: BooksViewModel) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
-            HomeScreen()
+            HomeScreen(booksViewModel)
         }
         composable(BottomNavItem.BestSeller.screen_route) {
             NetworkScreen()
@@ -103,10 +108,4 @@ fun NavigationGraph(navController: NavHostController) {
             NotificationScreen()
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomNavigationPreview() {
-    MainScreenView()
 }

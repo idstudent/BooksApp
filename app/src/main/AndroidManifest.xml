@@ -34,7 +34,7 @@
             android:exported="false"/>
 
         <activity
-            android:name="com.example.booksapp.presentation.view.MainActivity"
+            android:name=".presentation.compose.bottomNavigation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
