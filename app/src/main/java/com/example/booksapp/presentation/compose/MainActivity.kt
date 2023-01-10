@@ -24,28 +24,34 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.booksapp.*
 import com.example.booksapp.presentation.compose.bottomNavigation.*
+import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val booksViewModel: BooksViewModel by viewModels()
+    private val bestSellerViewModel : BestSellerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreenView(booksViewModel)
+            MainScreenView(booksViewModel, bestSellerViewModel)
         }
     }
 }
 
 @Composable
-fun MainScreenView(booksViewModel: BooksViewModel){
+fun MainScreenView(booksViewModel: BooksViewModel, bestSellerViewModel: BestSellerViewModel){
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigation(navController = navController) },
     ) {
-        NavigationGraph(navController = navController, booksViewModel)
+        NavigationGraph(
+            navController = navController,
+            booksViewModel = booksViewModel,
+            bestSellerViewModel = bestSellerViewModel
+        )
     }
 }
 
@@ -94,13 +100,17 @@ fun BottomNavigation(navController: NavController) {
 }
 
 @Composable
-fun NavigationGraph(navController: NavHostController, booksViewModel: BooksViewModel) {
+fun NavigationGraph(
+    navController: NavHostController,
+    booksViewModel: BooksViewModel,
+    bestSellerViewModel: BestSellerViewModel
+) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
             HomeScreen(booksViewModel)
         }
         composable(BottomNavItem.BestSeller.screen_route) {
-            BestSellerScreen()
+            BestSellerScreen(bestSellerViewModel)
         }
         composable(BottomNavItem.MyBook.screen_route) {
             AddPostScreen()
