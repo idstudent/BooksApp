@@ -34,7 +34,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".presentation.compose.bottomNavigation.MainActivity"
+            android:name=".presentation.compose.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

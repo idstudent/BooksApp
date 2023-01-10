@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.compose.bottomNavigation
+package com.example.booksapp.presentation.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.booksapp.*
+import com.example.booksapp.presentation.compose.bottomNavigation.*
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -99,7 +100,7 @@ fun NavigationGraph(navController: NavHostController, booksViewModel: BooksViewM
             HomeScreen(booksViewModel)
         }
         composable(BottomNavItem.BestSeller.screen_route) {
-            NetworkScreen()
+            BestSellerScreen()
         }
         composable(BottomNavItem.MyBook.screen_route) {
             AddPostScreen()

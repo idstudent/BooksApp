@@ -2,7 +2,6 @@ package com.example.booksapp.presentation.compose.bottomNavigation
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,11 +11,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
@@ -25,14 +20,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.booksapp.R
@@ -62,7 +56,9 @@ fun HomeScreen(booksViewModel: BooksViewModel, context : Context = LocalContext.
             books.addAll(it)
         }
     }
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier.padding(bottom = 80.dp)
+    ) {
         items(books) { book ->
             when (book) {
                 is Header -> {
@@ -126,17 +122,48 @@ fun HomeScreen(booksViewModel: BooksViewModel, context : Context = LocalContext.
 
                 is BookList -> {
                     LazyRow {
-                        items(book.books) { item ->
-                            GlideImage(
-                                modifier = Modifier
-                                    .width(140.dp)
-                                    .height(160.dp)
-                                    .padding(start = 4.dp, end = 4.dp),
-                                imageModel = { item.coverLargeUrl },
-                                imageOptions = ImageOptions(
-                                    contentScale = ContentScale.Crop
+                        items(book.books.take(5)) { item ->
+                            Column(
+                                modifier = Modifier.width(140.dp)
+                            ) {
+                                GlideImage(
+                                    imageModel = { item.coverLargeUrl },
+                                    imageOptions = ImageOptions(
+                                        contentScale = ContentScale.Crop
+                                    ),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(160.dp)
+                                        .padding(start = 4.dp, end = 4.dp)
                                 )
-                            )
+                                Text(
+                                    text = item.title,
+                                    color = Color.Black,
+                                    fontSize = 14.sp,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis,
+                                    modifier = Modifier
+                                        .padding(start = 4.dp, end = 8.dp, top = 8.dp)
+                                )
+
+                                Text(
+                                    text = item.publisher,
+                                    color = Color.Black,
+                                    fontSize = 14.sp,
+                                    modifier = Modifier
+                                        .padding(start = 4.dp, end = 8.dp, top = 4.dp)
+                                )
+
+                                Text(
+                                    text = item.author,
+                                    color = Color.Black,
+                                    fontSize = 14.sp,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis,
+                                    modifier = Modifier
+                                        .padding(start = 4.dp, end = 8.dp, top = 4.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -146,29 +173,6 @@ fun HomeScreen(booksViewModel: BooksViewModel, context : Context = LocalContext.
     }
 }
 
-@Composable
-fun Test(books: List<Books>) {
-
-}
-
-@Composable
-fun NetworkScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
-    ) {
-        Text(
-            text = "My Network Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
-    }
-}
 
 @Composable
 fun AddPostScreen() {
