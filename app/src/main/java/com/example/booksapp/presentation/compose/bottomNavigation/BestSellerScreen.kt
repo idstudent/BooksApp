@@ -1,14 +1,11 @@
 package com.example.booksapp.presentation.compose.bottomNavigation
 
-import android.util.Log
-import androidx.compose.foundation.background
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.OutlinedButton
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -17,14 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
-import com.bumptech.glide.request.RequestOptions
 import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.presentation.view.BookDetailActivity
+import com.example.booksapp.presentation.view.BookListActivity
 import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -35,16 +34,19 @@ import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun BestSellerScreen(bestSellerViewModel: BestSellerViewModel) {
+fun BestSellerScreen(
+    bestSellerViewModel: BestSellerViewModel,
+    context : Context = LocalContext.current
+) {
     val books = remember { mutableStateListOf<BooksModel.Response.BooksItem>() }
 
-    val requestOption = rememberSaveable { mutableStateOf(100) }
+    val categoryId = rememberSaveable { mutableStateOf(100) }
 
     var title by rememberSaveable { mutableStateOf("국내 베스트셀러") }
     var changeBooks by rememberSaveable { mutableStateOf("국내도서 베스트셀러 보기") }
 
-    LaunchedEffect(key1 = requestOption.value) {
-        bestSellerViewModel.getBestSellerBookLIst(requestOption.value).collect {
+    LaunchedEffect(key1 = categoryId.value) {
+        bestSellerViewModel.getBestSellerBookLIst(categoryId.value).collect {
             books.clear()
             books.addAll(it)
         }
@@ -74,10 +76,16 @@ fun BestSellerScreen(bestSellerViewModel: BestSellerViewModel) {
                 text = "더보기 >",
                 color = Color.Black,
                 fontSize = 14.sp,
+                textAlign = TextAlign.End,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(top = 4.dp, end = 12.dp),
-                textAlign = TextAlign.End,
+                    .padding(top = 4.dp, end = 12.dp)
+                    .clickable {
+                        val intent = Intent(context, BookListActivity::class.java)
+                        intent.putExtra("type",  BookFilterType.BEST.name)
+                        intent.putExtra("categoryId", categoryId.value.toString())
+                        context.startActivity(intent)
+                    }
             )
         }
         HorizontalPager(
@@ -116,6 +124,14 @@ fun BestSellerScreen(bestSellerViewModel: BestSellerViewModel) {
                             modifier = Modifier
                                 .width(600.dp)
                                 .height(400.dp)
+                                .clickable {
+                                    val intent = Intent(context, BookDetailActivity::class.java)
+                                    intent.putExtra("isbn", books[page].isbn)
+                                    if(books[page].categoryId == "200") {
+                                        intent.putExtra("searchType", "foreign")
+                                    }
+                                    context.startActivity(intent)
+                                }
                         )
                     }
 
@@ -139,11 +155,11 @@ fun BestSellerScreen(bestSellerViewModel: BestSellerViewModel) {
                 if (changeBooks == "국내도서 베스트셀러 보기") {
                     title = "외국 베스트셀러"
                     changeBooks = "외국도서 베스트셀러 보기"
-                    requestOption.value = 200
+                    categoryId.value = 200
                 } else {
                     title = "국내 베스트셀러"
                     changeBooks = "국내도서 베스트셀러 보기"
-                    requestOption.value = 100
+                    categoryId.value = 100
                 }
             },
             modifier = Modifier

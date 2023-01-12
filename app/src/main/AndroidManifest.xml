@@ -23,7 +23,7 @@
             android:name="com.example.booksapp.presentation.view.SearchActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.booksapp.presentation.view.BookListActivity"
+            android:name=".presentation.view.BookListActivity"
             android:exported="false" />
         <activity
             android:name="com.example.booksapp.presentation.view.BookDetailActivity"
