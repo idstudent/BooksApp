@@ -95,7 +95,7 @@ fun BestSellerScreen(
         ) { page ->
             if (books.size > 0) {
                 Column {
-                    Card(
+                    Box(
                         Modifier
                             .graphicsLayer {
                                 val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
