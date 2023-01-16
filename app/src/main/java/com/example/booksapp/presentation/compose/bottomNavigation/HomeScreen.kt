@@ -34,6 +34,7 @@ import com.example.booksapp.data.api.model.BookList
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksTitle
 import com.example.booksapp.data.api.model.Header
+import com.example.booksapp.presentation.view.BookDetailActivity
 import com.example.booksapp.presentation.view.BookListActivity
 import com.example.booksapp.presentation.view.SearchActivity
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
@@ -124,7 +125,16 @@ fun HomeScreen(booksViewModel: BooksViewModel, context : Context = LocalContext.
                     LazyRow {
                         items(book.books.take(5)) { item ->
                             Column(
-                                modifier = Modifier.width(140.dp)
+                                modifier = Modifier
+                                    .width(140.dp)
+                                    .clickable {
+                                        val intent = Intent(context, BookDetailActivity::class.java)
+                                        intent.putExtra("isbn", item.isbn)
+                                        if(item.categoryId == "200") {
+                                            intent.putExtra("searchType","foreign")
+                                        }
+                                        context.startActivity(intent)
+                                    }
                             ) {
                                 GlideImage(
                                     imageModel = { item.coverLargeUrl },
@@ -172,27 +182,6 @@ fun HomeScreen(booksViewModel: BooksViewModel, context : Context = LocalContext.
         }
     }
 }
-
-
-@Composable
-fun AddPostScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
-    ) {
-        Text(
-            text = "Add Post Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
-    }
-}
-
 
 @Composable
 fun NotificationScreen() {
