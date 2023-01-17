@@ -1,6 +1,8 @@
 package com.example.booksapp.presentation.compose.bottomNavigation
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -23,13 +26,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.booksapp.R
 import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.presentation.view.BookDetailActivity
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun MyBooksScreen(
-    bookDetailViewModel: BookDetailViewModel
+    bookDetailViewModel: BookDetailViewModel,
+    context : Context = LocalContext.current
 ) {
     val books = remember { mutableStateListOf<BooksModel.Response.BooksItem>() }
 
@@ -72,6 +77,14 @@ fun MyBooksScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(250.dp)
+                                .clickable {
+                                    val intent = Intent(context, BookDetailActivity::class.java)
+                                    intent.putExtra("isbn", books[index].isbn)
+                                    if(books[index].categoryId == "200") {
+                                        intent.putExtra("searchType", "foreign")
+                                    }
+                                    context.startActivity(intent)
+                                }
                         )
 
                         Text(
