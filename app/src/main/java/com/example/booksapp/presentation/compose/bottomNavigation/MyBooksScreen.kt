@@ -40,6 +40,7 @@ fun MyBooksScreen(
 
     LaunchedEffect(key1 = false) {
         bookDetailViewModel.selectBook().collect {
+            books.clear()
             books.addAll(it)
         }
     }
