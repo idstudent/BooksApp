@@ -23,9 +23,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +40,9 @@ import com.example.booksapp.R
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.databinding.ActivityBookDetailBinding
+import com.example.booksapp.presentation.view.util.numberFormat
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
+import com.example.booksapp.presentation.view.util.won
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
@@ -190,6 +196,7 @@ fun BookDetailScreenView(
                 Image(
                     painter = painterResource(id = R.drawable.ic_baseline_bookmark_border_24),
                     contentDescription = "bookmark",
+                    colorFilter = ColorFilter.tint(colorResource(id = R.color.color_4caf50)),
                     modifier = Modifier
                         .padding(top = 8.dp, end = 20.dp)
                         .clickable {}
@@ -209,7 +216,7 @@ fun BookDetailScreenView(
             )
             Row {
                 Text(
-                    text = books[0].priceSales.toString(),
+                    text = books[0].priceSales?.numberFormat?.won ?: "0원",
                     color = Color.Black,
                     fontSize = 20.sp,
                     modifier = Modifier
@@ -217,7 +224,8 @@ fun BookDetailScreenView(
                 )
 
                 Text(
-                    text = books[0].priceStandard.toString(),
+                    text = books[0].priceStandard?.numberFormat?.won ?: "0원",
+                    style = TextStyle(textDecoration = TextDecoration.LineThrough),
                     color = Color.Black,
                     fontSize = 14.sp,
                     modifier = Modifier
@@ -226,26 +234,28 @@ fun BookDetailScreenView(
 
                 Text(
                     text = "${books[0].discountRate}%",
-                    color = Color.Black,
-                    fontSize = 14.sp,
-                    modifier = Modifier
-                        .padding(start = 12.dp, top = 6.dp)
-                )
-
-                Text(
-                    text = "품절",
                     color = Color.Red,
                     fontSize = 14.sp,
                     modifier = Modifier
-                        .padding(start = 12.dp, top = 3.dp)
-                        .border(
-                            width = 0.5.dp,
-                            color = Color.Red,
-                            shape = RoundedCornerShape(12.dp),
-                        )
-                        .padding(top = 3.dp, bottom = 3.dp, start = 8.dp, end = 8.dp)
-
+                        .padding(start = 6.dp, top = 6.dp)
                 )
+
+                if(books[0].saleStatus != "") {
+                    Text(
+                        text = books[0].saleStatus.toString(),
+                        color = Color.Red,
+                        fontSize = 14.sp,
+                        modifier = Modifier
+                            .padding(start = 12.dp, top = 3.dp)
+                            .border(
+                                width = 0.5.dp,
+                                color = Color.Red,
+                                shape = RoundedCornerShape(12.dp),
+                            )
+                            .padding(top = 3.dp, bottom = 3.dp, start = 8.dp, end = 8.dp)
+
+                    )
+                }
             }
             Text(
                 text = books[0].pubDate ?: "",
@@ -279,7 +289,7 @@ fun BookDetailScreenView(
                 text = books[0].description ?: "",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp, start = 20.dp, end = 20.dp)
+                    .padding(top = 8.dp, bottom = 20.dp, start = 20.dp, end = 20.dp)
             )
         }
 
