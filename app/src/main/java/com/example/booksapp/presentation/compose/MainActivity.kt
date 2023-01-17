@@ -26,6 +26,7 @@ import com.example.booksapp.*
 import com.example.booksapp.presentation.compose.bottomNavigation.*
 import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
+import com.example.booksapp.presentation.viewmodel.BookReportViewModel
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,11 +35,17 @@ class MainActivity : ComponentActivity() {
     private val booksViewModel: BooksViewModel by viewModels()
     private val bestSellerViewModel : BestSellerViewModel by viewModels()
     private val bookDetailViewModel: BookDetailViewModel by viewModels()
+    private val bookReportViewModel: BookReportViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreenView(booksViewModel, bestSellerViewModel, bookDetailViewModel)
+            MainScreenView(
+                booksViewModel,
+                bestSellerViewModel,
+                bookDetailViewModel,
+                bookReportViewModel
+            )
         }
     }
 }
@@ -47,7 +54,8 @@ class MainActivity : ComponentActivity() {
 fun MainScreenView(
     booksViewModel: BooksViewModel,
     bestSellerViewModel: BestSellerViewModel,
-    bookDetailViewModel: BookDetailViewModel
+    bookDetailViewModel: BookDetailViewModel,
+    bookReportViewModel : BookReportViewModel
 ){
     val navController = rememberNavController()
     Scaffold(
@@ -57,7 +65,8 @@ fun MainScreenView(
             navController = navController,
             booksViewModel = booksViewModel,
             bestSellerViewModel = bestSellerViewModel,
-            bookDetailViewModel = bookDetailViewModel
+            bookDetailViewModel = bookDetailViewModel,
+            bookReportViewModel = bookReportViewModel
         )
     }
 }
@@ -112,7 +121,8 @@ fun NavigationGraph(
     navController: NavHostController,
     booksViewModel: BooksViewModel,
     bestSellerViewModel: BestSellerViewModel,
-    bookDetailViewModel: BookDetailViewModel
+    bookDetailViewModel: BookDetailViewModel,
+    bookReportViewModel : BookReportViewModel
 ) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
@@ -125,7 +135,7 @@ fun NavigationGraph(
             MyBooksScreen(bookDetailViewModel)
         }
         composable(BottomNavItem.BookReport.screen_route) {
-            NotificationScreen()
+            MyReportScreen(bookReportViewModel)
         }
     }
 }
