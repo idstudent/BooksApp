@@ -1,30 +1,22 @@
 package com.example.booksapp.presentation.view
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -33,15 +25,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.booksapp.R
-import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksModel
-import com.example.booksapp.databinding.ActivityBookDetailBinding
 import com.example.booksapp.presentation.view.util.numberFormat
-import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.view.util.won
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
 import com.skydoves.landscapist.ImageOptions
@@ -64,96 +50,34 @@ class BookDetailActivity : ComponentActivity() {
             BookDetailScreenView(bookDetailViewModel, isbn, searchType)
         }
     }
-//    override val layoutId: Int
-//        get() = R.layout.activity_book_detail
-//
-//    override fun initViewModel() {
-//        super.initViewModel()
-//
-
-//
-//        lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                bookDetailViewModel.getBookDetailInfo(isbn, "isbn", searchType).collect {
-//                    if (it.isNotEmpty()) {
-//                        binding.item = it[0]
-//                    }
-//                }
-//                bookDetailViewModel.selectBook().collect {
-//                    run loop@{
-//                        it.mapIndexed { _, booksItem ->
-//                            if (booksItem.itemId == binding.item?.itemId) {
-//                                setStatusBtn(true)
-//
-//                                return@loop
-//                            } else {
-//                                setStatusBtn(false)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        binding.run {
-//            ivBookMarkOff.setOnSingleClickListener {
-//                lifecycleScope.launch {
-//                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                        item?.let {
-//                            bookDetailViewModel.insertBook(it)
-//                            setStatusBtn(true)
-//                        }
-//
-//                    }
-//                }
-//            }
-//
-//            ivBookMarkOn.setOnSingleClickListener {
-//                lifecycleScope.launch {
-//                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                        item?.let {
-//                            bookDetailViewModel.deleteBook(it)
-//                            setStatusBtn(false)
-//                        }
-//                    }
-//                }
-//            }
-//
-//            tvWriteReview.setOnSingleClickListener {
-//                val intent = Intent(this@BookDetailActivity, WriteReportActivity::class.java)
-//                intent.putExtra("book",binding.item)
-//                startActivity(intent)
-//            }
-//        }
-//    }
-//
-//    private fun setStatusBtn(on: Boolean) {
-//        binding.run {
-//            if (on) {
-//                ivBookMarkOff.visibility = View.INVISIBLE
-//                ivBookMarkOn.visibility = View.VISIBLE
-//            } else {
-//                ivBookMarkOff.visibility = View.VISIBLE
-//                ivBookMarkOn.visibility = View.INVISIBLE
-//            }
-//        }
-//    }
 }
 
 @Composable
 fun BookDetailScreenView(
     bookDetailViewModel: BookDetailViewModel,
     isbn: String,
-    searchType: String
+    searchType: String,
+    context: Context = LocalContext.current
 ) {
     val scrollState = rememberScrollState()
 
     val books = remember { mutableStateListOf<BooksModel.Response.BooksItem>() }
+    val bookMark = remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = false) {
         bookDetailViewModel.getBookDetailInfo(isbn, "isbn", searchType).collect {
-            Log.e("ljy", "$it")
             books.addAll(it)
+        }
+        bookDetailViewModel.selectBook().collect {
+            run loop@{
+                it.mapIndexed { _, booksItem ->
+                    if (booksItem.itemId == books[0].itemId) {
+                        bookMark.value = true
+                        return@loop
+                    }
+                }
+            }
         }
     }
 
@@ -191,16 +115,46 @@ fun BookDetailScreenView(
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
                         color = Color.Black,
+                        modifier = Modifier
+                            .clickable {
+                                val intent = Intent(context, WriteReportActivity::class.java)
+                                intent.putExtra("book", books[0])
+                                context.startActivity(intent)
+                            }
                     )
                 }
-                Image(
-                    painter = painterResource(id = R.drawable.ic_baseline_bookmark_border_24),
-                    contentDescription = "bookmark",
-                    colorFilter = ColorFilter.tint(colorResource(id = R.color.color_4caf50)),
-                    modifier = Modifier
-                        .padding(top = 8.dp, end = 20.dp)
-                        .clickable {}
-                )
+                if (bookMark.value) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_baseline_bookmark_24),
+                        contentDescription = "bookmark",
+                        colorFilter = ColorFilter.tint(colorResource(id = R.color.color_4caf50)),
+                        modifier = Modifier
+                            .padding(top = 8.dp, end = 20.dp)
+                            .clickable {
+                                bookMark.value = false
+
+                                scope.launch {
+                                    bookDetailViewModel.deleteBook(books[0])
+                                }
+                            }
+                    )
+                } else {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_baseline_bookmark_border_24),
+                        contentDescription = "bookmark",
+                        colorFilter = ColorFilter.tint(colorResource(id = R.color.color_4caf50)),
+                        modifier = Modifier
+                            .padding(top = 8.dp, end = 20.dp)
+                            .clickable {
+                                bookMark.value = true
+
+                                scope.launch {
+                                    bookDetailViewModel.insertBook(books[0])
+                                }
+                            }
+                    )
+                }
+
             }
 
             Text(
@@ -240,7 +194,7 @@ fun BookDetailScreenView(
                         .padding(start = 6.dp, top = 6.dp)
                 )
 
-                if(books[0].saleStatus != "") {
+                if (books[0].saleStatus != "") {
                     Text(
                         text = books[0].saleStatus.toString(),
                         color = Color.Red,
@@ -258,7 +212,7 @@ fun BookDetailScreenView(
                 }
             }
             Text(
-                text = books[0].pubDate ?: "",
+                text = setDateFormat(books[0].pubDate ?: ""),
                 color = Color.Black,
                 fontSize = 14.sp,
                 modifier = Modifier
@@ -294,4 +248,10 @@ fun BookDetailScreenView(
         }
 
     }
+}
+
+fun setDateFormat(date : String) : String{
+    if(date == "" || date == null) { return "not date" }
+    val dateText = "${date.substring(0,4)}-${date.substring(4,6)}-${date.substring(6,8)}"
+    return dateText
 }
