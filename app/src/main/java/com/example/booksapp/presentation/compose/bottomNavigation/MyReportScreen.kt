@@ -58,7 +58,7 @@ fun MyReportScreen(
                         .padding(top = 8.dp, bottom = 12.dp)
                         .clickable {
                             val intent = Intent(context, MyReportActivity::class.java)
-                            intent.putExtra("bookItem", books[index])
+                            intent.putExtra("book", books[index])
                             context.startActivity(intent)
                         }
                 ) {

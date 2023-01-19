@@ -106,7 +106,11 @@ fun BookDetailScreenView(
                     .padding(top = 20.dp, start = 20.dp)
             ) {
                 OutlinedButton(
-                    onClick = { },
+                    onClick = {
+                        val intent = Intent(context, MyReportActivity::class.java)
+                        intent.putExtra("book", books[0])
+                        context.startActivity(intent)
+                    },
                     border = BorderStroke(0.5.dp, Color.Black)
 
                 ) {
@@ -114,13 +118,7 @@ fun BookDetailScreenView(
                         text = "리뷰쓰기",
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
-                        color = Color.Black,
-                        modifier = Modifier
-                            .clickable {
-                                val intent = Intent(context, WriteReportActivity::class.java)
-                                intent.putExtra("book", books[0])
-                                context.startActivity(intent)
-                            }
+                        color = Color.Black
                     )
                 }
                 if (bookMark.value) {

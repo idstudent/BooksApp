@@ -1,5 +1,7 @@
 package com.example.booksapp.presentation.viewmodel
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.booksapp.data.api.model.BooksModel
@@ -13,6 +15,8 @@ import javax.inject.Inject
 class BookReportViewModel @Inject constructor(
     private val localBookReportUseCase: LocalBookReportUseCase
 ) : ViewModel() {
+    val review : MutableState<String> = mutableStateOf("")
+
     fun selectBookReport(): Flow<List<BooksModel.Response.BooksItem>> {
         return localBookReportUseCase.execute()
     }
