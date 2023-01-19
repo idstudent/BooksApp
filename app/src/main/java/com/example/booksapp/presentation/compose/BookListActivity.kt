@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view
+package com.example.booksapp.presentation.compose
 
 import android.app.Activity
 import android.content.Context

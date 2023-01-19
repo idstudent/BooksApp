@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.booksapp.data.api.model.BooksModel
-import com.example.booksapp.presentation.view.MyReportActivity
+import com.example.booksapp.presentation.compose.WriteReviewActivity
 import com.example.booksapp.presentation.viewmodel.BookReportViewModel
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
@@ -57,7 +57,7 @@ fun MyReportScreen(
                         .fillMaxWidth()
                         .padding(top = 8.dp, bottom = 12.dp)
                         .clickable {
-                            val intent = Intent(context, MyReportActivity::class.java)
+                            val intent = Intent(context, WriteReviewActivity::class.java)
                             intent.putExtra("book", books[index])
                             context.startActivity(intent)
                         }

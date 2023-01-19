@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view
+package com.example.booksapp.presentation.compose
 
 import android.content.Context
 import android.content.Intent
@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.booksapp.R
 import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.presentation.compose.WriteReviewActivity
 import com.example.booksapp.presentation.view.util.numberFormat
 import com.example.booksapp.presentation.view.util.won
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
@@ -107,7 +108,7 @@ fun BookDetailScreenView(
             ) {
                 OutlinedButton(
                     onClick = {
-                        val intent = Intent(context, MyReportActivity::class.java)
+                        val intent = Intent(context, WriteReviewActivity::class.java)
                         intent.putExtra("book", books[0])
                         context.startActivity(intent)
                     },

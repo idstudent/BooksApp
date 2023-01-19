@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.data.constants.BookFilterType
-import com.example.booksapp.presentation.view.BookDetailActivity
-import com.example.booksapp.presentation.view.BookListActivity
+import com.example.booksapp.presentation.compose.BookDetailActivity
+import com.example.booksapp.presentation.compose.BookListActivity
 import com.example.booksapp.presentation.viewmodel.BestSellerViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager

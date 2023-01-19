@@ -17,21 +17,17 @@
         android:theme="@style/Theme.BooksApp"
         tools:targetApi="31">
         <activity
-            android:name="com.example.booksapp.presentation.view.WriteReportActivity"
+            android:name=".presentation.compose.WriteReviewActivity"
             android:exported="false" />
         <activity
             android:name="com.example.booksapp.presentation.view.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.BookListActivity"
+            android:name=".presentation.compose.BookListActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.booksapp.presentation.view.BookDetailActivity"
+            android:name=".presentation.compose.BookDetailActivity"
             android:exported="false" />
-
-        <activity
-            android:name="com.example.booksapp.presentation.view.MyReportActivity"
-            android:exported="false"/>
 
         <activity
             android:name=".presentation.compose.MainActivity"

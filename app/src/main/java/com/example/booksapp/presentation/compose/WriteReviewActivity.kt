@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view
+package com.example.booksapp.presentation.compose
 
 import android.content.Context
 import android.os.Bundle
@@ -13,17 +13,14 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.presentation.viewmodel.BookReportViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -33,7 +30,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MyReportActivity : ComponentActivity() {
+class WriteReviewActivity : ComponentActivity() {
     private val bookReportViewModel: BookReportViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.booksapp.R
 import com.example.booksapp.data.api.model.BooksModel
-import com.example.booksapp.presentation.view.BookDetailActivity
+import com.example.booksapp.presentation.compose.BookDetailActivity
 import com.example.booksapp.presentation.viewmodel.BookDetailViewModel
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage

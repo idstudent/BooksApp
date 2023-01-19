@@ -3,7 +3,6 @@ package com.example.booksapp.presentation.compose.bottomNavigation
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,8 +33,8 @@ import com.example.booksapp.data.api.model.BookList
 import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksTitle
 import com.example.booksapp.data.api.model.Header
-import com.example.booksapp.presentation.view.BookDetailActivity
-import com.example.booksapp.presentation.view.BookListActivity
+import com.example.booksapp.presentation.compose.BookDetailActivity
+import com.example.booksapp.presentation.compose.BookListActivity
 import com.example.booksapp.presentation.view.SearchActivity
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import com.skydoves.landscapist.ImageOptions

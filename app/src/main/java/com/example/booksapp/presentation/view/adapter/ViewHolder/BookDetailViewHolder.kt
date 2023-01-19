@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.databinding.ItemBookDetailBinding
-import com.example.booksapp.presentation.view.BookDetailActivity
+import com.example.booksapp.presentation.compose.BookDetailActivity
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 
 class BookDetailViewHolder(
