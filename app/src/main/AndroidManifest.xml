@@ -20,7 +20,7 @@
             android:name=".presentation.compose.WriteReviewActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.booksapp.presentation.view.SearchActivity"
+            android:name=".presentation.compose.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.compose.BookListActivity"

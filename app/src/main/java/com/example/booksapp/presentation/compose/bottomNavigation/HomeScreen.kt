@@ -35,7 +35,7 @@ import com.example.booksapp.data.api.model.BooksTitle
 import com.example.booksapp.data.api.model.Header
 import com.example.booksapp.presentation.compose.BookDetailActivity
 import com.example.booksapp.presentation.compose.BookListActivity
-import com.example.booksapp.presentation.view.SearchActivity
+import com.example.booksapp.presentation.compose.SearchActivity
 import com.example.booksapp.presentation.viewmodel.BooksViewModel
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage

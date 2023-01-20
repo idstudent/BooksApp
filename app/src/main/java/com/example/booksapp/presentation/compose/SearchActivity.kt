@@ -1,4 +1,4 @@
-package com.example.booksapp.presentation.view
+package com.example.booksapp.presentation.compose
 
 import android.app.Activity
 import android.content.Context
@@ -36,7 +36,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.booksapp.R
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.presentation.compose.BookDetailActivity
-import com.example.booksapp.presentation.view.adapter.BookSearchPagingAdapter
 import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
 import com.skydoves.landscapist.ImageOptions
@@ -46,7 +45,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchActivity : ComponentActivity() {
     private val searchBookViewModel: SearchBookViewModel by viewModels()
-    private val bookSearchPagingAdapter = BookSearchPagingAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
