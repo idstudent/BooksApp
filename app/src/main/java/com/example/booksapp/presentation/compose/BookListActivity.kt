@@ -63,9 +63,9 @@ fun BookListScreenView(
 
     when (type) {
         BookFilterType.NEW.name -> {
-            if(categoryId == "100") {
+            if (categoryId == "100") {
                 title = "국내도서 리스트"
-            }else {
+            } else {
                 title = "외국도서 리스트"
             }
 
@@ -117,54 +117,52 @@ fun BookListScreenView(
                 .padding(top = 20.dp)
         ) {
             items(books.size) { index ->
-                Box(
-                    modifier = Modifier.padding(bottom = 12.dp)
+                Column(
+                    modifier = Modifier.padding(start = 2.dp, end = 2.dp, bottom = 12.dp)
                 ) {
-                    Column {
-                        GlideImage(
-                            imageModel = {
-                                books[index].coverLargeUrl
-                            },
-                            imageOptions = ImageOptions(
-                                contentScale = ContentScale.FillBounds
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(250.dp)
-                        )
+                    GlideImage(
+                        imageModel = {
+                            books[index].coverLargeUrl
+                        },
+                        imageOptions = ImageOptions(
+                            contentScale = ContentScale.FillBounds
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp)
+                    )
 
-                        Text(
-                            text = books[index].title ?: "",
-                            color = Color.Black,
-                            fontSize = 14.sp,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier
-                                .padding(start = 4.dp, end = 8.dp, top = 8.dp)
-                        )
-
-
-                        Text(
-                            text = books[index].publisher ?: "",
-                            color = Color.Black,
-                            fontSize = 14.sp,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier
-                                .padding(start = 4.dp, end = 8.dp, top = 4.dp)
-                        )
+                    Text(
+                        text = books[index].title ?: "",
+                        color = Color.Black,
+                        fontSize = 14.sp,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .padding(start = 4.dp, end = 8.dp, top = 8.dp)
+                    )
 
 
-                        Text(
-                            text = books[index].author ?: "",
-                            color = Color.Black,
-                            fontSize = 14.sp,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier
-                                .padding(start = 4.dp, end = 8.dp, top = 4.dp)
-                        )
-                    }
+                    Text(
+                        text = books[index].publisher ?: "",
+                        color = Color.Black,
+                        fontSize = 14.sp,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .padding(start = 4.dp, end = 8.dp, top = 4.dp)
+                    )
+
+
+                    Text(
+                        text = books[index].author ?: "",
+                        color = Color.Black,
+                        fontSize = 14.sp,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .padding(start = 4.dp, end = 8.dp, top = 4.dp)
+                    )
                 }
             }
         }

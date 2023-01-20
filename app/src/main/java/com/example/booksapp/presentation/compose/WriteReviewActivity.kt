@@ -40,7 +40,6 @@ class WriteReviewActivity : ComponentActivity() {
         val bookInfo = intent.getSerializableExtra("book") as BooksModel.Response.BooksItem
 
         setContent {
-
             MyReportScreenView(bookReportViewModel, bookInfo)
         }
     }
