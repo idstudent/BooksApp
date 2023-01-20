@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,9 +15,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,123 +26,27 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapp.R
 import com.example.booksapp.data.api.model.BooksModel
-import com.example.booksapp.databinding.ActivitySearchBinding
-import com.example.booksapp.presentation.compose.WriteReviewActivity
+import com.example.booksapp.presentation.compose.BookDetailActivity
 import com.example.booksapp.presentation.view.adapter.BookSearchPagingAdapter
-import com.example.booksapp.presentation.view.util.setOnSingleClickListener
 import com.example.booksapp.presentation.viewmodel.SearchBookViewModel
+import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchActivity : ComponentActivity() {
     private val searchBookViewModel: SearchBookViewModel by viewModels()
     private val bookSearchPagingAdapter = BookSearchPagingAdapter()
-
-
-//    override val layoutId: Int
-//        get() = R.layout.activity_search
-//
-//    override fun initView() {
-//        super.initView()
-//
-//        binding.run {
-//            rvSearchBooks.layoutManager = GridLayoutManager(this@SearchActivity, 2)
-//            rvSearchBooks.adapter = bookSearchPagingAdapter
-//
-//            bookSearchPagingAdapter.addLoadStateListener { loadState ->
-//                if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && bookSearchPagingAdapter.itemCount < 1) {
-//                    rvSearchBooks.isVisible = false
-//                    tvEmpty.isVisible = true
-//                } else {
-//                    rvSearchBooks.isVisible = true
-//                    tvEmpty.isVisible = false
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun initViewModel() {
-//        super.initViewModel()
-//
-//        searchBookViewModel.searchFilter.observe(this) {
-//            searchFilter = it
-//
-//            binding.run {
-//                when (it) {
-//                    "title" -> tvFilter.text = "제목"
-//                    "author" -> tvFilter.text = "저자"
-//                    "publisher" -> tvFilter.text = "출판사"
-//                }
-//            }
-//
-//        }
-//    }
-//
-//    override fun initListener() {
-//        super.initListener()
-//
-//        var foreignCheck = false
-//        binding.run {
-//            cbShowForeignBook.setOnCheckedChangeListener { _, isChecked ->
-//                foreignCheck = isChecked
-//            }
-//
-//            btnSearch.setOnSingleClickListener {
-//                if (etSearch.text.toString().isEmpty()) {
-//                    Toast.makeText(this@SearchActivity, "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    val inputText = etSearch.text.toString()
-//
-//                    if (foreignCheck) {
-//                        searchBook(inputText, searchFilter, "foreign")
-//                    } else {
-//                        searchBook(inputText, searchFilter, "book")
-//                    }
-//                }
-//            }
-//
-//            tvFilter.setOnSingleClickListener {
-//                if (!isFinishing) {
-//                    SearchFilterBottomFragment().show(
-//                        supportFragmentManager,
-//                        SearchFilterBottomFragment::class.java.name
-//                    )
-//                }
-//            }
-//        }
-//    }
-//
-//    private fun searchBook(inputText: String, queryType: String, type: String) {
-//        lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                searchBookViewModel.getSearchBooks(inputText, queryType, type).collect {
-//                    bookSearchPagingAdapter.submitData(it)
-//                }
-//            }
-//        }
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -161,25 +64,70 @@ fun SearchScreenView(
 ) {
     val checkedState = remember { mutableStateOf(false) }
     val searchString = remember { mutableStateOf("") }
-    val searchFilter = remember { mutableStateOf("title") }
-    val foreignCheck = remember { mutableStateOf("book") }
+    val searchFilter by searchBookViewModel.searchFilter.observeAsState("title")
 
-    val btnClick = rememberSaveable { mutableStateOf(false) }
+    val foreignCheck = remember { mutableStateOf("book") }
+    val trySearchText by searchBookViewModel.searchString.observeAsState("")
 
     var bookItems: LazyPagingItems<BooksModel.Response.BooksItem>? = remember { null }
-
-    if (btnClick.value) {
-        if (searchString.value == "") {
-            Toast.makeText(context, "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show()
-        } else {
-            bookItems = searchBookViewModel.getSearchBooks(
-                searchString.value,
-                searchFilter.value,
-                foreignCheck.value
-            ).collectAsLazyPagingItems()
-        }
+    var bottomSheetShow by remember {
+        mutableStateOf(false)
     }
 
+    if (trySearchText != "" && searchFilter != "") {
+        bookItems = searchBookViewModel.getSearchBooks(
+            searchString.value,
+            searchFilter,
+            foreignCheck.value
+        ).collectAsLazyPagingItems()
+    }
+
+    if (bottomSheetShow) {
+        BottomSheetDialog(
+            onDismissRequest = {
+                bottomSheetShow = false
+            }
+        ) {
+            Surface(
+                color = Color.White,
+                shape = RoundedCornerShape(12f, 12f)
+            ) {
+
+                Column {
+                    Text(
+                        text = "제목",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp, start = 12.dp)
+                            .clickable {
+                                searchBookViewModel.setFilter("title")
+                                bottomSheetShow = false
+                            }
+                    )
+                    Text(
+                        text = "저자",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp, start = 12.dp)
+                            .clickable {
+                                searchBookViewModel.setFilter("author")
+                                bottomSheetShow = false
+                            }
+                    )
+                    Text(
+                        text = "출판사",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp, bottom = 12.dp, start = 12.dp)
+                            .clickable {
+                                searchBookViewModel.setFilter("publisher")
+                                bottomSheetShow = false
+                            }
+                    )
+                }
+            }
+        }
+    }
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -225,7 +173,11 @@ fun SearchScreenView(
             )
             OutlinedButton(
                 onClick = {
-                    btnClick.value = true
+                    if (searchString.value != "") {
+                        searchBookViewModel.setClickSearch(searchString.value)
+                    } else {
+                        Toast.makeText(context, "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                    }
                 },
                 border = BorderStroke(0.5.dp, Color.Black),
                 modifier = Modifier
@@ -249,7 +201,6 @@ fun SearchScreenView(
                 checked = checkedState.value,
                 onCheckedChange = {
                     checkedState.value = it
-                    btnClick.value = false
 
                     if (checkedState.value) {
                         foreignCheck.value = "foreign"
@@ -287,22 +238,44 @@ fun SearchScreenView(
                         end.linkTo(parent.end)
                     }
                     .padding(top = 4.dp, end = 16.dp)
+                    .clickable {
+                        bottomSheetShow = true
+                    }
             )
         }
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            state = rememberLazyGridState(),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-        ) {
-            if (bookItems == null || bookItems.itemCount == 0) {
-                Log.e("ljy", "없음")
-            } else {
+        if (bookItems == null) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "검색 결과가 없어요!",
+                    fontSize = 20.sp
+                )
+            }
+
+        } else {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                state = rememberLazyGridState(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp)
+            ) {
                 items(bookItems.itemCount) { index ->
                     Column(
-                        modifier = Modifier.padding(start = 2.dp, end = 2.dp, bottom = 12.dp)
+                        modifier = Modifier
+                            .padding(start = 2.dp, end = 2.dp, bottom = 12.dp)
+                            .clickable {
+                                val intent = Intent(context, BookDetailActivity::class.java)
+                                intent.putExtra("isbn", bookItems[index]?.isbn)
+                                if(bookItems[index]?.categoryId == "200") {
+                                    intent.putExtra("searchType", "foreign")
+                                }
+                                context.startActivity(intent)
+                            }
                     ) {
                         GlideImage(
                             imageModel = {

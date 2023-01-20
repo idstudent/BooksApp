@@ -1,5 +1,6 @@
 package com.example.booksapp.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
@@ -14,9 +15,15 @@ class SearchBookViewModel @Inject constructor(
     private val getSearchBookListUseCase: GetSearchBookListUseCase
 ) : ViewModel() {
 
-    private val _searchFilter : MutableLiveData<String> = MutableLiveData()
-    val searchFilter : MutableLiveData<String> get() = _searchFilter
+    private val _searchString : MutableLiveData<String> = MutableLiveData()
+    val searchString : LiveData<String> = _searchString
 
+    private val _searchFilter : MutableLiveData<String> = MutableLiveData()
+    val searchFilter : LiveData<String> = _searchFilter
+
+    fun setClickSearch(searchString : String) {
+        _searchString.value = searchString
+    }
     fun setFilter(filter : String) {
         _searchFilter.value = filter
     }
