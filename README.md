@@ -42,6 +42,7 @@ http://book.interpark.com/bookPark/html/bookpinion/api_main.html
 couroutine + flow를 이용하여, 국내도서, 외국도서, 국내 도서 추천 리스트를 보여줍니다.
 
 리스트는 6개로 제한, 더보기를 통해 전부를 보이도록 구성했습니다.
+
 영상에서 회색이미지는 glie를 사용하여, 책의 이미지가 없는경우 error image로 처리했습니다.
 
 리스트에서 클릭시, 상세페이지로 이동하며, paging3를 이용하여 상세 내용을 보여줍니다.
