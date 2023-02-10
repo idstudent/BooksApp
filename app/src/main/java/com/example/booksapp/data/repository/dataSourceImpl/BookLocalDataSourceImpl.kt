@@ -5,8 +5,9 @@ import com.example.booksapp.data.repository.dataSource.BookLocalDataSource
 import com.example.booksapp.data.db.BookMarkDatabase
 import com.example.booksapp.data.db.BookReportDatabase
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class BookLocalDataSourceImpl(
+class BookLocalDataSourceImpl @Inject constructor(
     private val bookMarkDatabase: BookMarkDatabase,
     private val bookReportDatabase: BookReportDatabase
 ) : BookLocalDataSource {

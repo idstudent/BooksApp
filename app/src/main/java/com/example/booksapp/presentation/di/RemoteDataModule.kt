@@ -3,6 +3,7 @@ package com.example.booksapp.presentation.di
 import com.example.booksapp.data.api.ApiService
 import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
 import com.example.booksapp.data.repository.dataSourceImpl.BookRemoteDataSourceImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,9 +12,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RemoteDataModule {
+abstract class RemoteDataModule {
     @Singleton
-    @Provides
-    fun provideBookRemoteDataSource(apiService: ApiService) : BookRemoteDataSource =
-        BookRemoteDataSourceImpl(apiService)
+    @Binds
+    abstract fun provideBookRemoteDataSource(remoteDataSourceImpl : BookRemoteDataSourceImpl) : BookRemoteDataSource
 }

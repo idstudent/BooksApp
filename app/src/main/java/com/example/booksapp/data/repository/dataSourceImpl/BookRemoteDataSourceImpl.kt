@@ -13,8 +13,9 @@ import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
 import com.example.booksapp.data.repository.dataSource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class BookRemoteDataSourceImpl(
+class BookRemoteDataSourceImpl @Inject constructor(
     private val apiService: ApiService
 ) : BookRemoteDataSource {
     private val apiKey = "api_key"
