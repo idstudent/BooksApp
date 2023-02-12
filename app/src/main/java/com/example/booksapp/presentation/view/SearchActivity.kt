@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
     private val searchBookViewModel: SearchBookViewModel by viewModels()
     private val bookSearchPagingAdapter = BookSearchPagingAdapter()
-    private var searchFilter = "title"
 
     override val layoutId: Int
         get() = R.layout.activity_search
@@ -29,6 +28,9 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
         super.initView()
 
         binding.run {
+            vm = searchBookViewModel
+            lifecycleOwner = this@SearchActivity
+
             rvSearchBooks.layoutManager = GridLayoutManager(this@SearchActivity, 2)
             rvSearchBooks.adapter = bookSearchPagingAdapter
 
@@ -41,23 +43,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                     tvEmpty.isVisible = false
                 }
             }
-        }
-    }
-
-    override fun initViewModel() {
-        super.initViewModel()
-
-        searchBookViewModel.searchFilter.observe(this) {
-            searchFilter = it
-
-            binding.run {
-                when (it) {
-                    "title" -> tvFilter.text = "제목"
-                    "author" -> tvFilter.text = "저자"
-                    "publisher" -> tvFilter.text = "출판사"
-                }
-            }
-
         }
     }
 
@@ -77,9 +62,9 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                     val inputText = etSearch.text.toString()
 
                     if (foreignCheck) {
-                        searchBook(inputText, searchFilter, "foreign")
+                        searchBook(inputText,"foreign")
                     } else {
-                        searchBook(inputText, searchFilter, "book")
+                        searchBook(inputText, "book")
                     }
                 }
             }
@@ -95,10 +80,10 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
         }
     }
 
-    private fun searchBook(inputText: String, queryType: String, type: String) {
+    private fun searchBook(inputText: String, type: String) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                searchBookViewModel.getSearchBooks(inputText, queryType, type).collect {
+                searchBookViewModel.getSearchBooks(inputText, searchBookViewModel.searchFilter.value, type).collect {
                     bookSearchPagingAdapter.submitData(it)
                 }
             }

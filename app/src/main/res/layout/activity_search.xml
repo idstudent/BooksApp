@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.example.booksapp.presentation.viewmodel.SearchBookViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,7 +73,7 @@
             android:id="@+id/tv_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="제목"
+            filterType ="@{vm.searchFilter}"
             style="@style/Black.Text.14dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
