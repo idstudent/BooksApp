@@ -6,6 +6,12 @@ import androidx.compose.ui.unit.sp
 
 val fontSize20Style = TextStyle(
     fontSize = 20.sp,
-    color = white,
+    color = black,
+    fontWeight = FontWeight.Normal
+)
+
+val fontSize14Style = TextStyle(
+    fontSize = 14.sp,
+    color = black,
     fontWeight = FontWeight.Normal
 )

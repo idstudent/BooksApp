@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.booksapp.books_feature.presentation.component.BookHeader
+import com.example.booksapp.books_feature.presentation.component.BooksTitle
+import com.example.booksapp.data.constants.BookFilterType
 import com.example.booksapp.ui.theme.white
 
 @Composable
@@ -22,6 +24,11 @@ fun BooksScreen() {
         ) {
             item {
                 BookHeader()
+            }
+            item {
+                BooksTitle(filterType = BookFilterType.LOCAL) {
+                    
+                }
             }
         }
     }

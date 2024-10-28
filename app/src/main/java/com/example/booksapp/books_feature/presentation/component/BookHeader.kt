@@ -46,7 +46,7 @@ fun BookHeader() {
          ) {
              Text(
                  text = "이번에 나온\n신간 도서들을 둘러보세요!",
-                 style = fontSize20Style
+                 style = fontSize20Style.copy(color = white)
              )
 
              Image(
