@@ -9,3 +9,4 @@ val black = Color(0xFF000000)
 val white = Color(0xFFFFFFFF)
 
 val colorDD4500 = Color(0xFFdd4500)
+val color4caf50 = Color(0xFF4CAF50)

@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.booksapp.books_feature.presentation.BooksScreen
 
 
 @Composable
@@ -14,7 +15,7 @@ fun NavigationGraph(navController: NavHostController) {
         startDestination = NaviItem.Books.route
     ) {
         composable(route = NaviItem.Books.route) {
-            // 여기에 Books 화면 Composable
+            BooksScreen()
         }
 
         composable(route = NaviItem.BestSeller.route) {
