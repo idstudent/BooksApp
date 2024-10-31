@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetBookRemoteDataSourceImpl @Inject constructor(
     private val service: ApiService
 ): GetBookRemoteDataSource {
-    private val apiKey = "ABE29F010BE85A911E51179B8768B517136430738AC2CB0734A98DC5557826F2"
+    private val apiKey = "apikey"
 
     override suspend fun getBookList(categoryId: Int): BookListResponse {
         return service.getBookList(apiKey, categoryId)

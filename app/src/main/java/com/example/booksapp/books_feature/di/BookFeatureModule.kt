@@ -2,9 +2,11 @@ package com.example.booksapp.books_feature.di
 
 import com.example.booksapp.books_feature.data.repository.GetBookListRepositoryImpl
 import com.example.booksapp.books_feature.data.source.GetBookRemoteDataSourceImpl
+import com.example.booksapp.books_feature.data.usecase.GetBookListByTypeUseCaseImpl
+import com.example.booksapp.books_feature.data.usecase.GetBookListUseCaseImpl
+import com.example.booksapp.books_feature.domain.GetBookListByTypeUseCase
 import com.example.booksapp.books_feature.domain.GetBookListRepository
 import com.example.booksapp.books_feature.domain.GetBookListUseCase
-import com.example.booksapp.books_feature.domain.GetBookListUseCaseImpl
 import com.example.booksapp.books_feature.domain.GetBookRemoteDataSource
 import com.example.booksapp.data.api.ApiService
 import dagger.Module
@@ -33,5 +35,12 @@ object BookFeatureModule {
     fun provideGetBookListUseCase(getBookListRepository: GetBookListRepository): GetBookListUseCase {
         return GetBookListUseCaseImpl(getBookListRepository)
     }
+
+    @Provides
+    @Singleton
+    fun provideGetBookListByTypeUseCase(getBookListRepository: GetBookListRepository): GetBookListByTypeUseCase {
+        return GetBookListByTypeUseCaseImpl(getBookListRepository)
+    }
+
 
 }

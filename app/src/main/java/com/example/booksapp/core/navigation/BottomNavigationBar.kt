@@ -31,7 +31,14 @@ fun BottomNavigationBar(
     ) {
         items.forEach { item ->
             BottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.iconResId), contentDescription = item.title) },
+                icon = {
+                    item.iconResId?.let {
+                        painterResource(id = it)
+                    }?.let {
+                        Icon(
+                            painter = it, contentDescription = item.title)
+                        }
+                    },
                 label = { Text(text = item.title) },
                 selectedContentColor = colorDD4500,
                 unselectedContentColor = Color.Black,

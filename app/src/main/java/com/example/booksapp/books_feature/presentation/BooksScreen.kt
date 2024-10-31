@@ -28,7 +28,8 @@ import com.example.booksapp.ui.theme.white
 
 @Composable
 fun BooksScreen(
-    uiState: BookListState
+    uiState: BookListState,
+    moveList: (BookFilterType) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -61,7 +62,7 @@ fun BooksScreen(
                     // 국내도서
                     item {
                         BooksTitle(filterType = BookFilterType.LOCAL) {
-
+                            moveList(BookFilterType.LOCAL)
                         }
                     }
                     item {
@@ -85,7 +86,7 @@ fun BooksScreen(
                     // 외국도서
                     item {
                         BooksTitle(filterType = BookFilterType.GLOBAL) {
-
+                            moveList(BookFilterType.GLOBAL)
                         }
                     }
                     item {
@@ -109,7 +110,7 @@ fun BooksScreen(
                     // 국내도서 추천
                     item {
                         BooksTitle(filterType = BookFilterType.RECOMMEND) {
-
+                            moveList(BookFilterType.RECOMMEND)
                         }
                     }
                     item {

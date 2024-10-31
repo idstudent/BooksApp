@@ -2,8 +2,9 @@ package com.example.booksapp.core.navigation
 
 import androidx.annotation.DrawableRes
 import com.example.booksapp.R
+import com.example.booksapp.data.constants.BookFilterType
 
-sealed class NaviItem(val title: String, @DrawableRes val iconResId: Int, val route: String) {
+sealed class NaviItem(val title: String, @DrawableRes val iconResId: Int?, val route: String) {
     data object Books: NaviItem(
         title = "도서",
         iconResId = R.drawable.ic_baseline_menu_book_24,
@@ -27,4 +28,12 @@ sealed class NaviItem(val title: String, @DrawableRes val iconResId: Int, val ro
         iconResId = R.drawable.ic_baseline_edit_24,
         route = "book_report"
     )
+
+    data object BookList: NaviItem(
+        title = "도서 리스트",
+        iconResId = null,
+        route = "book_list_screen?type={type}"
+    ) {
+        fun moveList(type: BookFilterType) = "book_list_screen?type=${type.name}"
+    }
 }
