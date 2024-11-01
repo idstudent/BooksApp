@@ -6,10 +6,13 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.booksapp.ui.theme.colorDD4500
 import com.example.booksapp.ui.theme.white
 
@@ -24,11 +27,12 @@ fun BottomNavigationBar(
         NaviItem.BookReport,
     )
 
-    val selectedItem = remember { mutableStateOf(items[0]) }
-
     BottomNavigation(
         backgroundColor = white
     ) {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
@@ -37,13 +41,13 @@ fun BottomNavigationBar(
                     }?.let {
                         Icon(
                             painter = it, contentDescription = item.title)
-                        }
-                    },
+                    }
+                },
                 label = { Text(text = item.title) },
                 selectedContentColor = colorDD4500,
                 unselectedContentColor = Color.Black,
                 alwaysShowLabel = true,
-                selected = selectedItem.value == item,
+                selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
                         /*
@@ -53,7 +57,7 @@ fun BottomNavigationBar(
                          */
                         launchSingleTop = true
                     }
-                },
+                }
             )
         }
     }

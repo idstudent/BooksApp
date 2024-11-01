@@ -1,4 +1,4 @@
-package com.example.booksapp.books_feature.data.mapper
+package com.example.booksapp.core.data.mapper
 
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.domain.model.BookItem

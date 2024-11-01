@@ -21,7 +21,7 @@ import com.example.booksapp.data.constants.BookFilterType
 fun NavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NaviItem.Books.route
+        startDestination = NaviItem.Books.route,
     ) {
         composable(route = NaviItem.Books.route) {
             val viewModel: BooksViewModel = hiltViewModel()
@@ -53,7 +53,7 @@ fun NavigationGraph(navController: NavHostController) {
 
             val type = BookFilterType.valueOf(
                 it.arguments?.getString("type")
-                ?: BookFilterType.LOCAL.name
+                    ?: BookFilterType.LOCAL.name
             )
 
             LaunchedEffect(key1 = Unit) {
@@ -70,15 +70,15 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
         composable(route = NaviItem.BestSeller.route) {
-            // 여기에 BestSeller 화면 Composable
+
         }
 
         composable(route = NaviItem.MyBooks.route) {
-            // 여기에 MyBooks 화면 Composable
+            // MyBooks 화면
         }
 
         composable(route = NaviItem.BookReport.route) {
-            // 여기에 BookReport 화면 Composable
+            // BookReport 화면
         }
     }
 }

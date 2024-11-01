@@ -3,7 +3,7 @@ package com.example.booksapp.books_feature.domain
 import android.net.http.HttpException
 import android.os.Build
 import androidx.annotation.RequiresExtension
-import com.example.booksapp.books_feature.data.mapper.toBook
+import com.example.booksapp.core.data.mapper.toBook
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.uitl.ResultData
 import kotlinx.coroutines.flow.Flow

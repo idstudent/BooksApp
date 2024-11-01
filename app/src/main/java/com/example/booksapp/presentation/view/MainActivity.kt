@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setWindowAnimations(android.R.style.Animation_Activity)  // 추가
 
         setContent {
             BooksAppTheme {
