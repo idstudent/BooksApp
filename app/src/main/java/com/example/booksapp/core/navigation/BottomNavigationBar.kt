@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.booksapp.ui.theme.colorDD4500
-import com.example.booksapp.ui.theme.white
+import com.example.booksapp.ui.theme.AppColors
+
 
 @Composable
 fun BottomNavigationBar(
@@ -28,7 +28,7 @@ fun BottomNavigationBar(
     )
 
     BottomNavigation(
-        backgroundColor = white
+        backgroundColor = AppColors.white
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -43,8 +43,8 @@ fun BottomNavigationBar(
                             painter = it, contentDescription = item.title)
                     }
                 },
-                label = { Text(text = item.title) },
-                selectedContentColor = colorDD4500,
+                label = { Text(text = item.title ?: "") },
+                selectedContentColor = AppColors.colorDD4500,
                 unselectedContentColor = Color.Black,
                 alwaysShowLabel = true,
                 selected = currentRoute == item.route,

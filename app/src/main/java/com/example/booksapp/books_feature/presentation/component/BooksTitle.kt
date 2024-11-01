@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.booksapp.data.constants.BookFilterType
-import com.example.booksapp.ui.theme.black
 import com.example.booksapp.ui.theme.fontSize14Style
 import com.example.booksapp.ui.theme.fontSize20Style
 
@@ -67,7 +66,7 @@ fun BooksTitle(
 
 @Preview(showBackground = true)
 @Composable
-fun BooksTitlePreivew() {
+fun BooksTitlePreview() {
     BooksTitle(
         filterType = BookFilterType.LOCAL,
         onMoreClick = { }

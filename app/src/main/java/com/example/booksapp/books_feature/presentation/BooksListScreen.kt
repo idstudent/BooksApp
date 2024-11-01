@@ -14,14 +14,15 @@ import com.example.booksapp.books_feature.presentation.component.BookContent
 import com.example.booksapp.books_feature.presentation.state.BookListState
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.ui.theme.AppColors
 import com.example.booksapp.ui.theme.fontSize20Style
-import com.example.booksapp.ui.theme.white
 
 @Composable
 fun BookListScreen(
     uiState: BookListState,
     type: BookFilterType,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onItemClick: () -> Unit
 ) {
     val titleText: String
     val content: List<Book>
@@ -44,7 +45,7 @@ fun BookListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                backgroundColor = white,
+                backgroundColor = AppColors.white,
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -65,7 +66,8 @@ fun BookListScreen(
        content = { paddingValues ->
            BookContent(
                paddingValues = paddingValues,
-               content = content
+               content = content,
+               onItemClick = onItemClick
            )
        }
     )

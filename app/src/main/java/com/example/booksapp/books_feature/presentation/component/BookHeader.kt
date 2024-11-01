@@ -17,13 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.booksapp.R
-import com.example.booksapp.ui.theme.color4caf50
+import com.example.booksapp.ui.theme.AppColors
 import com.example.booksapp.ui.theme.fontSize20Style
-import com.example.booksapp.ui.theme.white
 
 @Composable
 fun BookHeader() {
@@ -33,7 +31,7 @@ fun BookHeader() {
             .wrapContentHeight()
             .aspectRatio(360f / 120f)
             .background(
-                color = color4caf50,
+                color = AppColors.color4caf50,
                 shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp)
             )
     ) {
@@ -46,13 +44,13 @@ fun BookHeader() {
          ) {
              Text(
                  text = "이번에 나온\n신간 도서들을 둘러보세요!",
-                 style = fontSize20Style.copy(color = white)
+                 style = fontSize20Style.copy(color = AppColors.white)
              )
 
              Image(
                  painter = painterResource(id = R.drawable.ic_baseline_search_24),
                  contentDescription = null,
-                 colorFilter = ColorFilter.tint(white),
+                 colorFilter = ColorFilter.tint(AppColors.white),
                  modifier = Modifier.size(24.dp)
              )
          }

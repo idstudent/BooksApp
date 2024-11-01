@@ -22,19 +22,20 @@ import com.example.booksapp.books_feature.presentation.component.BookHeader
 import com.example.booksapp.books_feature.presentation.component.BookItem
 import com.example.booksapp.books_feature.presentation.component.BooksTitle
 import com.example.booksapp.books_feature.presentation.state.BookListState
+import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.data.constants.BookFilterType
-import com.example.booksapp.ui.theme.black
-import com.example.booksapp.ui.theme.white
+import com.example.booksapp.ui.theme.AppColors
 
 @Composable
 fun BooksScreen(
     uiState: BookListState,
-    moveList: (BookFilterType) -> Unit
+    moveList: (BookFilterType) -> Unit,
+    onItemClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = white)
+            .background(color = AppColors.white)
     ) {
         when {
             uiState.isLoading -> {
@@ -47,7 +48,7 @@ fun BooksScreen(
                 Text(
                     text = uiState.error,
                     modifier = Modifier.align(Alignment.Center),
-                    color = black
+                    color = AppColors.black
                 )
             }
 
@@ -78,7 +79,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index])
+                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
                             }
                         }
                     }
@@ -102,7 +103,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index])
+                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
                             }
                         }
                     }
@@ -126,7 +127,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index])
+                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
                             }
                         }
                     }

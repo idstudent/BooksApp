@@ -17,7 +17,8 @@ import com.example.booksapp.core.domain.model.Book
 @Composable
 fun BookContent(
     paddingValues: PaddingValues,
-    content: List<Book>
+    content: List<Book>,
+    onItemClick: () -> Unit
 ) {
     Box(Modifier.background(Color.White)) {
         LazyVerticalGrid(
@@ -28,7 +29,7 @@ fun BookContent(
             modifier = Modifier.fillMaxSize()
         ) {
             items(content.size) { index ->
-                BookItem(book = content[index])
+                BookItem(book = content[index], onItemClick = onItemClick)
             }
         }
 
