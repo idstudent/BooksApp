@@ -1,5 +1,6 @@
 package com.example.booksapp.books_feature.presentation.component
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -10,20 +11,29 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.booksapp.core.domain.model.Book
+import com.example.booksapp.data.constants.BookFilterType
 import com.example.booksapp.ui.theme.AppColors
 
 @Composable
 fun BookItem(
     book: Book,
     modifier: Modifier = Modifier,
-    onItemClick: () -> Unit
+    type: String,
+    onItemClick: (String, String) -> Unit
 ) {
+    val bookType = if(type == BookFilterType.LOCAL.name) {
+        "book"
+    }else {
+        "foreign"
+    }
+
+    Log.e("ljy", "타입? $bookType ${book.categoryId}")
     Column(
         modifier = modifier
             .width(140.dp)
             .padding(horizontal = 4.dp)
             .clickable {
-                onItemClick()
+                onItemClick(book.isbn, bookType)
             }
     ) {
         AsyncImage(

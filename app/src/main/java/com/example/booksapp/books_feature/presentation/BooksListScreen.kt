@@ -22,7 +22,7 @@ fun BookListScreen(
     uiState: BookListState,
     type: BookFilterType,
     onBackClick: () -> Unit,
-    onItemClick: () -> Unit
+    onItemClick: (String, String) -> Unit
 ) {
     val titleText: String
     val content: List<Book>
@@ -67,6 +67,7 @@ fun BookListScreen(
            BookContent(
                paddingValues = paddingValues,
                content = content,
+               type = type.name,
                onItemClick = onItemClick
            )
        }

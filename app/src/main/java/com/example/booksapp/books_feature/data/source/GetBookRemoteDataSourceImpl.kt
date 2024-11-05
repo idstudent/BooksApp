@@ -1,6 +1,7 @@
 package com.example.booksapp.books_feature.data.source
 
 import com.example.booksapp.books_feature.domain.GetBookRemoteDataSource
+import com.example.booksapp.core.data.ApiKey
 import com.example.booksapp.core.domain.model.BookListResponse
 import com.example.booksapp.data.api.ApiService
 import javax.inject.Inject
@@ -8,14 +9,14 @@ import javax.inject.Inject
 class GetBookRemoteDataSourceImpl @Inject constructor(
     private val service: ApiService
 ): GetBookRemoteDataSource {
-    private val apiKey = "apikey"
+
 
     override suspend fun getBookList(categoryId: Int): BookListResponse {
-        return service.getBookList(apiKey, categoryId)
+        return service.getBookList(ApiKey.apiKey, categoryId)
     }
 
     override suspend fun getRecommendBookList(categoryId: Int): BookListResponse {
-        return service.getRecommendBookList(apiKey, categoryId)
+        return service.getRecommendBookList(ApiKey.apiKey, categoryId)
     }
 
 }

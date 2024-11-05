@@ -30,7 +30,7 @@ import com.example.booksapp.ui.theme.AppColors
 fun BooksScreen(
     uiState: BookListState,
     moveList: (BookFilterType) -> Unit,
-    onItemClick: () -> Unit
+    onItemClick: (String, String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -79,7 +79,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
+                                BookItem(book = previewBooks[index], type = BookFilterType.LOCAL.name, onItemClick = onItemClick)
                             }
                         }
                     }
@@ -103,7 +103,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
+                                BookItem(book = previewBooks[index], type = BookFilterType.GLOBAL.name, onItemClick = onItemClick)
                             }
                         }
                     }
@@ -127,7 +127,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
+                                BookItem(book = previewBooks[index], type = BookFilterType.LOCAL.name, onItemClick = onItemClick)
                             }
                         }
                     }

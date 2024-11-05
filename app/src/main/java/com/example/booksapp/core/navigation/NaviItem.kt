@@ -62,9 +62,9 @@ sealed class NaviItem(
     data object BookDetail: NaviItem(
         title = null,
         iconResId = null,
-        route = "book_detail",
+        route = "book_detail/{isbn}/{searchType}",
         showBottomBar = false
     ) {
-        fun moveDetail() = "book_detail"
+        fun moveDetail(isbn: String, searchType: String) = "book_detail/${isbn}/${searchType}"
     }
 }

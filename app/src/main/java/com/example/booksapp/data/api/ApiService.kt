@@ -57,4 +57,16 @@ interface ApiService {
         @Query("soldOut") soldOutType : String = "y",
         @Query("output") output : String = "json"
     ): BooksModel.Response
+
+    @GET("api/search.api")
+    suspend fun getSearchBookInfo(
+        @Query("key") key : String,
+        @Query("query") title : String,
+        @Query("queryType") queryType : String,
+        @Query("searchTarget") searchType : String = "book",
+        @Query("start") page : Int = 1,
+        @Query("sort") sort : String = "accuracy",
+        @Query("soldOut") soldOutType : String = "y",
+        @Query("output") output : String = "json"
+    ): BookListResponse
 }

@@ -1,9 +1,5 @@
 package com.example.booksapp.core.navigation
 
-
-import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.booksapp.book_detail_feature.presentation.BookDetailScreen
+import com.example.booksapp.book_detail_feature.presentation.BookDetailViewModel
 import com.example.booksapp.books_feature.presentation.BookListScreen
 import com.example.booksapp.books_feature.presentation.BooksScreen
 import com.example.booksapp.books_feature.presentation.BooksViewModel
@@ -38,8 +35,8 @@ fun NavigationGraph(navController: NavHostController) {
                 moveList =  {
                     navController.navigate(NaviItem.BookList.moveList(it))
                 },
-                onItemClick = {
-                    navController.navigate(NaviItem.BookDetail.moveDetail()) {
+                onItemClick = { isbn, searchType ->
+                    navController.navigate(NaviItem.BookDetail.moveDetail(isbn, searchType)) {
                         launchSingleTop = true
                         popUpTo(NaviItem.Books.route)
                     }
@@ -78,8 +75,8 @@ fun NavigationGraph(navController: NavHostController) {
                 onBackClick = {
                     navController.popBackStack()
                 },
-                onItemClick = {
-                    navController.navigate(NaviItem.BookDetail.moveDetail())
+                onItemClick = { isbn, searchType ->
+                    navController.navigate(NaviItem.BookDetail.moveDetail(isbn, searchType))
                 }
             )
         }
@@ -96,8 +93,17 @@ fun NavigationGraph(navController: NavHostController) {
                     defaultValue = ""
                 }
             )
-        ) {
-            BookDetailScreen()
+        ) { backStackEntry ->
+            val viewModel: BookDetailViewModel = hiltViewModel()
+            val uiState = viewModel.uiState
+
+            val isbn = backStackEntry.arguments?.getString("isbn") ?: ""
+            val searchType = backStackEntry.arguments?.getString("searchType") ?: ""
+
+            LaunchedEffect(key1 = Unit) {
+                viewModel.getBookDetailInfo(isbn = isbn, searchType = searchType)
+            }
+            BookDetailScreen(uiState = uiState)
         }
 
         composable(route = NaviItem.BestSeller.route) {
