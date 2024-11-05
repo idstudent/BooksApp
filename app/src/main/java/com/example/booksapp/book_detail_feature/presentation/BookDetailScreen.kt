@@ -28,8 +28,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.booksapp.R
-import com.example.booksapp.book_detail_feature.presentation.state.BookDetailState
-import com.example.booksapp.core.uitl.CommonUtil
+import com.example.booksapp.core.uitl.formatDate
+import com.example.booksapp.core.uitl.numberFormat
 import com.example.booksapp.ui.theme.AppColors
 import com.example.booksapp.ui.theme.fontSize14Style
 import com.example.booksapp.ui.theme.fontSize16Style
@@ -120,13 +120,13 @@ fun BookDetailScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = detailInfo?.priceSales.toString(),
+                        text = detailInfo?.priceSales?.numberFormat.toString(),
                         style = fontSize20Style.copy(fontWeight = FontWeight.Bold),
                         modifier = Modifier.alignByBaseline()
                     )
 
                     Text(
-                        text = detailInfo?.priceStandard.toString(),
+                        text = detailInfo?.priceStandard?.numberFormat.toString(),
                         style = fontSize14Style.copy(color = AppColors.color565656),
                         textDecoration = TextDecoration.LineThrough,
                         modifier = Modifier
@@ -167,29 +167,22 @@ fun BookDetailScreen(
 
                 if(detailInfo?.date != null && detailInfo.date != "") {
                     Text(
-                        text = CommonUtil.formatDate(detailInfo.date),
+                        text = formatDate(detailInfo.date),
                         style = fontSize14Style,
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
 
-                Text(
-                    text = detailInfo?.publisher ?: "",
-                    style = fontSize14Style,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 4.dp),
+                        .padding(top = 4.dp, bottom = 20.dp),
                     verticalAlignment = Alignment.CenterVertically
 
                 ){
                     Text(
                         text = detailInfo?.publisher ?: "",
-                        style = fontSize14Style,
-                        modifier = Modifier.padding(top = 8.dp, bottom = 20.dp)
+                        style = fontSize14Style
                     )
 
                     Text(
