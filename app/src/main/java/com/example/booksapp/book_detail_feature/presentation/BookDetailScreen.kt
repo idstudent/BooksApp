@@ -17,6 +17,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -37,8 +38,16 @@ import com.example.booksapp.ui.theme.fontSize20Style
 
 @Composable
 fun BookDetailScreen(
-    uiState: BookDetailState
+    viewModel: BookDetailViewModel,
+    isbn: String,
+    searchType: String
 ) {
+    val uiState = viewModel.uiState
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getBookDetailInfo(isbn = isbn, searchType = searchType)
+    }
+
     val detailInfo = uiState.bookDetailInfo?.get(0)
 
     Scaffold { paddingValues ->

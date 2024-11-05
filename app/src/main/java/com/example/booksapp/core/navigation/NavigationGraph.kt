@@ -87,15 +87,11 @@ fun NavigationGraph(navController: NavHostController) {
             )
         ) { backStackEntry ->
             val viewModel: BookDetailViewModel = hiltViewModel()
-            val uiState = viewModel.uiState
 
             val isbn = backStackEntry.arguments?.getString("isbn") ?: ""
             val searchType = backStackEntry.arguments?.getString("searchType") ?: ""
 
-            LaunchedEffect(key1 = Unit) {
-                viewModel.getBookDetailInfo(isbn = isbn, searchType = searchType)
-            }
-            BookDetailScreen(uiState = uiState)
+            BookDetailScreen(viewModel = viewModel, isbn = isbn, searchType = searchType)
         }
 
         composable(route = NaviItem.BestSeller.route) {
