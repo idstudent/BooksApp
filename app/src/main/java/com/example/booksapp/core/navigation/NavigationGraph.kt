@@ -24,14 +24,9 @@ fun NavigationGraph(navController: NavHostController) {
     ) {
         composable(route = NaviItem.Books.route) {
             val viewModel: BooksViewModel = hiltViewModel()
-            val uiState = viewModel.uiState
-
-            LaunchedEffect(key1 = Unit) {
-                viewModel.getBookList()
-            }
-
+            
             BooksScreen(
-                uiState = uiState,
+                viewModel = viewModel,
                 moveList =  {
                     navController.navigate(NaviItem.BookList.moveList(it))
                 },

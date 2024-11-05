@@ -11,27 +11,30 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.booksapp.books_feature.presentation.component.BookHeader
 import com.example.booksapp.books_feature.presentation.component.BookItem
 import com.example.booksapp.books_feature.presentation.component.BooksTitle
-import com.example.booksapp.books_feature.presentation.state.BookListState
-import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.data.constants.BookFilterType
 import com.example.booksapp.ui.theme.AppColors
 
 @Composable
 fun BooksScreen(
-    uiState: BookListState,
+    viewModel: BooksViewModel,
     moveList: (BookFilterType) -> Unit,
     onItemClick: (String, String) -> Unit
 ) {
+    val uiState = viewModel.uiState
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getBookList()
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
