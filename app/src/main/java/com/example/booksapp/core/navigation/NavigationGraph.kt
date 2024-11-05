@@ -24,7 +24,7 @@ fun NavigationGraph(navController: NavHostController) {
     ) {
         composable(route = NaviItem.Books.route) {
             val viewModel: BooksViewModel = hiltViewModel()
-            
+
             BooksScreen(
                 viewModel = viewModel,
                 moveList =  {
@@ -50,7 +50,6 @@ fun NavigationGraph(navController: NavHostController) {
             )
         ) { backStackEntry ->
             val viewModel: BooksViewModel = hiltViewModel()
-            val uiState = viewModel.uiState
 
             val type = try {
                 BookFilterType.valueOf(
@@ -60,12 +59,10 @@ fun NavigationGraph(navController: NavHostController) {
             } catch (e: Exception) {
                 BookFilterType.LOCAL
             }
-            LaunchedEffect(type) {
-                viewModel.getBookListByType(type)
-            }
+
 
             BookListScreen(
-                uiState = uiState,
+                viewModel = viewModel,
                 type = type,
                 onBackClick = {
                     navController.popBackStack()

@@ -9,6 +9,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.text.font.FontWeight
 import com.example.booksapp.books_feature.presentation.component.BookContent
 import com.example.booksapp.books_feature.presentation.state.BookListState
@@ -19,11 +20,18 @@ import com.example.booksapp.ui.theme.fontSize20Style
 
 @Composable
 fun BookListScreen(
-    uiState: BookListState,
+    viewModel: BooksViewModel,
     type: BookFilterType,
     onBackClick: () -> Unit,
     onItemClick: (String, String) -> Unit
 ) {
+    val uiState = viewModel.uiState
+
+    LaunchedEffect(type) {
+        viewModel.getBookListByType(type)
+    }
+
+
     val titleText: String
     val content: List<Book>
 
