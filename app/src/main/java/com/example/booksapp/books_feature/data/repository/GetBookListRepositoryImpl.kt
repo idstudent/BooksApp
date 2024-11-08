@@ -18,4 +18,8 @@ class GetBookListRepositoryImpl @Inject constructor(
         return remoteDataSource.getRecommendBookList(categoryId)
     }
 
+    override suspend fun getBestSellerBookList(categoryId: Int): BookListResponse {
+        return remoteDataSource.getBestSellerBookList(categoryId)
+    }
+
 }

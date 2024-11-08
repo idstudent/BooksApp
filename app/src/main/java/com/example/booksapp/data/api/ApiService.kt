@@ -46,6 +46,13 @@ interface ApiService {
         @Query("output") output : String = "json"
     ): BooksModel.Response
 
+    @GET("api/bestSeller.api")
+    suspend fun getBestSellerBookList(
+        @Query("key") key : String,
+        @Query("categoryId") categoryId : Int,
+        @Query("output") output : String = "json"
+    ): BookListResponse
+
     @GET("api/search.api")
     suspend fun getSearchBook(
         @Query("key") key : String,

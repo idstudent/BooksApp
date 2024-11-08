@@ -1,13 +1,15 @@
 package com.example.booksapp.core.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.booksapp.best_seller_book_feature.presentation.BestSellerBookScreen
+import com.example.booksapp.best_seller_book_feature.presentation.BestSellerBookViewModel
 import com.example.booksapp.book_detail_feature.presentation.BookDetailScreen
 import com.example.booksapp.book_detail_feature.presentation.BookDetailViewModel
 import com.example.booksapp.books_feature.presentation.BookListScreen
@@ -60,7 +62,6 @@ fun NavigationGraph(navController: NavHostController) {
                 BookFilterType.LOCAL
             }
 
-
             BookListScreen(
                 viewModel = viewModel,
                 type = type,
@@ -95,7 +96,17 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
         composable(route = NaviItem.BestSeller.route) {
+            val viewModel: BestSellerBookViewModel = hiltViewModel()
 
+            BestSellerBookScreen(
+                viewModel = viewModel,
+                moveList = {
+                    navController.navigate(NaviItem.BookList.moveList(it))
+                },
+                onItemClick = { isbn, searchType ->
+                    navController.navigate(NaviItem.BookDetail.moveDetail(isbn, searchType))
+                }
+            )
         }
 
         composable(route = NaviItem.MyBooks.route) {

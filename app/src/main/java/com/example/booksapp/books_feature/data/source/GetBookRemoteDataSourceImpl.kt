@@ -19,4 +19,8 @@ class GetBookRemoteDataSourceImpl @Inject constructor(
         return service.getRecommendBookList(ApiKey.apiKey, categoryId)
     }
 
+    override suspend fun getBestSellerBookList(categoryId: Int): BookListResponse {
+        return service.getBestSellerBookList(ApiKey.apiKey, categoryId)
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.example.booksapp.books_feature.presentation.component
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -27,7 +26,6 @@ fun BookItem(
         "foreign"
     }
 
-    Log.e("ljy", "타입? $bookType ${book.categoryId}")
     Column(
         modifier = modifier
             .width(140.dp)

@@ -26,7 +26,10 @@ class GetBookListByTypeUseCaseImpl @Inject constructor(
                 val book = when(type) {
                     BookFilterType.LOCAL -> getBookListRepository.getBookList(100).toBook()
                     BookFilterType.GLOBAL -> getBookListRepository.getBookList(200).toBook()
-                    else -> getBookListRepository.getRecommendBookList(100).toBook()
+                    BookFilterType.RECOMMEND -> getBookListRepository.getRecommendBookList(100).toBook()
+                    BookFilterType.BEST_LOCAL -> getBookListRepository.getBestSellerBookList(100).toBook()
+                    BookFilterType.BEST_GLOBAL -> getBookListRepository.getBestSellerBookList(200).toBook()
+                    BookFilterType.NEW -> getBookListRepository.getBestSellerBookList(200).toBook()
                 }
 
                 emit(ResultData.Success(book))
