@@ -20,12 +20,13 @@ import androidx.compose.ui.unit.dp
 import com.example.booksapp.books_feature.presentation.component.BookHeader
 import com.example.booksapp.books_feature.presentation.component.BookItem
 import com.example.booksapp.books_feature.presentation.component.BooksTitle
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.ui.theme.AppColors
 
 @Composable
 fun BooksScreen(
     viewModel: BooksViewModel,
+    moveSearchBook: () -> Unit,
     moveList: (BookFilterType) -> Unit,
     onItemClick: (String, String) -> Unit
 ) {
@@ -61,7 +62,7 @@ fun BooksScreen(
                     contentPadding = PaddingValues(bottom = 16.dp)
                 ) {
                     item {
-                        BookHeader()
+                        BookHeader(moveSearchBook = moveSearchBook)
                     }
                     // 국내도서
                     item {

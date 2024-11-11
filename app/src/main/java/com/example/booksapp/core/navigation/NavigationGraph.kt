@@ -1,6 +1,5 @@
 package com.example.booksapp.core.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -15,7 +14,9 @@ import com.example.booksapp.book_detail_feature.presentation.BookDetailViewModel
 import com.example.booksapp.books_feature.presentation.BookListScreen
 import com.example.booksapp.books_feature.presentation.BooksScreen
 import com.example.booksapp.books_feature.presentation.BooksViewModel
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
+import com.example.booksapp.search_book_feature.presentation.SearchBookListViewModel
+import com.example.booksapp.search_book_feature.presentation.SearchBookScreen
 
 
 @Composable
@@ -29,6 +30,9 @@ fun NavigationGraph(navController: NavHostController) {
 
             BooksScreen(
                 viewModel = viewModel,
+                moveSearchBook = {
+                    navController.navigate(NaviItem.SearchBook.moveSearch())
+                },
                 moveList =  {
                     navController.navigate(NaviItem.BookList.moveList(it))
                 },
@@ -74,6 +78,21 @@ fun NavigationGraph(navController: NavHostController) {
             )
         }
 
+        composable(
+            route = NaviItem.SearchBook.route
+        ) {
+            val viewModel: SearchBookListViewModel = hiltViewModel()
+
+            SearchBookScreen(
+                viewModel = viewModel,
+                onBackClick = {
+                    navController.popBackStack()
+                },
+                onItemClick = { isbn, searchType ->
+
+                }
+            )
+        }
         composable(
             route = NaviItem.BookDetail.route,
             arguments = listOf(

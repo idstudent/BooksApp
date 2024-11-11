@@ -2,7 +2,7 @@ package com.example.booksapp.core.navigation
 
 import androidx.annotation.DrawableRes
 import com.example.booksapp.R
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 
 sealed class NaviItem(
     val title: String?,
@@ -58,6 +58,15 @@ sealed class NaviItem(
     ) {
         fun moveList(type: BookFilterType) = "book_list_screen/${type.name}"
     }
+
+    data object SearchBook: NaviItem(
+        title = "도서 검색",
+        iconResId = null,
+        route = "search_book_screen"
+    ) {
+        fun moveSearch() = "search_book_screen"
+    }
+
 
     data object BookDetail: NaviItem(
         title = null,

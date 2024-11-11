@@ -7,16 +7,16 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.booksapp.R
 import com.example.booksapp.books_feature.presentation.component.BookContent
 import com.example.booksapp.core.domain.model.Book
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.ui.theme.AppColors
 import com.example.booksapp.ui.theme.fontSize20Style
 
@@ -68,8 +68,8 @@ fun BookListScreen(
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back"
+                            painter = painterResource(id = R.drawable.ic_btn_title_back),
+                            contentDescription = "back"
                         )
                     }
                 },

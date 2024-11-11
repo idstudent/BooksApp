@@ -2,6 +2,7 @@ package com.example.booksapp.books_feature.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -24,7 +25,9 @@ import com.example.booksapp.ui.theme.AppColors
 import com.example.booksapp.ui.theme.fontSize20Style
 
 @Composable
-fun BookHeader() {
+fun BookHeader(
+    moveSearchBook: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -51,7 +54,9 @@ fun BookHeader() {
                  painter = painterResource(id = R.drawable.ic_baseline_search_24),
                  contentDescription = null,
                  colorFilter = ColorFilter.tint(AppColors.white),
-                 modifier = Modifier.size(24.dp)
+                 modifier = Modifier
+                     .size(24.dp)
+                     .clickable { moveSearchBook() }
              )
          }
     }
@@ -60,5 +65,5 @@ fun BookHeader() {
 @Preview
 @Composable
 fun BookHeaderPreview() {
-    BookHeader()
+    BookHeader(moveSearchBook = {})
 }

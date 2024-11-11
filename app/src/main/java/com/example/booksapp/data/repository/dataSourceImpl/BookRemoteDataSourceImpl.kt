@@ -8,7 +8,7 @@ import com.example.booksapp.data.api.model.Books
 import com.example.booksapp.data.api.model.BooksModel
 import com.example.booksapp.data.api.model.BooksTitle
 import com.example.booksapp.data.api.model.Header
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
 import com.example.booksapp.data.repository.dataSource.SearchBooksDataPagingSource
 import kotlinx.coroutines.flow.Flow

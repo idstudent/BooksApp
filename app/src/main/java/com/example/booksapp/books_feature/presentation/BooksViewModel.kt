@@ -9,7 +9,7 @@ import com.example.booksapp.books_feature.domain.GetBookListByTypeUseCase
 import com.example.booksapp.books_feature.domain.GetBookListUseCase
 import com.example.booksapp.books_feature.presentation.state.BookListState
 import com.example.booksapp.core.uitl.ResultData
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

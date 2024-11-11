@@ -9,7 +9,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.booksapp.R
 import com.example.booksapp.data.api.model.BooksModel
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.databinding.FragmentBestSellerBooksBinding
 import com.example.booksapp.presentation.view.adapter.BooksCarouselAdapter
 import com.example.booksapp.presentation.view.util.HorizontalMarginItemDecoration
@@ -113,7 +113,7 @@ class BestSellerBooksFragment : BaseFragment<FragmentBestSellerBooksBinding>() {
 
     private fun moveDetailActivity(categoryId: String) {
         val intent = Intent(activity, BookListActivity::class.java)
-        intent.putExtra("type",  BookFilterType.BEST.name)
+        intent.putExtra("type",  BookFilterType.BEST_LOCAL.name)
         intent.putExtra("categoryId", categoryId)
         startActivity(intent)
     }

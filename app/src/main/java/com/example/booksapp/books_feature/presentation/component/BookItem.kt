@@ -1,17 +1,20 @@
 package com.example.booksapp.books_feature.presentation.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.booksapp.core.domain.model.Book
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.ui.theme.AppColors
+import com.example.booksapp.R
 
 @Composable
 fun BookItem(
@@ -39,8 +42,9 @@ fun BookItem(
             contentDescription = book.title,
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(140f/160f),
-            contentScale = ContentScale.FillBounds
+                .aspectRatio(140f/160f)
+                .background(AppColors.color565656),
+            contentScale = ContentScale.FillBounds,
         )
 
         Text(

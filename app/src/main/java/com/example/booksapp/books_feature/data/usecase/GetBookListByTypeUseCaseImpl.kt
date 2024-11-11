@@ -8,7 +8,7 @@ import com.example.booksapp.books_feature.domain.GetBookListByTypeUseCase
 import com.example.booksapp.books_feature.domain.GetBookListRepository
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.uitl.ResultData
-import com.example.booksapp.data.constants.BookFilterType
+import com.example.booksapp.core.uitl.BookFilterType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
