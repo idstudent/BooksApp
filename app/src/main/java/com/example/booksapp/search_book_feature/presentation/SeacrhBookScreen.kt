@@ -175,7 +175,7 @@ fun SearchBookScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 20.dp)
+                .padding(top = 20.dp),
         ){
             PagingBookContent(pagingBookList = books, type = if(isChecked) "foreign" else "book", onItemClick = onItemClick)
         }

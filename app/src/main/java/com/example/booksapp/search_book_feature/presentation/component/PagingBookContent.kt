@@ -1,6 +1,7 @@
 package com.example.booksapp.search_book_feature.presentation.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -21,8 +22,12 @@ fun PagingBookContent(
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(
+            horizontal = 8.dp,
+            vertical = 8.dp
+        )
     ) {
         items(pagingBookList.itemCount) { index ->
             val book = pagingBookList[index]
