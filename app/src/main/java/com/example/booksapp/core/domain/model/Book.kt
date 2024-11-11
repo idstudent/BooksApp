@@ -7,7 +7,7 @@ data class Book(
     val date: String,
     val priceStandard: Int,
     val priceSales: Int,
-    val discountRate: Int,
+    val discountRate: Double,
     val saleStatus: String,
     val mileage: String,
     val mileageRate: String,

@@ -12,7 +12,7 @@ fun BookItem.toBook(): Book {
         date = pubDate ?: "",
         priceStandard = priceStandard ?: 0,
         priceSales = priceSales ?: 0,
-        discountRate = discountRate ?: 0,
+        discountRate = discountRate ?: 0.0,
         saleStatus = saleStatus ?: "",
         mileage = mileage ?: "",
         mileageRate = mileageRate ?: "",

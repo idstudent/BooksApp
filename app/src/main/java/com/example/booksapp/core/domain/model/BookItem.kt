@@ -17,7 +17,7 @@ data class BookItem(
     @ColumnInfo(name = "priceSales")
     val priceSales: Int?,
     @ColumnInfo(name = "discountRate")
-    val discountRate: Int?,
+    val discountRate: Double?,
     @ColumnInfo(name = "saleStatus")
     val saleStatus: String?,
     @ColumnInfo(name = "mileage")

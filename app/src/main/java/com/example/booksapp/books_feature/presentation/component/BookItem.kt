@@ -44,7 +44,7 @@ fun BookItem(
                 .fillMaxWidth()
                 .aspectRatio(140f/160f)
                 .background(AppColors.color565656),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
         )
 
         Text(
