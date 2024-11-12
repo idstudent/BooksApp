@@ -1,6 +1,6 @@
 package com.example.booksapp.search_book_feature.di
 
-import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.core.data.remote.ApiService
 import com.example.booksapp.search_book_feature.data.repository.GetSearchBookResultRepositoryImpl
 import com.example.booksapp.search_book_feature.data.source.GetSearchBookResultRemoteDataSourceImpl
 import com.example.booksapp.search_book_feature.data.usecase.GetSearchBookResultUseCaseImpl

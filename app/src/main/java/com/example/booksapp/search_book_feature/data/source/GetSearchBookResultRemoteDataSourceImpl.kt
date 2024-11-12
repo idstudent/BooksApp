@@ -1,10 +1,8 @@
 package com.example.booksapp.search_book_feature.data.source
 
 import com.example.booksapp.core.data.ApiKey
-import com.example.booksapp.core.data.mapper.toBook
-import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.domain.model.BookListResponse
-import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.core.data.remote.ApiService
 import com.example.booksapp.search_book_feature.domain.GetSearchBookResultRemoteDataSource
 import javax.inject.Inject
 

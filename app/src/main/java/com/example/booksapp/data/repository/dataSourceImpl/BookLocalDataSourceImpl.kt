@@ -1,6 +1,6 @@
 package com.example.booksapp.data.repository.dataSourceImpl
 
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import com.example.booksapp.data.repository.dataSource.BookLocalDataSource
 import com.example.booksapp.data.db.BookMarkDatabase
 import com.example.booksapp.data.db.BookReportDatabase

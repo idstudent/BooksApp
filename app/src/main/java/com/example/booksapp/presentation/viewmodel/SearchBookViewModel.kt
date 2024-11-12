@@ -1,10 +1,9 @@
 package com.example.booksapp.presentation.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import com.example.booksapp.domain.usecase.GetSearchBookListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

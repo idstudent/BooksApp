@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.data.api.model.*
+import com.example.booksapp.core.data.remote.model.BookList
+import com.example.booksapp.core.data.remote.model.Books
+import com.example.booksapp.core.data.remote.model.BooksTitle
+import com.example.booksapp.core.data.remote.model.Header
 import com.example.booksapp.databinding.*
 import com.example.booksapp.presentation.view.adapter.ViewHolder.BookHeaderViewHolder
 import com.example.booksapp.presentation.view.adapter.ViewHolder.BookListViewHolder

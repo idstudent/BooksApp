@@ -7,7 +7,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.R
-import com.example.booksapp.data.api.model.Books
+import com.example.booksapp.core.data.remote.model.Books
 import com.example.booksapp.databinding.FragmentBooksBinding
 import com.example.booksapp.presentation.view.adapter.MainBookListAdapter
 import com.example.booksapp.presentation.viewmodel.BooksViewModel

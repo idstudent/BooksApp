@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 
 @Database(entities = [BooksModel.Response.BooksItem::class], version = 1)
 abstract class BookReportDatabase  : RoomDatabase(){

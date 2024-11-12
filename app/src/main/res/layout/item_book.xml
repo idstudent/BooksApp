@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.booksapp.data.api.model.Book" />
+            type="com.example.booksapp.core.data.remote.model.Book" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"

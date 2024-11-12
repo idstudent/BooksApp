@@ -1,7 +1,7 @@
 package com.example.booksapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.booksapp.data.api.model.Books
+import com.example.booksapp.core.data.remote.model.Books
 import com.example.booksapp.domain.usecase.GetNewBookListUseCase
 import com.example.booksapp.domain.usecase.GetRecommendBookListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

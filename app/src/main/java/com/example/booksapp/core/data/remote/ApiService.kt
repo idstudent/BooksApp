@@ -1,7 +1,7 @@
-package com.example.booksapp.data.api
+package com.example.booksapp.core.data.remote
 
 import com.example.booksapp.core.domain.model.BookListResponse
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

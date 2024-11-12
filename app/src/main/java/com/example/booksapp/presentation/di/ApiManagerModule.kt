@@ -1,7 +1,7 @@
 package com.example.booksapp.presentation.di
 
-import com.example.booksapp.data.api.ApiService
-import com.example.booksapp.data.api.NullOnEmptyConverterFactory
+import com.example.booksapp.core.data.remote.ApiService
+import com.example.booksapp.core.data.remote.NullOnEmptyConverterFactory
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

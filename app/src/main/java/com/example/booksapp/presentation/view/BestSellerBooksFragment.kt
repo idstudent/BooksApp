@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.booksapp.R
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.databinding.FragmentBestSellerBooksBinding
 import com.example.booksapp.presentation.view.adapter.BooksCarouselAdapter

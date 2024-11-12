@@ -2,7 +2,7 @@ package com.example.booksapp.presentation.view.adapter.ViewHolder
 
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import com.example.booksapp.databinding.ItemViewpagerBookBinding
 import com.example.booksapp.presentation.view.BookDetailActivity
 import com.example.booksapp.presentation.view.util.setOnSingleClickListener

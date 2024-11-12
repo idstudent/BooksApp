@@ -2,7 +2,7 @@ package com.example.booksapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import com.example.booksapp.domain.usecase.GetBookDetailInfoUseCase
 import com.example.booksapp.domain.usecase.LocalBookMarkUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,7 +1,7 @@
 package com.example.booksapp.data.db
 
 import androidx.room.*
-import com.example.booksapp.data.api.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao

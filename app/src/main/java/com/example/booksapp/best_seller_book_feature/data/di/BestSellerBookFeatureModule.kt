@@ -6,7 +6,7 @@ import com.example.booksapp.best_seller_book_feature.data.usecase.GetBestSellerB
 import com.example.booksapp.best_seller_book_feature.domain.GetBestSellerBookListRemoteDataSource
 import com.example.booksapp.best_seller_book_feature.domain.GetBestSellerBookListRepository
 import com.example.booksapp.best_seller_book_feature.domain.GetBestSellerBookListUseCase
-import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.core.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

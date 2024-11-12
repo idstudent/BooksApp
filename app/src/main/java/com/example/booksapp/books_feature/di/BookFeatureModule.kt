@@ -8,7 +8,7 @@ import com.example.booksapp.books_feature.domain.GetBookListByTypeUseCase
 import com.example.booksapp.books_feature.domain.GetBookListRepository
 import com.example.booksapp.books_feature.domain.GetBookListUseCase
 import com.example.booksapp.books_feature.domain.GetBookRemoteDataSource
-import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.core.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

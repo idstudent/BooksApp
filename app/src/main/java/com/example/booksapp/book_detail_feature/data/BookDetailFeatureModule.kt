@@ -6,8 +6,7 @@ import com.example.booksapp.book_detail_feature.data.usecase.GetBookDetailUseCas
 import com.example.booksapp.book_detail_feature.domain.GetBookDetailRemoteDataSource
 import com.example.booksapp.book_detail_feature.domain.GetBookDetailRepository
 import com.example.booksapp.book_detail_feature.domain.GetBookDetailUseCase
-import com.example.booksapp.books_feature.data.repository.GetBookListRepositoryImpl
-import com.example.booksapp.data.api.ApiService
+import com.example.booksapp.core.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

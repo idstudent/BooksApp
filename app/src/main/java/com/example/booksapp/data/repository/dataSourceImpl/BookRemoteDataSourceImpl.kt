@@ -3,11 +3,11 @@ package com.example.booksapp.data.repository.dataSourceImpl
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.booksapp.data.api.ApiService
-import com.example.booksapp.data.api.model.Books
-import com.example.booksapp.data.api.model.BooksModel
-import com.example.booksapp.data.api.model.BooksTitle
-import com.example.booksapp.data.api.model.Header
+import com.example.booksapp.core.data.remote.ApiService
+import com.example.booksapp.core.data.remote.model.Books
+import com.example.booksapp.core.data.remote.model.BooksModel
+import com.example.booksapp.core.data.remote.model.BooksTitle
+import com.example.booksapp.core.data.remote.model.Header
 import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.data.repository.dataSource.BookRemoteDataSource
 import com.example.booksapp.data.repository.dataSource.SearchBooksDataPagingSource
