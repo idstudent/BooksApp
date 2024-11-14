@@ -3,8 +3,9 @@ package com.example.booksapp.core.data.mapper
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.domain.model.BookItem
 import com.example.booksapp.core.domain.model.BookListResponse
+import com.example.booksapp.core.uitl.BookFilterType
 
-fun BookItem.toBook(): Book {
+fun BookItem.toBook(bookType: String): Book {
     return Book(
         id = itemId ?: 0,
         title = title ?: "",
@@ -24,12 +25,13 @@ fun BookItem.toBook(): Book {
         customerReviewRank = customerReviewRank ?: 0.0,
         author = author ?: "",
         isbn = isbn ?: "",
-        reviewCount = reviewCount ?: 0
+        reviewCount = reviewCount ?: 0,
+        bookType = bookType
     )
 }
 
-fun BookListResponse.toBook(): List<Book> {
+fun BookListResponse.toBook(bookType: String): List<Book> {
     return this.item.map { bookItem ->
-        bookItem.toBook()
+        bookItem.toBook(bookType)
     }
 }

@@ -22,7 +22,7 @@ class GetBookDetailUseCaseImpl @Inject constructor(
             try {
                 emit(ResultData.Loading)
 
-                val bookDetailInfo = getBookDetailRepository.getBookDetailInfo(isbn, searchType).toBook()
+                val bookDetailInfo = getBookDetailRepository.getBookDetailInfo(isbn, searchType).toBook(bookType = searchType)
                 emit(ResultData.Success(bookDetailInfo))
             }catch (e: HttpException) {
                 emit(ResultData.Failure(e))

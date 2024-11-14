@@ -34,7 +34,6 @@ fun PagingBookContent(
             book?.let {
                 BookItem(
                     book = it,
-                    type = type,
                     onItemClick = onItemClick
                 )
             }

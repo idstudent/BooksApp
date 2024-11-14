@@ -18,7 +18,6 @@ import com.example.booksapp.core.domain.model.Book
 fun BookContent(
     paddingValues: PaddingValues,
     content: List<Book>,
-    type: String,
     onItemClick: (String, String) -> Unit
 ) {
     Box(Modifier.background(Color.White)) {
@@ -26,11 +25,11 @@ fun BookContent(
             columns = GridCells.Fixed(2),
             contentPadding = paddingValues,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             modifier = Modifier.fillMaxSize()
         ) {
             items(content.size) { index ->
-                BookItem(book = content[index], type = type, onItemClick = onItemClick)
+                BookItem(book = content[index], onItemClick = onItemClick)
             }
         }
 

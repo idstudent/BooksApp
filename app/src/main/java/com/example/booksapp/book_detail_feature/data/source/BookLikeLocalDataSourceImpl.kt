@@ -1,6 +1,6 @@
 package com.example.booksapp.book_detail_feature.data.source
 
-import com.example.booksapp.book_detail_feature.domain.BookLikeLocalDataSource
+import com.example.booksapp.book_like_feature.domain.BookLikeLocalDataSource
 import com.example.booksapp.core.data.local.dao.BookDao
 import com.example.booksapp.core.domain.model.Book
 import kotlinx.coroutines.flow.Flow

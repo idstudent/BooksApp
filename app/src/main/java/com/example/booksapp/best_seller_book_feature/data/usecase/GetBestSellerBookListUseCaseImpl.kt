@@ -7,6 +7,7 @@ import com.example.booksapp.best_seller_book_feature.domain.GetBestSellerBookLis
 import com.example.booksapp.best_seller_book_feature.domain.GetBestSellerBookListUseCase
 import com.example.booksapp.core.data.mapper.toBook
 import com.example.booksapp.core.domain.model.Book
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.core.uitl.ResultData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,7 +22,13 @@ class GetBestSellerBookListUseCaseImpl @Inject constructor(
         return flow {
             try {
                 emit(ResultData.Loading)
-                val result = getBestSellerBookListRepository.getBestSellerBookList(categoryId).toBook()
+                val type = if(categoryId == 100) {
+                    BookFilterType.LOCAL.name
+                }else {
+                    BookFilterType.GLOBAL.name
+                }
+
+                val result = getBestSellerBookListRepository.getBestSellerBookList(categoryId).toBook(bookType = type)
 
                 emit(ResultData.Success(result))
             } catch (e: HttpException) {

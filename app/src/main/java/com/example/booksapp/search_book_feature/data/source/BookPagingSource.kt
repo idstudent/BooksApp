@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.booksapp.core.data.mapper.toBook
 import com.example.booksapp.core.domain.model.Book
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.search_book_feature.domain.GetSearchBookResultRemoteDataSource
 import retrofit2.HttpException
 import java.io.IOException
@@ -25,9 +26,14 @@ class BookPagingSource(
         return try {
             val page = params.key ?: 1
             val response = getSearchBookResultRemoteDataSource.getSearchBookList(page = page, title = title, filter = filter, searchType = searchType)
+            val bookType = if(searchType == "book") {
+                BookFilterType.LOCAL.name
+            }else {
+                BookFilterType.GLOBAL.name
+            }
 
             LoadResult.Page(
-                data = response.toBook(),
+                data = response.toBook(bookType= bookType),
                 prevKey = if (page == 1) null else page -1,
                 nextKey = if (response.item.isEmpty()) null  else page+ 1
             )

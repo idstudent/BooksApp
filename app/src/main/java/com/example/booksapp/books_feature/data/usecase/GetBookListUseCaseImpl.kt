@@ -7,6 +7,7 @@ import com.example.booksapp.core.data.mapper.toBook
 import com.example.booksapp.books_feature.domain.GetBookListRepository
 import com.example.booksapp.books_feature.domain.GetBookListUseCase
 import com.example.booksapp.core.domain.model.Book
+import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.core.uitl.ResultData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,9 +23,9 @@ class GetBookListUseCaseImpl @Inject constructor(
             try {
                 emit(ResultData.Loading)
 
-                val localBooks = getBookListRepository.getBookList(100).toBook()
-                val foreignBooks = getBookListRepository.getBookList(200).toBook()
-                val recommendBooks = getBookListRepository.getRecommendBookList(100).toBook()
+                val localBooks = getBookListRepository.getBookList(100).toBook(bookType = BookFilterType.LOCAL.name)
+                val foreignBooks = getBookListRepository.getBookList(200).toBook(bookType = BookFilterType.GLOBAL.name)
+                val recommendBooks = getBookListRepository.getRecommendBookList(100).toBook(bookType = BookFilterType.LOCAL.name)
 
                 emit(
                     ResultData.Success(Triple(

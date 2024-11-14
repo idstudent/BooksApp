@@ -11,6 +11,8 @@ import com.example.booksapp.best_seller_book_feature.presentation.BestSellerBook
 import com.example.booksapp.best_seller_book_feature.presentation.BestSellerBookViewModel
 import com.example.booksapp.book_detail_feature.presentation.BookDetailScreen
 import com.example.booksapp.book_detail_feature.presentation.BookDetailViewModel
+import com.example.booksapp.book_like_feature.presentation.BookLikeScreen
+import com.example.booksapp.book_like_feature.presentation.BookLikeViewModel
 import com.example.booksapp.books_feature.presentation.BookListScreen
 import com.example.booksapp.books_feature.presentation.BooksScreen
 import com.example.booksapp.books_feature.presentation.BooksViewModel
@@ -129,7 +131,14 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
         composable(route = NaviItem.MyBooks.route) {
-            // MyBooks 화면
+            val viewModel: BookLikeViewModel = hiltViewModel()
+
+            BookLikeScreen(
+                viewModel = viewModel,
+                onItemClick = { isbn, searchType ->
+                    navController.navigate(NaviItem.BookDetail.moveDetail(isbn, searchType))
+                }
+            )
         }
 
         composable(route = NaviItem.BookReport.route) {

@@ -45,7 +45,7 @@ fun BookDetailScreen(
     val uiState = viewModel.uiState
     val detailInfo = uiState.bookDetailInfo?.get(0)
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = Unit) {
         viewModel.getBookDetailInfo(isbn = isbn, searchType = searchType)
     }
 

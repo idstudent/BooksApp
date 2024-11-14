@@ -21,10 +21,9 @@ import com.example.booksapp.R
 fun BookItem(
     book: Book,
     modifier: Modifier = Modifier,
-    type: String,
     onItemClick: (String, String) -> Unit
 ) {
-    val bookType = if(type == BookFilterType.LOCAL.name) {
+    val bookType = if(book.bookType == BookFilterType.LOCAL.name) {
         "book"
     }else {
         "foreign"

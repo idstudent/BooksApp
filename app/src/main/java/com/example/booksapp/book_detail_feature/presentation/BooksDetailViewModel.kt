@@ -6,10 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.booksapp.book_detail_feature.domain.AddBookListUseCase
-import com.example.booksapp.book_detail_feature.domain.DeleteBookLikeUseCase
+import com.example.booksapp.book_like_feature.domain.AddBookListUseCase
+import com.example.booksapp.book_like_feature.domain.DeleteBookLikeUseCase
 import com.example.booksapp.book_detail_feature.domain.GetBookDetailUseCase
-import com.example.booksapp.book_detail_feature.domain.IsLikeBooksUseCase
+import com.example.booksapp.book_like_feature.domain.IsLikeBookUseCase
 import com.example.booksapp.book_detail_feature.presentation.state.BookDetailState
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.uitl.ResultData
@@ -23,7 +23,7 @@ class BookDetailViewModel @Inject constructor(
     private val getBookDetailUseCase: GetBookDetailUseCase,
     private val addBookLikeUseCase: AddBookListUseCase,
     private val deleteBookLikeUseCase: DeleteBookLikeUseCase,
-    private val isLikeBookUseCase: IsLikeBooksUseCase
+    private val isLikeBookUseCase: IsLikeBookUseCase
 ): ViewModel(){
     var uiState by mutableStateOf(BookDetailState())
         private set
@@ -110,7 +110,7 @@ class BookDetailViewModel @Inject constructor(
 
             is BookDetailEvent.IsLikeBook -> {
                 viewModelScope.launch {
-                    isLikeBookUseCase.invoke(params = IsLikeBooksUseCase.Params(
+                    isLikeBookUseCase.invoke(params = IsLikeBookUseCase.Params(
                         bookId = event.bookId
                     )).collectLatest { result ->
                         when(result) {

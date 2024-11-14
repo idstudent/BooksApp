@@ -83,7 +83,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index], type = BookFilterType.LOCAL.name, onItemClick = onItemClick)
+                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
                             }
                         }
                     }
@@ -107,7 +107,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index], type = BookFilterType.GLOBAL.name, onItemClick = onItemClick)
+                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
                             }
                         }
                     }
@@ -131,7 +131,7 @@ fun BooksScreen(
                                 count = previewBooks.size,
                                 key = { index -> previewBooks[index].id }
                             ) { index ->
-                                BookItem(book = previewBooks[index], type = BookFilterType.LOCAL.name, onItemClick = onItemClick)
+                                BookItem(book = previewBooks[index], onItemClick = onItemClick)
                             }
                         }
                     }
