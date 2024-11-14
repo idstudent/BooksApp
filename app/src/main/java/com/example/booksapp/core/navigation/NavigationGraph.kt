@@ -91,7 +91,7 @@ fun NavigationGraph(navController: NavHostController) {
                     navController.popBackStack()
                 },
                 onItemClick = { isbn, searchType ->
-
+                    navController.navigate(NaviItem.BookDetail.moveDetail(isbn, searchType))
                 }
             )
         }
