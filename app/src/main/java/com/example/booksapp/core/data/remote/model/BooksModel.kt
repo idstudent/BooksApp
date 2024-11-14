@@ -40,7 +40,7 @@ class BooksModel {
             @ColumnInfo(name = "priceSales")
             val priceSales: Int?,
             @ColumnInfo(name = "discountRate")
-            val discountRate: Int?,
+            val discountRate: Double?,
             @ColumnInfo(name = "saleStatus")
             val saleStatus: String?,
             @ColumnInfo(name = "mileage")
@@ -90,7 +90,7 @@ class BooksModel {
                             date = it.pubDate ?: "",
                             priceStandard = it.priceStandard ?: 0,
                             priceSales = it.priceSales ?: 0,
-                            discountRate = it.discountRate ?: 0,
+                            discountRate = it.discountRate ?: 0.0,
                             saleStatus = it.saleStatus ?: "",
                             mileage = it.mileage ?: "",
                             mileageRate = it.mileageRate ?: "",
@@ -132,7 +132,7 @@ data class Book(
     val date: String,
     val priceStandard: Int,
     val priceSales: Int,
-    val discountRate: Int,
+    val discountRate: Double,
     val saleStatus: String,
     val mileage: String,
     val mileageRate: String,

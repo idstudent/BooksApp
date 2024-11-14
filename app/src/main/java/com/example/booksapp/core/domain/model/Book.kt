@@ -1,6 +1,11 @@
 package com.example.booksapp.core.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "book")
 data class Book(
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val title: String,
     val description: String,

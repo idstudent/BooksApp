@@ -43,12 +43,17 @@ fun BookDetailScreen(
     searchType: String
 ) {
     val uiState = viewModel.uiState
+    val detailInfo = uiState.bookDetailInfo?.get(0)
 
-    LaunchedEffect(key1 = Unit) {
+    LaunchedEffect(key1 = true) {
         viewModel.getBookDetailInfo(isbn = isbn, searchType = searchType)
     }
 
-    val detailInfo = uiState.bookDetailInfo?.get(0)
+    LaunchedEffect(detailInfo) {
+        detailInfo?.id?.let { id ->
+            viewModel.getIsLike(BookDetailEvent.IsLikeBook(id))
+        }
+    }
 
     Scaffold { paddingValues ->
         Column(
@@ -94,10 +99,20 @@ fun BookDetailScreen(
                     )
 
                     IconButton(
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            detailInfo?.let {
+                                viewModel.setLikeBook(it)
+                            }
+                        }
                     ) {
                         Icon(
-                            painterResource(id = R.drawable.ic_baseline_bookmark_border_24),
+                            painterResource(
+                                id = if (uiState.isLike) {
+                                    R.drawable.ic_baseline_bookmark_24
+                                } else {
+                                    R.drawable.ic_baseline_bookmark_border_24
+                                }
+                            ),
                             contentDescription = null,
                             tint = AppColors.color4caf50
                         )
