@@ -14,11 +14,11 @@ class BookLikeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insert(book: Book) {
-        localDataSource.insertBook(book)
+        localDataSource.insertLike(book)
     }
 
     override suspend fun delete(book: Book) {
-        localDataSource.deleteBook(book)
+        localDataSource.deleteLike(book)
     }
 
     override suspend fun isLike(bookId: Int): Boolean {

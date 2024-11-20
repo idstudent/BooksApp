@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface BookLikeLocalDataSource {
     fun selectBook() : Flow<List<Book>>
-    suspend fun insertBook(book: Book)
-    suspend fun deleteBook(book: Book)
+    suspend fun insertLike(book: Book)
+    suspend fun deleteLike(book: Book)
     suspend fun isLike(bookId: Int): Boolean
 }

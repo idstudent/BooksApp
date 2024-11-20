@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBook(book : Book)
+    suspend fun insertLike(book : Book)
 
     @Delete
-    suspend fun deleteBook(book : Book)
+    suspend fun deleteLike(book : Book)
 
     @Query("SELECT * FROM book")
     fun selectBookList() : Flow<List<Book>>
