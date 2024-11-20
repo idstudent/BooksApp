@@ -1,5 +1,6 @@
 package com.example.booksapp.core.navigation
 
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -16,9 +17,12 @@ import com.example.booksapp.book_like_feature.presentation.BookLikeViewModel
 import com.example.booksapp.books_feature.presentation.BookListScreen
 import com.example.booksapp.books_feature.presentation.BooksScreen
 import com.example.booksapp.books_feature.presentation.BooksViewModel
+import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.search_book_feature.presentation.SearchBookListViewModel
 import com.example.booksapp.search_book_feature.presentation.SearchBookScreen
+import com.example.booksapp.write_review_feature.presentation.WriteReviewScreen
+import kotlinx.serialization.json.Json
 
 
 @Composable
@@ -113,7 +117,14 @@ fun NavigationGraph(navController: NavHostController) {
             val isbn = backStackEntry.arguments?.getString("isbn") ?: ""
             val searchType = backStackEntry.arguments?.getString("searchType") ?: ""
 
-            BookDetailScreen(viewModel = viewModel, isbn = isbn, searchType = searchType)
+            BookDetailScreen(
+                viewModel = viewModel,
+                isbn = isbn,
+                searchType = searchType,
+                moveWriteReview = {
+                    navController.navigate(NaviItem.WriteReview.moveWriteReview(it))
+                }
+            )
         }
 
         composable(route = NaviItem.BestSeller.route) {
@@ -141,6 +152,21 @@ fun NavigationGraph(navController: NavHostController) {
             )
         }
 
+        composable(
+            route = NaviItem.WriteReview.route,
+            arguments = listOf(
+                navArgument("book") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val bookString = backStackEntry.arguments?.getString("book")
+            val book = bookString?.let { Uri.decode(it) }?.let { Json.decodeFromString<Book>(it) }
+
+            if (book != null) {
+                WriteReviewScreen(
+                    book = book,
+                )
+            }
+        }
         composable(route = NaviItem.BookReport.route) {
             // BookReport 화면
         }

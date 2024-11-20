@@ -1,9 +1,12 @@
 package com.example.booksapp.core.navigation
 
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import com.example.booksapp.R
+import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.uitl.BookFilterType
-
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 sealed class NaviItem(
     val title: String?,
     @DrawableRes val iconResId: Int?,
@@ -75,5 +78,14 @@ sealed class NaviItem(
         showBottomBar = false
     ) {
         fun moveDetail(isbn: String, searchType: String) = "book_detail/${isbn}/${searchType}"
+    }
+
+    data object WriteReview: NaviItem(
+        title = null,
+        iconResId = null,
+        route = "write_review/{book}",
+        showBottomBar = false
+    ) {
+        fun moveWriteReview(book: Book) = "write_review/${Uri.encode(Json.encodeToString(book))}"
     }
 }

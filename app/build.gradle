@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -87,4 +88,5 @@ dependencies {
 
     implementation "androidx.paging:paging-runtime-ktx:3.3.2"
     implementation "androidx.paging:paging-compose:3.2.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 }

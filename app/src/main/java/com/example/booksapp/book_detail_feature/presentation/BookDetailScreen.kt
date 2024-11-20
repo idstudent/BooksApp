@@ -2,6 +2,7 @@ package com.example.booksapp.book_detail_feature.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.booksapp.R
+import com.example.booksapp.core.domain.model.Book
+
 import com.example.booksapp.core.uitl.formatDate
 import com.example.booksapp.core.uitl.numberFormat
 import com.example.booksapp.ui.theme.AppColors
@@ -40,7 +43,8 @@ import com.example.booksapp.ui.theme.fontSize20Style
 fun BookDetailScreen(
     viewModel: BookDetailViewModel,
     isbn: String,
-    searchType: String
+    searchType: String,
+    moveWriteReview: (Book) -> Unit
 ) {
     val uiState = viewModel.uiState
     val detailInfo = uiState.bookDetailInfo?.get(0)
@@ -96,6 +100,11 @@ fun BookDetailScreen(
                                 shape = RoundedCornerShape(8.dp)
                             )
                             .padding(8.dp)
+                            .clickable {
+                                uiState.bookDetailInfo?.get(0)?.let {
+                                    moveWriteReview.invoke(it)
+                                }
+                            }
                     )
 
                     IconButton(

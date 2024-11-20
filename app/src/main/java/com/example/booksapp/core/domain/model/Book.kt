@@ -2,7 +2,9 @@ package com.example.booksapp.core.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = "book")
 data class Book(
     @PrimaryKey(autoGenerate = false)

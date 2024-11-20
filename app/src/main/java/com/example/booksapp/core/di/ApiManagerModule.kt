@@ -1,7 +1,6 @@
 package com.example.booksapp.core.di
 
 import com.example.booksapp.core.data.remote.ApiService
-import com.example.booksapp.core.data.remote.NullOnEmptyConverterFactory
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -28,7 +27,6 @@ class ApiManagerModule {
                     .build()
             )
             .baseUrl(ApiService.BASE_URL)
-            .addConverterFactory(NullOnEmptyConverterFactory())
             .addConverterFactory(
                 GsonConverterFactory.create(
                     GsonBuilder().setLenient().create()
