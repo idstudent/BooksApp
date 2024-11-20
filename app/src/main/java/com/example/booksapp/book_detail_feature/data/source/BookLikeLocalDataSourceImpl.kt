@@ -13,12 +13,12 @@ class BookLikeLocalDataSourceImpl @Inject constructor(
         return dao.selectBookList()
     }
 
-    override suspend fun insertLike(book: Book) {
-        dao.insertLike(book)
+    override suspend fun insertBook(book: Book) {
+        dao.insertBook(book)
     }
 
-    override suspend fun deleteLike(book: Book) {
-        dao.deleteLike(book)
+    override suspend fun deleteBook(book: Book) {
+        dao.deleteBook(book)
     }
 
     override suspend fun isLike(bookId: Int): Boolean {
