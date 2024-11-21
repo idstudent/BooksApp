@@ -19,6 +19,8 @@ import com.example.booksapp.books_feature.presentation.BooksScreen
 import com.example.booksapp.books_feature.presentation.BooksViewModel
 import com.example.booksapp.core.domain.model.Book
 import com.example.booksapp.core.uitl.BookFilterType
+import com.example.booksapp.review_book_list_feature.ReviewBookListViewModel
+import com.example.booksapp.review_book_list_feature.presentation.ReviewBookListScreen
 import com.example.booksapp.search_book_feature.presentation.SearchBookListViewModel
 import com.example.booksapp.search_book_feature.presentation.SearchBookScreen
 import com.example.booksapp.write_review_feature.presentation.WriteReviewScreen
@@ -175,7 +177,14 @@ fun NavigationGraph(navController: NavHostController) {
             }
         }
         composable(route = NaviItem.BookReport.route) {
-            // BookReport 화면
+            val viewModel: ReviewBookListViewModel = hiltViewModel()
+
+            ReviewBookListScreen(
+                viewModel = viewModel,
+                onItemClick = {
+                    navController.navigate(NaviItem.WriteReview.moveWriteReview(it))
+                }
+            )
         }
     }
 }

@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class DeleteBookLikeUseCaseImpl @Inject constructor(
-    private val bookRepository: BookInfoRepository
+    private val bookInfoRepository: BookInfoRepository
 ): DeleteBookLikeUseCase {
     override suspend fun invoke(params: DeleteBookLikeUseCase.Params): Flow<ResultData<Unit>> {
         return flow {
-            val delete = bookRepository.delete(params.book)
+            val delete = bookInfoRepository.delete(params.book)
             emit(ResultData.Success(delete))
         }
     }

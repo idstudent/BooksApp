@@ -25,7 +25,7 @@ class BookInfoRepositoryImpl @Inject constructor(
         return localDataSource.isLike(bookId)
     }
 
-    override suspend fun getReviewBookList(): List<Book> {
+    override fun getReviewBookList(): Flow<List<Book>> {
         return localDataSource.getReviewBook()
     }
 }

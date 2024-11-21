@@ -9,5 +9,5 @@ interface BookInfoRepository {
     suspend fun delete(book: Book)
     suspend fun isLike(bookId: Int): Boolean
 
-    suspend fun getReviewBookList(): List<Book>
+    fun getReviewBookList(): Flow<List<Book>>
 }

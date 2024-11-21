@@ -43,8 +43,12 @@ fun WriteReviewScreen(
     book: Book,
     onBackPressed: () -> Unit
 ) {
-    var reviewText by remember { mutableStateOf("") }
+    var reviewText by remember { mutableStateOf(book.review ?: "") }
     val context = LocalContext.current
+
+    LaunchedEffect(book.review) {
+        reviewText = book.review ?: ""
+    }
 
     LaunchedEffect(viewModel.uiState.isReviewSuccess) {
         if (viewModel.uiState.isReviewSuccess) {

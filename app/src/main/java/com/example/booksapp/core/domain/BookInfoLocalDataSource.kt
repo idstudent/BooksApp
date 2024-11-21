@@ -8,5 +8,5 @@ interface BookInfoLocalDataSource {
     suspend fun insertBook(book: Book)
     suspend fun deleteBook(book: Book)
     suspend fun isLike(bookId: Int): Boolean
-    suspend fun getReviewBook(): List<Book>
+    fun getReviewBook(): Flow<List<Book>>
 }

@@ -25,7 +25,7 @@ class BookInfoLocalDataSourceImpl @Inject constructor(
         return dao.isLike(bookId) != null
     }
 
-    override suspend fun getReviewBook(): List<Book> {
+    override fun getReviewBook(): Flow<List<Book>> {
         return dao.selectReviewBooks()
     }
 }

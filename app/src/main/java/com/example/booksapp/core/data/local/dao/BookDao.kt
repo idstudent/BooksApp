@@ -19,5 +19,5 @@ interface BookDao {
     suspend fun isLike(id: Int): Book?
 
     @Query("SELECT * FROM book WHERE review IS NOT NULL AND review != ''")
-    suspend fun selectReviewBooks(): List<Book>
+    fun selectReviewBooks(): Flow<List<Book>>
 }
