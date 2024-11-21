@@ -12,14 +12,14 @@
 
 아키텍처 :
 
-          master 브랜치 - MVVM, Clean Architecture, DI - koin -> Hilt 변경작업 
+          master 브랜치 - MVVM, Clean Architecture, DI - Hilt, xml -> compose 변경작업
 
+          book-mvvm-clea_arch_hilt 브랜치 - MVVM, Clean Architecture, DI - koin -> Hilt 변경작업 
+          
           book-mvvm-cleanArch-koin 브랜치 - MVVM, Clean Architecture, DI - koin 
           
           book-mvvm 브랜치 - MVVM, DI - koin
-         
-          feature/clean_arch_compose_new 브랜치 - MVVM, Clean Architecture, DI - Hilt, compose (현재 작업중)
-
+          
 coroutine, compose, flow, stateflow, liveData(master 브랜치에서 livedata -> stateflow로 변경)
 
 paging3, room, navigation(바텀 네비게이션으로 사용), data binding, retrofit2, glide
@@ -30,7 +30,7 @@ paging3, room, navigation(바텀 네비게이션으로 사용), data binding, re
 
 현재는 master, book-mvvm 브랜치만 있으나, 이전에 MovieIntroduce 프로젝트처럼 브랜치를 나눠갈 계획입니다.
 ex) 클린아키텍처를 적용하려는 경우 master브랜치에서 book-cleanArchitecture로 따로 브랜치를 만들어 클린아키텍처 적용
-master가 가장 최근의 업데이트(?)를 반영하는 브랜치입니다. **최신 업데이트 날짜 2024.11.05**
+master가 가장 최근의 업데이트(?)를 반영하는 브랜치입니다. **최신 업데이트 날짜 2024.11.21**
 
 각 화면의 설명은 mp4의 화면과 같이 설명을 기재 해놓았습니다. (gif를 사용하려했으나, 10mb 용량 제한으로 mp4인 점 양해 부탁드립니다.)
 
