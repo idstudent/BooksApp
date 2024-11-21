@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.booksapp.book_like_feature.domain.AddBookListUseCase
+import com.example.booksapp.core.domain.AddBookUseCase
 import com.example.booksapp.book_like_feature.domain.DeleteBookLikeUseCase
 import com.example.booksapp.book_detail_feature.domain.GetBookDetailUseCase
 import com.example.booksapp.book_like_feature.domain.IsLikeBookUseCase
@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BookDetailViewModel @Inject constructor(
     private val getBookDetailUseCase: GetBookDetailUseCase,
-    private val addBookLikeUseCase: AddBookListUseCase,
+    private val addBookUseCase: AddBookUseCase,
     private val deleteBookLikeUseCase: DeleteBookLikeUseCase,
     private val isLikeBookUseCase: IsLikeBookUseCase
 ): ViewModel(){
@@ -70,7 +70,7 @@ class BookDetailViewModel @Inject constructor(
         when(event) {
             is BookDetailEvent.AddLikeBook -> {
                 viewModelScope.launch {
-                    addBookLikeUseCase.invoke(params = AddBookListUseCase.Params(
+                    addBookUseCase.invoke(params = AddBookUseCase.Params(
                         book = event.book
                     )).collectLatest { result ->
                         when(result) {

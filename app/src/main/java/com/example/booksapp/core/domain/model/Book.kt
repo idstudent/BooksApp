@@ -26,6 +26,6 @@ data class Book(
     val customerReviewRank: Double,
     val author: String,
     val isbn: String,
-    val reviewCount: Int,
-    val bookType: String
+    val bookType: String,
+    val review: String?
 )

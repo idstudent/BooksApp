@@ -1,14 +1,14 @@
-package com.example.booksapp.book_detail_feature.data.source
+package com.example.booksapp.core.data.source
 
-import com.example.booksapp.book_like_feature.domain.BookLikeLocalDataSource
+import com.example.booksapp.core.domain.BookInfoLocalDataSource
 import com.example.booksapp.core.data.local.dao.BookDao
 import com.example.booksapp.core.domain.model.Book
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class BookLikeLocalDataSourceImpl @Inject constructor(
+class BookInfoLocalDataSourceImpl @Inject constructor(
     private val dao: BookDao
-): BookLikeLocalDataSource {
+): BookInfoLocalDataSource {
     override fun selectBook(): Flow<List<Book>> {
         return dao.selectBookList()
     }
@@ -23,5 +23,9 @@ class BookLikeLocalDataSourceImpl @Inject constructor(
 
     override suspend fun isLike(bookId: Int): Boolean {
         return dao.isLike(bookId) != null
+    }
+
+    override suspend fun getReviewBook(): List<Book> {
+        return dao.selectReviewBooks()
     }
 }

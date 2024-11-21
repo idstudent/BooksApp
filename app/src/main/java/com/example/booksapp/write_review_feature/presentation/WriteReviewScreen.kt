@@ -1,5 +1,6 @@
 package com.example.booksapp.write_review_feature.presentation
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,6 +15,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -36,9 +39,19 @@ import com.example.booksapp.ui.theme.fontSize20Style
 
 @Composable
 fun WriteReviewScreen(
-    book: Book
+    viewModel: WriteReviewViewModel,
+    book: Book,
+    onBackPressed: () -> Unit
 ) {
     var reviewText by remember { mutableStateOf("") }
+    val context = LocalContext.current
+
+    LaunchedEffect(viewModel.uiState.isReviewSuccess) {
+        if (viewModel.uiState.isReviewSuccess) {
+            Toast.makeText(context, "리뷰가 저장되었습니다", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -108,6 +121,7 @@ fun WriteReviewScreen(
                 )
                 .padding(vertical = 16.dp)
                 .clickable {
+                    viewModel.writeReview(book.copy(review = reviewText))
                 }
         )
     }

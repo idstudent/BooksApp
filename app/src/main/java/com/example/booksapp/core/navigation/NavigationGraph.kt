@@ -22,6 +22,7 @@ import com.example.booksapp.core.uitl.BookFilterType
 import com.example.booksapp.search_book_feature.presentation.SearchBookListViewModel
 import com.example.booksapp.search_book_feature.presentation.SearchBookScreen
 import com.example.booksapp.write_review_feature.presentation.WriteReviewScreen
+import com.example.booksapp.write_review_feature.presentation.WriteReviewViewModel
 import kotlinx.serialization.json.Json
 
 
@@ -162,8 +163,14 @@ fun NavigationGraph(navController: NavHostController) {
             val book = bookString?.let { Uri.decode(it) }?.let { Json.decodeFromString<Book>(it) }
 
             if (book != null) {
+                val viewModel: WriteReviewViewModel = hiltViewModel()
+
                 WriteReviewScreen(
+                    viewModel = viewModel,
                     book = book,
+                    onBackPressed = {
+                        navController.popBackStack()
+                    }
                 )
             }
         }

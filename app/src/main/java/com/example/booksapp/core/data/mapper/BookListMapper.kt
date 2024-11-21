@@ -24,8 +24,8 @@ fun BookItem.toBook(bookType: String): Book {
         customerReviewRank = customerReviewRank ?: 0.0,
         author = author ?: "",
         isbn = isbn ?: "",
-        reviewCount = reviewCount ?: 0,
-        bookType = bookType
+        bookType = bookType,
+        review = review ?: ""
     )
 }
 

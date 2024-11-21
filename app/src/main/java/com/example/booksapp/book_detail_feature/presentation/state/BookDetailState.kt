@@ -6,5 +6,6 @@ data class BookDetailState (
     val bookDetailInfo: List<Book>? = null,
     val error: String = "",
     val isLike: Boolean = false,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val isReviewSuccess: Boolean = false
 )

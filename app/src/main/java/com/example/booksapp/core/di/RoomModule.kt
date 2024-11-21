@@ -22,7 +22,9 @@ object RoomModule {
         context,
         BookDatabase::class.java,
         "book_info_db"
-    ).build()
+    )
+    .fallbackToDestructiveMigration()
+    .build()
 
     @Provides
     @Singleton

@@ -48,8 +48,6 @@ data class BookItem(
     val mobileLink: String?,
     @ColumnInfo(name = "additionalLink")
     val additionalLink: String?,
-    @ColumnInfo(name = "reviewCount")
-    val reviewCount: Int?,
     @ColumnInfo(name = "review")
     var review: String?
 )

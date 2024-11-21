@@ -7,7 +7,7 @@ import com.example.booksapp.core.data.local.dao.BookDao
 
 @Database(
     entities = [Book::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class BookDatabase: RoomDatabase() {
